@@ -256,27 +256,27 @@ const CITIES = [
   { id: "saltmere", name: "Saltmere", tier: 0, rank: 0, kind: "a fishing port", upkeep: 5, trouble: 0.07, venues: ["tavern"], npcs: ["marlow", "briar"],
     tastes: ["doggy_style", "standing", "spanking", "dirty_talk"],
     strangers: ["a salt-crusted sailor", "a ferryman with tar-black hands", "a young fisher with a week's wages", "a ship's mate on shore leave"],
-    blurb: { morning: "Gulls wheel over the fish market. The guildhouse is a narrow room above a chandler's shop.", afternoon: "Sailors fresh off the boats crowd the quay with coin to burn.", night: "Lanterns sway over the harbor taverns. The best money and the worst trouble both come after dark." } },
+    blurb: { morning: "Gulls wheel over the fish market. Half the guildhouse beds are still warm.", afternoon: "Sailors fresh off the boats crowd the quay, pockets heavy, cocks heavier.", night: "Lanterns sway over the harbor taverns. The best money and the worst hands both come after dark." } },
   { id: "ashford", name: "Ashford", tier: 1, rank: 1, kind: "a wool town on the river", upkeep: 7, trouble: 0.05, venues: ["tavern"], npcs: ["marlow"],
     tastes: ["missionary", "spooning", "roleplay", "praise_kink"],
     strangers: ["a wool merchant", "a drover in his market best", "a miller's heir", "a traveling clerk"],
-    blurb: { morning: "Carts of fleece rumble over the bridge toward the cloth hall.", afternoon: "Market day. Traders with fat purses and long faces want cheering up.", night: "The inns along the river fill with drovers and dealers celebrating a good sale." } },
+    blurb: { morning: "Carts of fleece rumble over the bridge. The guilds open their doors before the cloth hall does.", afternoon: "Market day. Merchants with fat purses and bad marriages want more than cheering up.", night: "The inns along the river fill with drovers and dealers flush with coin and hungry for something soft to spend it on." } },
   { id: "varenne", name: "Varenne", tier: 2, rank: 2, kind: "a city of bankers", upkeep: 10, trouble: 0.04, venues: ["tavern", "salon"], npcs: ["edric"],
     tastes: ["cowgirl", "lotus", "voyeurism", "dominance_and_submission"],
     strangers: ["a moneylender's clerk", "a silk importer", "a banker's younger son", "a notary with ink-stained cuffs"],
-    blurb: { morning: "Counting houses throw open their shutters. Gold changes hands before breakfast.", afternoon: "Salons open their doors to anyone with wit, wealth or a good introduction.", night: "Behind every lit window in the banking quarter, someone is celebrating a fortune." } },
+    blurb: { morning: "Counting houses throw open their shutters. Rich men want their mornings started right.", afternoon: "Salons open their doors to anyone with wit, wealth or a body worth staring at.", night: "Behind every lit window in the banking quarter, someone is celebrating a fortune — and paying well to do it right." } },
   { id: "lysmoor", name: "Lysmoor", tier: 3, rank: 3, kind: "a cathedral city", upkeep: 12, trouble: 0.03, venues: ["tavern", "salon"], npcs: [],
     tastes: ["sensory_deprivation", "bondage", "praise_kink", "side_by_side_face-to-fac"],
     strangers: ["a scholar from the cathedral school", "a pilgrim far from home", "a choirmaster", "a wealthy penitent"],
-    blurb: { morning: "Bells ring over the cathedral close. Pilgrims shuffle toward the shrine.", afternoon: "Scholars argue in the cloisters; the pious and the curious pass discreet notes.", night: "Lysmoor pretends to sleep early. Its sins are quiet, expensive and well paid." } },
+    blurb: { morning: "Bells ring over the cathedral close. The most devout clients come to you before morning prayers.", afternoon: "Scholars argue in the cloisters; the pious pass discreet notes with their confessions still fresh.", night: "Lysmoor pretends to sleep early. Its sins are quiet, very specific and obscenely well paid." } },
   { id: "aurelle", name: "Aurelle", tier: 4, rank: 4, kind: "the seat of the royal court", upkeep: 16, trouble: 0.03, venues: ["salon", "court"], npcs: ["edric"],
     tastes: ["lotus", "roleplay", "temperature_play", "exhibitionism"],
     strangers: ["a courtier in borrowed finery", "a foreign envoy", "a royal huntsman", "a lady-in-waiting's brother"],
-    blurb: { morning: "Heralds cry the day's audiences from the palace steps.", afternoon: "The court strolls the palace gardens, trading gossip like coin.", night: "Masques, banquets and candlelit galleries. At court, every night is a performance." } },
+    blurb: { morning: "Heralds cry the day's audiences from the palace steps. Courtiers who spent the night in your bed slip out before the crowds.", afternoon: "The court strolls the palace gardens, trading gossip and favorable introductions to anyone who can fuck well and keep secrets.", night: "Masques, banquets and candlelit galleries. At court, every night is a performance — and the real show happens behind closed doors." } },
   { id: "valcourt", name: "Valcourt", tier: 5, rank: 5, kind: "the capital, home of the Guild Hall", upkeep: 20, trouble: 0.04, venues: ["salon", "court"], npcs: ["briar"],
     tastes: ["dominance_and_submission", "impact_play", "pretzel_dip", "coital_alignment_techniq"],
     strangers: ["a minister of the crown", "a merchant prince", "a famous poet", "a general on leave"],
-    blurb: { morning: "The Guild Hall's marble steps gleam above the river. The council meets at noon.", afternoon: "The capital's great houses send runners with invitations sealed in wax.", night: "Valcourt never sleeps. Somewhere tonight, a fortune and a reputation will both change hands." } }
+    blurb: { morning: "The Guild Hall's marble steps gleam above the river. The masters who fucked their way here don't forget it.", afternoon: "The capital's great houses send runners with invitations sealed in wax — and very particular requests inside.", night: "Valcourt never sleeps. Somewhere tonight, a fortune is being spent between someone's thighs." } }
 ];
 
 /* ---------- Courtship ---------- */
@@ -299,18 +299,18 @@ const TONES = {
 };
 
 const PERSONALITIES = {
-  romantic: { name: "Romantic", favors: ["flatter", "coy"], hates: "bold", desc: "wants to be swept off their feet",
-    prompts: ["\"Do you believe in fate? I have a feeling about tonight.\"", "\"Tell me something true. Everyone here lies so beautifully.\"", "\"I wrote a poem once. It was terrible. Shall I recite it?\"", "\"If I asked you to dance, would you?\""] },
-  scholar: { name: "Scholar", favors: ["wit", "listen"], hates: "flatter", desc: "prizes a sharp mind over a pretty word",
-    prompts: ["\"Have you read Aldermere's treatise on the passions? No one here has.\"", "\"What do you make of this fashion for masks?\"", "\"Tell me, what do you think people really come to these evenings for?\"", "\"I find most conversation tedious. Prove me wrong.\""] },
-  rake: { name: "Rake", favors: ["bold", "wit"], hates: "listen", desc: "is bored by anything timid",
-    prompts: ["\"You're the most interesting thing in this room. That isn't saying much.\"", "\"I wagered a friend I could make you blush.\"", "\"Do you always stand so far away?\"", "\"Let's leave before the speeches start.\""] },
-  proud: { name: "Proud", favors: ["flatter", "listen"], hates: "wit", desc: "must always be the cleverest one present",
-    prompts: ["\"You've heard of my family, of course.\"", "\"My gardens are the finest in the province. Everyone says so.\"", "\"I commissioned that tapestry. Rather good, isn't it?\"", "\"I'm told you're much sought after. So am I.\""] },
-  shy: { name: "Shy", favors: ["listen", "coy"], hates: "bold", desc: "needs gentleness to open up",
-    prompts: ["\"Oh! I'm sorry, I didn't see you there.\"", "\"I don't usually come to these things.\"", "\"Is it always this loud?\"", "\"You don't have to keep talking to me, you know.\""] },
-  jaded: { name: "Jaded", favors: ["wit", "bold"], hates: "flatter", desc: "has heard every compliment twice",
-    prompts: ["\"Let me guess: you're delighted to meet me.\"", "\"Every season, the same wine and the same faces.\"", "\"Say something I haven't heard before.\"", "\"I've been courted by better. Probably.\""] }
+  romantic: { name: "Romantic", favors: ["flatter", "coy"], hates: "bold", desc: "wants to be swept off their feet before they're bent over",
+    prompts: ["\"Do you believe in fate? I have a feeling about tonight.\"", "\"Tell me something true. I want to know you before I have you.\"", "\"I wrote a poem once. It was terrible. I'd read it to you in bed.\"", "\"If I asked you upstairs, would you come?\""] },
+  scholar: { name: "Scholar", favors: ["wit", "listen"], hates: "flatter", desc: "prizes a sharp mind — and wants someone clever to take to bed",
+    prompts: ["\"Have you read Aldermere's treatise on the passions? He's wrong about almost everything.\"", "\"What do you make of this fashion for masks? I find honesty more arousing.\"", "\"Tell me, what do you think people really come to these evenings hoping to find in someone's bed?\"", "\"I find most conversation tedious. The rest I'd rather have while undressed.\""] },
+  rake: { name: "Rake", favors: ["bold", "wit"], hates: "listen", desc: "is bored by anything timid — wants someone who'll match them",
+    prompts: ["\"You're the most interesting body in this room. I'd like to know it better.\"", "\"I wagered a friend I'd have you before midnight.\"", "\"Do you always make people work this hard?\"", "\"Let's leave before the speeches start. I have a much better use for tonight.\""] },
+  proud: { name: "Proud", favors: ["flatter", "listen"], hates: "wit", desc: "must be the most important person in the room — and in bed",
+    prompts: ["\"You've heard of my family, of course. I assume you're suitably impressed.\"", "\"My last courtesan said I was the most generous lover in the province.\"", "\"I commissioned that tapestry. I commissioned the painter too, for a time.\"", "\"I'm told you're much sought after. I require the best.\""] },
+  shy: { name: "Shy", favors: ["listen", "coy"], hates: "bold", desc: "needs gentleness — but wants it badly once they open up",
+    prompts: ["\"Oh! I'm sorry, I didn't see you there.\"", "\"I don't usually — I've never paid for this before.\"", "\"Is it always this loud? I thought it would be... different.\"", "\"You don't have to be kind to me. I know what this is.\""] },
+  jaded: { name: "Jaded", favors: ["wit", "bold"], hates: "flatter", desc: "has fucked half the city and wants to be surprised",
+    prompts: ["\"Let me guess: you're going to tell me I'm special.\"", "\"Every season. Same wine, same beds, same faces.\"", "\"Do something I haven't seen before. I dare you.\"", "\"I've had better. Impress me anyway.\""] }
 };
 const COURT_REACTIONS = {
   great: ["{They} laugh{s}, genuinely surprised.", "{Their} eyes light up.", "{They} lean{s} closer.", "{They} smile{s} despite {themself}."],
@@ -419,11 +419,11 @@ const ATTR_USE = {
 };
 
 const CLIENT_TYPES = {
-  ordinary:  { key: "ordinary",  name: "Ordinary",  desc: "Nothing unusual about this one.", dc: 0, climax: 0, payMult: 1, tip: 0, trouble: 0, weight: 40 },
-  nervous:   { key: "nervous",   name: "Nervous",   desc: "Skittish and slow to settle, but easy to please once they do.", dc: -1, climax: 3, payMult: 1, tip: 0, trouble: 0, weight: 18 },
-  demanding: { key: "demanding", name: "Demanding", desc: "Hard to satisfy. Pays a premium for it.", dc: 2, climax: 2, payMult: 1.3, tip: 0, trouble: 0.05, weight: 18 },
-  generous:  { key: "generous",  name: "Generous",  desc: "Tips handsomely when pleased.", dc: 0, climax: 0, payMult: 1, tip: 0.5, trouble: 0, weight: 14 },
-  dangerous: { key: "dangerous", name: "Dangerous", desc: "Something is off about them. Trouble is likely.", dc: 1, climax: 0, payMult: 1.1, tip: 0, trouble: 0.35, weight: 10 }
+  ordinary:  { key: "ordinary",  name: "Ordinary",  desc: "Wants a good fuck. Nothing exotic.", dc: 0, climax: 0, payMult: 1, tip: 0, trouble: 0, weight: 40 },
+  nervous:   { key: "nervous",   name: "Nervous",   desc: "First time paying for it, maybe first time at all. Comes apart easily once you get them going.", dc: -1, climax: 3, payMult: 1, tip: 0, trouble: 0, weight: 18 },
+  demanding: { key: "demanding", name: "Demanding", desc: "Hard to get off. Knows exactly what they want and won't settle for less. Pays double for it.", dc: 2, climax: 2, payMult: 1.3, tip: 0, trouble: 0.05, weight: 18 },
+  generous:  { key: "generous",  name: "Generous",  desc: "Easy to please. Tips well when you make them feel like the only person in the room.", dc: 0, climax: 0, payMult: 1, tip: 0.5, trouble: 0, weight: 14 },
+  dangerous: { key: "dangerous", name: "Dangerous", desc: "Something is wrong about them. They want more than you agreed to. Trouble is coming.", dc: 1, climax: 0, payMult: 1.1, tip: 0, trouble: 0.35, weight: 10 }
 };
 
 const NPCS = [
@@ -519,12 +519,12 @@ const MARKET = [
 ];
 
 const ENDINGS = {
-  guildmaster: { title: "Guild Master", text: "The Guild Hall falls silent as the council rises to its feet. The chain of office is heavy and cold, and it is yours. Every guildhouse from Saltmere to Valcourt answers to you now." },
-  wealthy: { title: "A Quiet Retirement", text: "You buy out your guild contract, count your savings one last time, and take a narrow house by the river with a garden out back. Nobody on your new street knows what you did, and you never feel the need to tell them." },
-  kept: { title: () => state.character.gender === "male" ? "Companion of the Estate" : "Lady of the Estate", text: "Sir Edric's carriage carries you out past the walls to rolling green country. His family accepted you, after a fashion. The work is over. Whether what replaces it is freedom, you will spend years deciding." },
-  runaway: { title: "Southbound", text: "You slip aboard before dawn with Marlow and a single bag, your guild contract left behind in ashes. By the time the bells ring, the coast is a smudge on the horizon behind you." },
-  burnout: { title: "Burned Out", text: "One morning you simply cannot face it again. You leave the life with less than you hoped and more scars than you'd admit, but you leave it." },
-  expelled: { title: "Struck From the Rolls", text: "The guild strikes your name from its rolls. No guildhouse will open its doors to you, and no client of quality will risk being seen with you. Whatever comes next, it won't be this." }
+  guildmaster: { title: "Guild Master", text: "The Guild Hall falls silent as the council rises to its feet. The chain of office is heavy and cold, and it is yours. You earned this in beds across six cities — fucking strangers, reading men and women like books, selling pleasure at every rank until there was nowhere left to climb. Every guildhouse from Saltmere to Valcourt answers to you now." },
+  wealthy: { title: "A Quiet Retirement", text: "You buy out your guild contract with coin earned on your back and on your knees, count your savings one last time, and take a narrow house by the river with a garden out back. Nobody on your new street knows what you did for it, and you never feel the need to tell them. The body remembers. The coin doesn't ask questions." },
+  kept: { title: () => state.character.gender === "male" ? "Companion of the Estate" : "Lady of the Estate", text: "Sir Edric's carriage carries you out past the walls to rolling green country. He wanted your company in his bed more than he cared what people said about how you earned it. His family accepted you, after a fashion. The work is over. Whether what replaces it is freedom, you will spend years deciding." },
+  runaway: { title: "Southbound", text: "You slip aboard before dawn with Marlow and a single bag, your guild contract left behind in ashes. No more clients. No more rank trials. No more selling pieces of yourself by the hour. By the time the bells ring, the coast is a smudge on the horizon behind you." },
+  burnout: { title: "Burned Out", text: "One morning you simply cannot face it again — another body, another performance, another morning counting coin on a rumpled bed. You leave the life with less than you hoped and more marks than you'd admit, but you leave it. That's more than some manage." },
+  expelled: { title: "Struck From the Rolls", text: "The guild strikes your name from its rolls. No guildhouse will open its doors to you. The clients you fucked your way up to will pretend they never knew you. Whatever you sold of yourself for this career, you sold it for nothing. Whatever comes next, it won't be this." }
 };
 
 /* =========================================================
@@ -1435,18 +1435,18 @@ function courtTarget(c) { return { cg: c.cg, npc: { name: c.name }, item: INDEX.
 /* ---------- Contract board ---------- */
 const CONTRACT_WHO = ["a ship's captain on shore leave", "a visiting envoy", "a guild banker", "a retired duelist", "a cathedral organist", "a spice merchant", "a newly widowed vintner", "a master glassblower", "a traveling magistrate", "a mercenary captain", "a lady-in-waiting's steward", "a wool baron's heir", "a court physician", "a famous playwright", "a horse breeder in town for the fair", "a minor lord between wars"];
 const CONTRACT_ASK = {
-  exhibitionism: "wants to be seen with you, somewhere you might be discovered",
-  voyeurism: "wishes to watch a private performance, and perhaps more",
-  roleplay: "has a very particular story in mind and needs a partner to play it",
-  bondage: "wants an evening in silk cords, and someone who knows the knots",
-  dominance_and_submission: "is used to giving orders and wants, for once, to take them",
-  praise_kink: "wants to hear, at length, how well they're doing",
-  dirty_talk: "wants a companion with a wicked tongue",
-  sensory_deprivation: "asks for a blindfold and a patient hand",
-  temperature_play: "requests candles, ice and an unhurried evening",
-  spanking: "has been very bad and would like to be told so",
-  impact_play: "wants someone with a firm hand and good judgment",
-  foot_fetish: "has a weakness they're too shy to name in person"
+  exhibitionism: "wants to fuck where they might be caught — the thrill is the audience",
+  voyeurism: "wants to watch you touch yourself and finish in front of them, nothing hidden",
+  roleplay: "has a very specific fantasy that requires a willing body and no questions asked",
+  bondage: "wants to be tied up and used, helpless, at whatever pace you set",
+  dominance_and_submission: "is used to power and wants, for one night, to be on their knees taking orders",
+  praise_kink: "wants to be told they're good while you fuck them — loudly and at length",
+  dirty_talk: "wants a filthy mouth narrating everything being done to their body",
+  sensory_deprivation: "wants a blindfold on and no idea what comes next",
+  temperature_play: "requests candles dripped on skin and ice run down their spine before the main event",
+  spanking: "wants their ass reddened and to be told exactly what they did to deserve it",
+  impact_play: "wants marks left on their skin and a firm hand that knows where the line is",
+  foot_fetish: "wants your feet worshipped and won't stop until you let them"
 };
 const CONTRACT_PARTY = ["a newly married couple wanting to celebrate", "two old friends settling a wager", "a merchant and her favorite clerk", "a pair of officers on their last night before deployment", "three cousins in town for a wedding", "a troupe of actors after a triumph"];
 const maxContracts = () => 2 + (state.rank >= 3 ? 1 : 0);
@@ -1838,7 +1838,7 @@ const Game = {
       climax: max, climaxMax: max, round: 1, maxRounds: rounds, party, focus: 0, unlocks: [],
       dress: isKink(o.item.id) ? 1 : 2, selfDress: 2,
       advantageRounds: adv, lastMoveId: null, repeat: 0, combo: 0,
-      text: t.note || "You lead them somewhere private."
+      text: t.note || "You take them to bed."
     };
     this.offer = null;
     const en = state.encounter;
@@ -1887,7 +1887,7 @@ const Game = {
     if (e.round > e.maxRounds || state.energy < 6) { this.finishEncounter(false); return; }
 
     const pct = Math.round((1 - Math.max(0, e.climax) / e.climaxMax) * 100);
-    const mood = pct < 30 ? "still guarded" : pct < 70 ? "warming to you" : "nearly there";
+    const mood = pct < 30 ? "still cold — you haven't gotten to them yet" : pct < 70 ? "turned on and building" : "close to the edge";
     const chips = [];
     if (e.combo > 1) chips.push({ text: `Rhythm ×${e.combo}`, cls: "gold" });
     if (e.lastMoveId && e.repeat) chips.push({ text: "Getting repetitive", cls: "warn" });
@@ -1961,7 +1961,7 @@ const Game = {
     if (e.advantageRounds > 0) e.advantageRounds--;
     const r = check(p.meta, p.dc);
     let stress = p.stress;
-    let text = { tease: "You tease them with words and a slow touch.", focus: `You throw yourself into ${pos.name}.`, recover: "You slow down and steady yourself.", command: "You take control of the pace.", together: "You draw them all together." }[kind] || `You move into ${pos.name}.`;
+    let text = { tease: "You work them up slowly — hands and mouth, nothing finished yet.", focus: `You push hard into ${pos.name}, giving them everything.`, recover: "You ease off, let them catch their breath, keep them wanting.", command: "You take over — your hands, your pace, your terms.", together: "You bring them all in at once." }[kind] || `You move into ${pos.name}.`;
     const isTech = kind === "work" || kind === "focus";
     const liked = isTech && e.prefs.likes.includes(pos.id), disliked = isTech && e.prefs.dislikes.includes(pos.id);
     const switched = isTech && e.curMove && e.curMove.id !== pos.id;
@@ -1969,12 +1969,12 @@ const Game = {
 
     if (r.success) {
       let dealt = p.dmg + Math.max(0, Math.floor((r.total - p.dc) / 3));
-      if (liked) { dealt += 2; text += " They love it."; }
-      else if (disliked) { dealt = Math.max(1, dealt - 2); text += " They tolerate it, barely."; }
+      if (liked) { dealt += 2; text += " They love it — exactly what they wanted."; }
+      else if (disliked) { dealt = Math.max(1, dealt - 2); text += " They endure it. Not what they came for."; }
       if (p.moveId !== e.lastMoveId && kind !== "recover") e.combo = Math.min(3, e.combo + 1);
       const combo = Math.max(0, e.combo - 1);
       dealt += combo;
-      text += p.repeat ? " It's losing its effect." : combo ? " You've found a rhythm." : " It lands.";
+      text += p.repeat ? " You're repeating yourself — they can feel it." : combo ? " You've got them where you want them." : " It works.";
       if (e.party) {
         if (kind === "together") {
           const share = state.classFeatures.ringmaster ? 0.9 : 0.7;
@@ -1995,7 +1995,7 @@ const Game = {
       e.combo = 0;
       stress += state.classFeatures.nervous ? 3 : 2;
       state.control = Math.max(0, state.control - 1);
-      text += p.repeat ? " They've had enough of that." : " It doesn't land. You strain to recover.";
+      text += p.repeat ? " They've had enough of that — you can see it on their face." : " It doesn't work. They pull back. You scramble to recover.";
     }
     if (stress > 0) stress += Math.floor(state.trauma / 25);
     if (stress > 0 && state.classFeatures.unflappable) stress -= 1;
@@ -2007,7 +2007,7 @@ const Game = {
     e.lastMoveId = p.moveId;
     e.round++;
     e.text = Narrator.on() ? Narrator.turn(e, { kind, pos, success: r.success, repeat: p.repeat, liked, disliked, switched }) : text;
-    if (state.stress >= 100) { e.text += " Something in you gives way. You can't go on."; this.finishEncounter(false); return; }
+    if (state.stress >= 100) { e.text += " You've hit your limit. You stop, pull away, and tell them it's over."; this.finishEncounter(false); return; }
     this.encounterRound();
   },
 
@@ -2048,7 +2048,7 @@ const Game = {
     const after = (text, roll) => this.applyResult(e, r, text, roll);
 
     if (!rough) {
-      UI.scene({ kicker: "Trouble", title: "They won't pay", body: `${who} straightens their clothes, smiles, and heads for the door without settling up.`, chips: [{ text: `Owed ${r.coin}`, cls: "warn" }] });
+      UI.scene({ kicker: "Trouble", title: "They won't pay", body: `${who} climbs off, gets dressed, and walks toward the door like the coin was never owed.`, chips: [{ text: `Owed ${r.coin}`, cls: "warn" }] });
       const pm = skillMeta("persuasion", extra), dc = 12 + dcShift;
       UI.choices([
         { label: "Demand your money", hint: "Persuasion", odds: odds(pm, dc), action: () => {
@@ -2060,7 +2060,7 @@ const Game = {
         { label: "Let it go", hint: "No pay · −5 control", quiet: true, action: () => { r.coin = 0; state.control = Math.max(0, state.control - 5); after("You let them go. It isn't worth the risk."); } }
       ]);
     } else {
-      UI.scene({ kicker: "Trouble", title: "It turns rough", body: `${who}'s grip tightens and their mood sours. This is no longer a game to them.`, chips: [{ text: "Danger", cls: "warn" }] });
+      UI.scene({ kicker: "Trouble", title: "It turns rough", body: `${who}'s grip tightens. They want more than you agreed to, and they're not asking anymore.`, chips: [{ text: "Danger", cls: "warn" }] });
       const hurt = text => { state.health = Math.max(0, state.health - hurtAmt(15)); state.trauma = Math.min(100, state.trauma + (state.classFeatures.resilientMind ? 3 : 4)); state.stress = clamp(state.stress + 10, 0, 100); r.coin = Math.floor(r.coin / 2); return text; };
       const sm = attrMeta("str", extra), sdc = 13 + dcShift;
       const pm = skillMeta("persuasion", extra), pdc = 14 + dcShift;
@@ -2076,7 +2076,7 @@ const Game = {
           else after(hurt("Your words only make it worse."), c);
         } },
         house ? { label: "Shout for the doorman", hint: "Safe · 25% fee", action: () => { state.health = Math.max(0, state.health - hurtAmt(3)); r.coin = Math.floor(r.coin * 0.75); after("Boots on the stairs. The client is thrown out — after paying, minus the doorman's share."); } } : null,
-        { label: "Endure it", hint: "Keep your pay · −10 health · +3 trauma", quiet: true, action: () => { state.health = Math.max(0, state.health - hurtAmt(10)); state.trauma = Math.min(100, state.trauma + 3); after("You wait for it to be over. It eventually is."); } }
+        { label: "Endure it", hint: "Keep your pay · −10 health · +3 trauma", quiet: true, action: () => { state.health = Math.max(0, state.health - hurtAmt(10)); state.trauma = Math.min(100, state.trauma + 3); after("You go somewhere else in your head and let them take what they want. When it's done, they drop the coin on the bed and leave."); } }
       ]);
     }
   },
@@ -2137,13 +2137,13 @@ const Game = {
     const pay = trial ? "" : r.coin ? `You earn <b>${r.coin}</b> coin${r.tip ? ` (including a ${r.tip} tip)` : ""}. ` : "You earn nothing. ";
     const sw = trial ? "" : ` · ${sign(standing)} standing`;
     lines.unshift(`${pay}${sign(rep)} reputation${sw}.`);
-    if (!r.success && !r.partial && !trial) lines.push("<em>Word of a poor performance travels fast within the guild.</em>");
+    if (!r.success && !r.partial && !trial) lines.push("<em>Word gets around that you couldn't satisfy them. The guild notices.</em>");
     if (r.partial) lines.push(`<em>${Math.round(r.partial * size)} of ${size} left satisfied.</em>`);
     if (!troubleText && Narrator.on()) { const fin = Narrator.finish(e, r.success, r.partial); if (fin) lines.unshift(fin + "\n"); }
     this.log(`${r.success ? "Satisfied" : r.partial ? "Partly satisfied" : "Unsatisfied"}: ${e.who}, ${r.coin} coin.`);
     this.lastRoll = null;
     const next = e.spec ? () => this.runHook(r.success) : () => this.menu();
-    this.outcome(r.success ? (e.party ? "They all leave satisfied" : "They leave satisfied") : r.partial ? "Some leave satisfied" : "They leave unsatisfied", lines.join("\n"), next, { kicker: e.item.name, roll: troubleRoll || null });
+    this.outcome(r.success ? (e.party ? "They all get what they came for" : "They get what they came for") : r.partial ? "Some get what they came for" : "They leave without finishing", lines.join("\n"), next, { kicker: e.item.name, roll: troubleRoll || null });
   },
 
   /* ---------- Contract board ---------- */
@@ -2415,10 +2415,10 @@ const Game = {
       state.reputation += s;
       this.setMode("event");
       UI.scene({ kicker: `Interest ${c.interest}`, title: `${c.name} is charmed`,
-        body: `By the end of the evening ${they} won't let you leave ${their} side.\n\n<em>${sign(st)} standing · +${s + 1} fame · +${s} reputation</em>${lvl.length ? "\n" + lvl.join("\n") : ""}` });
+        body: `By the end of the evening ${they} have their hand on your thigh and ${their} mouth close to your ear, making ${their} intentions clear.\n\n<em>${sign(st)} standing · +${s + 1} fame · +${s} reputation</em>${lvl.length ? "\n" + lvl.join("\n") : ""}` });
       const tierPay = (10 + 8 * city().tier) * s;
       UI.choices([
-        { label: `Accept an invitation to ${their} chambers`, hint: "A private engagement that pays very well", primary: true,
+        { label: `Go to ${their} chambers and fuck`, hint: "A private engagement that pays very well", primary: true,
           disabled: state.energy < 15 || state.health < MIN_HEALTH_TO_WORK, reason: "Too tired or hurt tonight",
           action: () => this.startEncounter({ name: c.name, cg: c.cg, typeKey: pick(["generous", "demanding", "ordinary"]), payMult: 1 + 0.5 * s, patron: true }) },
         { label: "Seek their patronage instead", hint: `A gift of about ${tierPay} coin`, action: () => {
@@ -2960,21 +2960,21 @@ const QUESTS = [
     reward: { coin: 25, standing: 8, xp: 30, rel: { briar: { trust: 2 } }, text: "Nell presses the ring to her lips and tells everyone at the guildhouse what you did." } },
 
   { id: "nervous_initiate", city: "saltmere", minRank: 0, title: "A Nervous Initiate", giver: "Madam Briar, matron of the Saltmere guildhouse",
-    intro: "Madam Briar has a new initiate named Pip, too frightened to take a client. \"Show them how it's done, {name}, without scaring them off.\"",
+    intro: "Madam Briar has a new initiate named Pip, too terrified to get into bed with a client. \"Show them how it's done, {name} — the fucking, the reading them, all of it. Before they bolt.\"",
     failText: "Pip leaves the guild by week's end. Briar doesn't mention it, which is worse.",
     steps: [
       { type: "scene", desc: "Talk to Pip", doneText: "Pip has agreed to watch and learn.",
         nodes: {
-          start: { text: "Pip sits on the edge of the bed, wringing their hands.",
+          start: { text: "Pip sits on the edge of the bed, fully dressed, wringing their hands. They're about to sell their body for the first time and they know it.",
             choices: [
-              { label: "Share the story of your own first night", check: { skill: "performance", dc: 11 }, ok: "calm", fail: "worse" },
-              { label: "Teach them to read a client", check: { skill: "insight", dc: 12 }, ok: "calm", fail: "worse" },
-              { label: "Tell them to toughen up", go: "worse" }
+              { label: "Tell them how your first time went — the fear, the fumbling, what actually worked", check: { skill: "performance", dc: 11 }, ok: "calm", fail: "worse" },
+              { label: "Teach them to read what a client wants before they get undressed", check: { skill: "insight", dc: 12 }, ok: "calm", fail: "worse" },
+              { label: "Tell them to stop shaking and get on with it", go: "worse" }
             ] },
-          calm: { text: "By the end of the hour Pip is laughing. \"I think I can do this.\"", choices: [{ label: "Continue", go: "#win" }] },
+          calm: { text: "By the end of the hour Pip is almost steady. \"Okay. I think I can do this.\" They start unbuttoning their collar.", choices: [{ label: "Continue", go: "#win" }] },
           worse: { text: "Pip bolts from the room in tears. Briar's look could curdle milk.", choices: [{ label: "Continue", go: "#lose" }] }
         } },
-      { type: "encounter", desc: "Take a gentle regular while Pip learns", spec: { name: "A gentle regular", typeKey: "generous", dcMod: -1, noTrouble: true } }
+      { type: "encounter", desc: "Take a paying client to bed while Pip watches and learns the trade", spec: { name: "A gentle regular", typeKey: "generous", dcMod: -1, noTrouble: true } }
     ],
     reward: { standing: 10, xp: 30, rel: { briar: { trust: 4 } }, text: "Pip takes their first client the next night, and Briar starts calling you \"the teacher\"." } },
 
@@ -3512,7 +3512,7 @@ const Creation = {
     UI.renderHUD();
     const save = !fresh && Game.hasSave();
     UI.scene({ kicker: save ? "Welcome back" : "A new life", title: "Medieval Courtesan",
-      body: "Rise through the Courtesan's Guild, from a lowly Initiate in the port of Saltmere to Guild Master in the capital. Every rank opens a new city and higher society. Every poor performance costs you standing, and the guild casts out those who fall too far.\n\nRead your clients, court the nobility, take on favors, and decide how far you'll go — and whether you'll get out first.\n\n<em>All characters are adults.</em>" });
+      body: "Rise through the Courtesan's Guild, from a lowly Initiate in the port of Saltmere to Guild Master in the capital. Every rank opens a new city and higher society. Every poor performance costs you standing, and the guild casts out those who fall too far.\n\nFuck your way to the top. Read your clients, court the nobility, take on favors, and decide how much of yourself you're willing to sell — and whether you'll get out first.\n\n<em>All characters are adults. This game contains explicit sexual content.</em>" });
     UI.choices([
       save ? { label: "Continue your life", primary: true, action: () => Game.load() } : null,
       { label: "Create your character", hint: `${STEPS.length} short steps, with a live preview`, primary: !save, action: () => this.go(0) },
@@ -3816,7 +3816,7 @@ const Creation = {
     const c = state.character;
     Game.log(`${c.name} began a new life: ${classLabel(c.class)} (${c.subclass}), ${c.background}.`);
     Game.outcome("The streets await",
-      `You are <b>${esc(c.name)}</b>, ${an(c.appearance)} ${c.appearance} ${buildWord(c.build).toLowerCase()} ${pr("noun")} with ${String(c.hair).toLowerCase()} hair — ${an(classLabel(c.class))} ${classLabel(c.class)} of the ${c.subclass} school, once ${an(c.background)} ${c.background.toLowerCase()}.\n\n${MOTIVES[c.motivation].intro}\n\nYou arrive in Saltmere with ${state.coin} coin and a letter admitting you to the Courtesan's Guild as an Initiate. Earn Standing and satisfy clients to face rank trials; each rank opens new cities and higher society. Perform badly and you'll be demoted, or cast out entirely.${state.ironman ? "\n\n<b>Ironman.</b> One life, no reloading." : ""}\n\n<em>Tip: size people up before you commit. The percentage on each choice is your chance of success.</em>`,
+      `You are <b>${esc(c.name)}</b>, ${an(c.appearance)} ${c.appearance} ${buildWord(c.build).toLowerCase()} ${pr("noun")} with ${String(c.hair).toLowerCase()} hair — ${an(classLabel(c.class))} ${classLabel(c.class)} of the ${c.subclass} school, once ${an(c.background)} ${c.background.toLowerCase()}.\n\n${MOTIVES[c.motivation].intro}\n\nYou arrive in Saltmere with ${state.coin} coin and a letter admitting you to the Courtesan's Guild as an Initiate. The guild sells sex. You sell it with them. Satisfy clients, earn Standing, and face rank trials — each rank opens new cities and better-paying beds. Perform badly and you'll be demoted, or cast out entirely.${state.ironman ? "\n\n<b>Ironman.</b> One life, no reloading." : ""}\n\n<em>Tip: size clients up before you commit. The percentage on each choice is your chance of success.</em>`,
       () => Game.menu(), { kicker: "Day 1", cta: "Begin" });
   }
 };
