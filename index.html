@@ -424,24 +424,42 @@ const TECH_DESC = {
   impact_play: "The strap rises and falls in a steady rhythm — measured, controlled. Each strike blooms into warmth, the sting transmuting into something deeper with every pass. The count matters. The pace matters. He holds both."
 };
 const ICON_PATHS = {
-  face: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/>',
-  ontop: '<circle cx="12" cy="7.5" r="4.5"/><circle cx="12" cy="16.5" r="4.5"/>',
-  behind: '<circle cx="9" cy="12" r="4.5"/><circle cx="16.5" cy="12" r="4.5"/><path d="M2.5 12h2"/>',
-  side: '<path d="M4 17a8 8 0 0 1 8-8"/><path d="M8 20a8 8 0 0 1 8-8"/><circle cx="16" cy="6" r="2"/>',
-  standing: '<circle cx="9" cy="5.5" r="2.5"/><circle cx="15" cy="5.5" r="2.5"/><path d="M9 9v11M15 9v11M9 13h6"/>',
-  seated: '<circle cx="12" cy="6.5" r="3"/><path d="M4 18c3-5 13-5 16 0"/><path d="M7 21h10"/>',
-  oral: '<path d="M3 12c3-4 6-4 9-2 3-2 6-2 9 2-3 4.5-15 4.5-18 0z"/><path d="M3 12h18"/>',
-  manual: '<path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 11V4.5a1.5 1.5 0 0 1 3 0V11M14 11V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a5 5 0 0 1-4-2l-3-4a1.5 1.5 0 0 1 2.2-2L8 14"/>',
-  grind: '<path d="M4 7l16 10M4 17l16-10"/><circle cx="12" cy="12" r="2"/>',
-  rope: '<path d="M4 8c4 0 4 8 8 8s4-8 8-8M4 16c4 0 4-8 8-8s4 8 8 8"/>',
-  impact: '<rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M12 13.5v8"/>',
-  mask: '<path d="M3 9c3-2 15-2 18 0 0 5-3 8-6 8-1.5 0-2-2-3-2s-1.5 2-3 2c-3 0-6-3-6-8z"/><circle cx="8.5" cy="11" r="1.5"/><circle cx="15.5" cy="11" r="1.5"/>',
-  blind: '<path d="M3 12c4 4 14 4 18 0"/><path d="M6 15l-1.5 2.5M12 16.5v2.5M18 15l1.5 2.5"/>',
-  flame: '<path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-4 3-6 0 2 1 3 2 3 0-3-1-5 1-8z"/>',
-  crown: '<path d="M3 18h18l-2-10-4 4-3-6-3 6-4-4z"/>',
-  voice: '<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
-  eye: '<path d="M2 12c4-6 16-6 20 0-4 6-16 6-20 0z"/><circle cx="12" cy="12" r="3"/>',
-  feet: '<ellipse cx="12" cy="15" rx="3.5" ry="5"/><circle cx="9" cy="7" r="1.2"/><circle cx="12" cy="6" r="1.3"/><circle cx="15" cy="7" r="1.2"/>',
+  /* face-to-face penetration: two stick figures lying toward each other, hips joined */
+  face: '<circle cx="5" cy="8" r="2"/><line x1="5" y1="10" x2="5" y2="15"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="3" y1="18" x2="5" y2="15"/><line x1="7" y1="18" x2="5" y2="15"/><circle cx="19" cy="16" r="2"/><line x1="19" y1="14" x2="19" y2="9"/><line x1="16" y1="11" x2="22" y2="11"/><line x1="17" y1="6" x2="19" y2="9"/><line x1="21" y1="6" x2="19" y2="9"/><line x1="8" y1="13" x2="16" y2="13"/>',
+  /* cowgirl: figure seated upright straddling a reclining figure below */
+  ontop: '<circle cx="12" cy="4" r="2"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="14" x2="12" y2="12"/><line x1="15" y1="14" x2="12" y2="12"/><circle cx="12" cy="18" r="2"/><line x1="5" y1="18" x2="19" y2="18"/><line x1="7" y1="15" x2="12" y2="18"/><line x1="17" y1="15" x2="12" y2="18"/><line x1="9" y1="14" x2="15" y2="14"/>',
+  /* doggy: figure bent forward, penetrated from behind by kneeling figure */
+  behind: '<circle cx="6" cy="7" r="2"/><line x1="6" y1="9" x2="10" y2="14"/><line x1="3" y1="10" x2="9" y2="10"/><line x1="8" y1="18" x2="10" y2="14"/><line x1="12" y1="18" x2="10" y2="14"/><circle cx="17" cy="9" r="2"/><line x1="17" y1="11" x2="17" y2="16"/><line x1="14" y1="13" x2="20" y2="13"/><line x1="15" y1="19" x2="17" y2="16"/><line x1="19" y1="19" x2="17" y2="16"/><line x1="10" y1="13" x2="14" y2="12"/>',
+  /* spooning: two figures lying on side, one curled behind the other */
+  side: '<circle cx="8" cy="8" r="2"/><path d="M8 10 C7 13 9 15 8 17"/><line x1="5" y1="11.5" x2="11" y2="11.5"/><line x1="6" y1="17" x2="10" y2="17"/><circle cx="15" cy="10" r="2"/><path d="M15 12 C14 14 16 16 15 18"/><line x1="12" y1="13.5" x2="18" y2="13.5"/><line x1="13" y1="18" x2="17" y2="18"/><line x1="10.5" y1="14" x2="13" y2="14"/>',
+  /* standing wall pin: one figure pressing another against wall, both upright */
+  standing: '<line x1="3" y1="2" x2="3" y2="22"/><circle cx="8" cy="5" r="2"/><line x1="8" y1="7" x2="8" y2="14"/><line x1="5" y1="9.5" x2="11" y2="9.5"/><line x1="6" y1="18" x2="8" y2="14"/><line x1="10" y1="18" x2="8" y2="14"/><circle cx="16" cy="6" r="2"/><line x1="16" y1="8" x2="16" y2="15"/><line x1="13" y1="10.5" x2="19" y2="10.5"/><line x1="14" y1="19" x2="16" y2="15"/><line x1="18" y1="19" x2="16" y2="15"/><line x1="8" y1="12" x2="13" y2="12"/>',
+  /* seated lotus: two figures seated upright facing each other, joined at lap */
+  seated: '<circle cx="8" cy="5" r="2"/><line x1="8" y1="7" x2="8" y2="13"/><line x1="5" y1="9" x2="11" y2="9"/><line x1="5" y1="17" x2="8" y2="13"/><line x1="11" y1="17" x2="8" y2="13"/><line x1="5" y1="17" x2="11" y2="17"/><circle cx="16" cy="5" r="2"/><line x1="16" y1="7" x2="16" y2="13"/><line x1="13" y1="9" x2="19" y2="9"/><line x1="13" y1="17" x2="16" y2="13"/><line x1="19" y1="17" x2="16" y2="13"/><line x1="13" y1="17" x2="19" y2="17"/><line x1="11" y1="12" x2="13" y2="12"/>',
+  /* 69 / oral: two figures head-to-groin, mouths at each other's sex */
+  oral: '<circle cx="6" cy="5" r="2"/><line x1="6" y1="7" x2="8" y2="13"/><line x1="3" y1="9" x2="9" y2="9"/><line x1="4" y1="17" x2="6" y2="13"/><line x1="8" y1="17" x2="6" y2="13"/><circle cx="18" cy="19" r="2"/><line x1="18" y1="17" x2="16" y2="11"/><line x1="15" y1="15" x2="21" y2="15"/><line x1="20" y1="7" x2="18" y2="11"/><line x1="16" y1="7" x2="18" y2="11"/><line x1="8" y1="13" x2="16" y2="11"/>',
+  /* handjob / manual: one figure\'s arm reaching to other figure\'s groin */
+  manual: '<circle cx="6" cy="5" r="2"/><line x1="6" y1="7" x2="6" y2="14"/><line x1="3" y1="9.5" x2="9" y2="9.5"/><line x1="4" y1="18" x2="6" y2="14"/><line x1="8" y1="18" x2="6" y2="14"/><circle cx="18" cy="5" r="2"/><line x1="18" y1="7" x2="18" y2="14"/><line x1="15" y1="9.5" x2="21" y2="9.5"/><line x1="16" y1="18" x2="18" y2="14"/><line x1="20" y1="18" x2="18" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/><path d="M9 11 Q12 13 15 11"/>',
+  /* scissoring / pretzel: two figures with legs intertwined, hips pressed together */
+  grind: '<circle cx="5" cy="6" r="2"/><line x1="5" y1="8" x2="7" y2="13"/><line x1="2" y1="10" x2="8" y2="10"/><line x1="3" y1="17" x2="7" y2="13"/><line x1="11" y1="17" x2="7" y2="13"/><circle cx="19" cy="6" r="2"/><line x1="19" y1="8" x2="17" y2="13"/><line x1="16" y1="10" x2="22" y2="10"/><line x1="21" y1="17" x2="17" y2="13"/><line x1="13" y1="17" x2="17" y2="13"/><line x1="11" y1="17" x2="13" y2="17"/>',
+  /* bondage: figure with arms raised and bound above head */
+  rope: '<line x1="12" y1="2" x2="12" y2="5"/><path d="M10 2 Q12 1 14 2"/><circle cx="12" cy="7" r="2"/><line x1="12" y1="9" x2="12" y2="16"/><line x1="8" y1="11.5" x2="16" y2="11.5"/><line x1="10" y1="20" x2="12" y2="16"/><line x1="14" y1="20" x2="12" y2="16"/><path d="M8 11.5 Q7 8.5 10 9"/><path d="M16 11.5 Q17 8.5 14 9"/>',
+  /* spanking: one figure bent over another\'s lap, hand raised to strike */
+  impact: '<circle cx="7" cy="5" r="2"/><line x1="7" y1="7" x2="7" y2="12"/><line x1="4" y1="9.5" x2="10" y2="9.5"/><line x1="5" y1="15" x2="7" y2="12"/><line x1="9" y1="15" x2="7" y2="12"/><circle cx="17" cy="10" r="2"/><line x1="17" y1="12" x2="17" y2="17"/><line x1="14" y1="14" x2="20" y2="14"/><line x1="15" y1="20" x2="17" y2="17"/><line x1="19" y1="20" x2="17" y2="17"/><line x1="9" y1="13" x2="14" y2="13"/><path d="M20 7 L22 4" stroke-linecap="round"/>',
+  /* roleplay / mask: theatrical drama mask with a second face peek */
+  mask: '<path d="M7 4 Q12 2 17 4 Q20 9 18 14 Q16 18 12 18 Q8 18 6 14 Q4 9 7 4z"/><circle cx="9.5" cy="9" r="1.2"/><circle cx="14.5" cy="9" r="1.2"/><path d="M9 13 Q12 15.5 15 13"/><path d="M4 5 Q2 3 3 6"/><path d="M20 5 Q22 3 21 6"/>',
+  /* blindfold: figure with band across eyes, arms slightly raised in heightened sense */
+  blind: '<circle cx="12" cy="6" r="2"/><line x1="12" y1="8" x2="12" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="10" y1="19" x2="12" y2="15"/><line x1="14" y1="19" x2="12" y2="15"/><rect x="7" y="4.5" width="10" height="3" rx="1.5"/><line x1="6" y1="6" x2="4" y2="6"/><line x1="18" y1="6" x2="20" y2="6"/>',
+  /* candle / temperature play: dripping candle flame with wax trails */
+  flame: '<line x1="12" y1="22" x2="12" y2="14"/><ellipse cx="12" cy="13.5" rx="2" ry="1"/><path d="M12 13 Q14.5 9 12.5 6 Q11 8 9 7 Q10.5 9.5 12 13z"/><path d="M10 21 Q10.5 18.5 9.5 16.5"/><path d="M14 20 Q13.5 18 14.5 16"/>',
+  /* crown: prominent crown for dominance/submission */
+  crown: '<path d="M4 19 L4 13 L8.5 17 L12 9 L15.5 17 L20 13 L20 19 Z"/><line x1="3.5" y1="21" x2="20.5" y2="21"/><circle cx="4" cy="13" r="1.5"/><circle cx="12" cy="9" r="1.5"/><circle cx="20" cy="13" r="1.5"/>',
+  /* lips to ear / dirty talk: mouth shape close to ear shape */
+  voice: '<path d="M3 10 Q3 6 7 6 Q11 6 11 10 Q11 13 7 14 Q6 14 5 13 L4 15 L6 13 Q3 13 3 10z"/><path d="M14 9 Q14 6 17 6 Q20 6 20 9 L20 12 Q19 13 17 13 L17 15"/><path d="M16 8 Q17.5 7.5 19 8"/>',
+  /* watching eye: large open eye, explicit detail */
+  eye: '<path d="M2 12 Q12 3 22 12 Q12 21 2 12z"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="2"/><circle cx="13.5" cy="10.5" r="0.8"/>',
+  /* foot fetish: foot raised being grasped/kissed */
+  feet: '<path d="M7 20 Q6 16 8 13 Q10 10 11 7"/><path d="M11 7 Q11.5 5 13.5 5.5 Q13 8 11 9"/><path d="M11 9 Q13 7 15 8 Q14 10.5 12 10.5"/><path d="M12 10.5 Q14 8.5 16 10 Q15.5 12 13 12"/><path d="M13 12 Q15 10.5 16.5 12 Q16 14.5 14 14.5"/><path d="M7 20 Q11 21.5 14 14.5"/><circle cx="18" cy="8" r="2"/><line x1="18" y1="10" x2="16.5" y2="13"/><line x1="15" y1="11" x2="21" y2="11"/>',
   heart: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>'
 };
 function svgIcon(name) { return `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.heart}</svg>`; }
