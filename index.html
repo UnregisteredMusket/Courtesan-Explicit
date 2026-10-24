@@ -1427,10 +1427,16 @@ const Narrator = {
     const dressKey = e.dress === 0 ? "bare" : e.dress === 1 ? "loose" : "dressed";
     const finK = k === "partial" ? "fail" : k;
     if (techEntry && techEntry.finish) {
-      // try dress-specific pool first, fall back to generic finish pool
-      const dressPool = techEntry.finish[dressKey + "_" + finK] || techEntry.finish[dressKey];
-      const pool = dressPool || techEntry.finish[finK] || techEntry.finish.success;
-      if (pool && pool.length) return this.line("tfin:" + techId + ":" + finK, pool, e);
+      const tier = typeof masteryTier === "function" ? masteryTier(techId) : 0;
+      // priority order: mastery+dress → mastery → dress → base → global
+      const pool =
+        (tier >= 2 && techEntry.finish["expert_" + dressKey + "_" + finK]) ||
+        (tier >= 2 && techEntry.finish["expert_" + finK]) ||
+        techEntry.finish[dressKey + "_" + finK] ||
+        techEntry.finish[dressKey] ||
+        techEntry.finish[finK] ||
+        techEntry.finish.success;
+      if (pool && pool.length) return this.line("tfin:" + techId + ":" + finK + ":" + tier + ":" + dressKey, pool, e);
     }
     return this.line("fin:" + finK, (N.finish || {})[finK], e);
   }
