@@ -488,10 +488,14 @@ window.NARRATION = {
       focus: ["You lean into the angle and quicken, fucking {client}'s cock past any gentleness, and {they} have{s} to bite the pillow."],
       finish: {
         success: [
-          "At that exact, wrenching angle, {client} cum{s} — cock hitting somewhere it never hit before, {their} whole body locking up in surprise.",
-          "{They} lose{s} all composure, legs still tangled with yours, cock jerking and spilling from a place neither of you expected to find.",
-          "{Client} cries out sharply and cum{s} hard — the angle sending it somewhere deep, {their} voice breaking on the exhale.",
-          "Limbs knotted together, {client} spill{s} inside you with a desperate sound, twitching through every pulse."
+          "You shift your hips to keep {client}'s cock at that exact angle and bear down on it as it throbs — {they} lock up in surprise and cum{s} hard, like {they} didn't think it was going to hit like that.",
+          "You clench your cunt around {client}'s cock mid-jerk and milk every pulse — {they} lose{s} all composure, legs tangled with yours, voice breaking as {they} spill{s}.",
+          "{Client} cries out sharply and you squeeze tight around {their} jerking cock, grinding to hold the angle — {they} shudder{s} through the whole thing, deep and helpless.",
+          "Limbs knotted together, you bear down on {client}'s cock as it floods you — {they} moan{s} in that helpless, undone way and twitches through every pulse."
+        ],
+        expert_success: [
+          "You found the exact spot that ruins {client} three turns ago — so when {their} cock swells now, you hold that angle, clench, and let {them} finish into the middle of it. {They} cum{s} with a sharp, fractured cry.",
+          "From experience you know {client} needs this angle to break completely — so you twist into it and grip down as {their} cock throbs, and {they} spill{s} inside you in one wrenching rush, tangled and wrecked."
         ],
         fail: [
           "The angle was right and then a shift of the hip made it wrong again, and {client}'s cock goes soft in the tangle.",
@@ -527,10 +531,14 @@ window.NARRATION = {
       focus: ["You press your clit harder against {client}'s cock and grind with real intent, and {they} clutch{es} your ass to hold the angle."],
       finish: {
         success: [
-          "{Client} cum{s} from the grinding alone — no deep fucking, just {their} cock pressed to your clit and {their} whole body shaking itself apart.",
-          "The orgasm takes {client} slowly and completely, built by a hundred tiny circles — {they} spill{s} with a long, low cry, cock pulsing where it's pressed to you.",
-          "{They} clutch{es} you and grind{s} through the finish, cock throbbing, breathless and wrecked by something that barely looked like fucking.",
-          "{Client} cum{s} with a stunned sound, like {they} didn't believe it would work until it did — cock wet and pulsing against your cunt."
+          "You press your clit harder into the root of {client}'s cock as it throbs — {they} shudder{s} apart, cumming from the grinding, cock pulsing where it's pressed flush to you.",
+          "You keep grinding in those small tight circles as {client}'s cock floods — {they} clutch{es} your ass and moan{s} low, utterly wrecked by something that barely looked like fucking.",
+          "{Client}'s cock swells and twitches and you clench down on it with your whole cunt, still grinding — {they} cum{s} with a long, broken sound, pulling you onto {their} body.",
+          "You feel the cock pulse against your clit and push into it, rolling your hips through every throb — {client} cum{s} with a stunned exhale, like {they} didn't know this could do that."
+        ],
+        expert_success: [
+          "You've had {client}'s cock pressed to your clit for long enough to know exactly how much pressure tips {them} — so you increase it by a fraction, hold the circle, and feel {their} cock throb against you as {they} cum{s} with a helpless, fractured cry.",
+          "You knew {client} was right there — the cock was pulsing, the hips were stuttering — so you ground harder and let {their} cock finish pressed tight to your clit, milking {them} through every wave."
         ],
         fail: [
           "The pressure was almost enough, the circles almost right, and then {client}'s cock deflates into the quiet admission that it didn't land.",
@@ -567,10 +575,14 @@ window.NARRATION = {
       focus: ["You bury your face in the pillow and shove back hard onto {client}'s cock, and {they} groan{s} aloud as you take all of {them}."],
       finish: {
         success: [
-          "{Client} slams in hard and cum{s} — hands gripping your raised hips, cock pulsing deep, a guttural sound pressed into the room.",
-          "You feel the shudder pass through {client}'s body as {they} spill{s} inside you, hips grinding your ass as {their} cock twitches.",
-          "{They} bury{es} {their} cock all the way and goes still — then shakes apart, spending inside you with a broken, helpless moan.",
-          "{Client} cum{s} with both hands locked on your hips, cock driving hard through the orgasm, the whole bed shuddering with it."
+          "You grip the sheets and shove your hips back as {client}'s cock throbs inside you — {they} slam{s} forward and cum{s} with both hands locked on your raised hips, a raw, guttural sound filling the room.",
+          "You push hard onto {client}'s cock as it floods you, clenching through every jerk — {their} hips grind into your ass and {they} spill{s} with a helpless, wrecked moan.",
+          "{They} bury{es} {their} cock all the way and you squeeze around it — {client} shakes apart, spending inside you, forehead dropped to your back, entirely broken.",
+          "You bury your face in the pillow and bear down onto {client}'s cock as {they} cum{s}, clenching around every pulse — {they} drive{s} hard through the finish, cock throbbing deep."
+        ],
+        expert_success: [
+          "You felt the cock swell and the grip tighten on your hips — so you pressed back hard and squeezed, and {client} cum{s} with a startled cry, spending deep inside you before {they} could even brace.",
+          "From this angle, you know how to milk {client} dry: press back, clench, hold still and let the cock do the work. {They} shudder{s} through the orgasm, hands locked on your ass, completely lost."
         ],
         fail: [
           "Behind you, {client} slow{s} and stop{s}, cock still hard — the finish just didn't come from this angle.",
@@ -606,10 +618,14 @@ window.NARRATION = {
       focus: ["You press your cunt harder against {client}'s and grind faster, and {they} cry{es} out."],
       finish: {
         success: [
-          "{Client} cum{s} grinding cunt to cunt with you, a sharp cry cutting through the room, {their} hips shaking through the whole orgasm.",
-          "{They} pull{s} you harder against {their} cunt as {they} cum{s}, thighs clenching, slick and loud and completely undone.",
-          "You feel {client}'s cunt pulsing against yours as {they} cum{s} — wet and trembling, both of you grinding through it.",
-          "{Client} throw{s} {their} head back and comes apart with your cunts pressed together, the friction carrying {them} all the way."
+          "You grind harder into {client}'s cunt as {they} cry{es} out — you feel {their} cunt pulsing against yours and push back into it, working {them} through the whole orgasm.",
+          "{Client} pulls you flush against {them} as {they} cum{s} and you don't let up — cunt pressing into {their} cunt, both of you grinding slick and loud through every throb.",
+          "You feel {client}'s cunt spasm against yours and bear down on it, rolling your hips through the waves — {they} shudder{s} and cries out, thighs clenching around you.",
+          "You lock your thigh tighter and grind your cunt into {client}'s through {their} orgasm, feeling it pulse under you — {they} throw{s} {their} head back and comes apart completely."
+        ],
+        expert_success: [
+          "You've been reading {client}'s cunt this whole time — when you feel it start to flutter against yours, you press harder, roll faster, and let {them} finish into you. {They} cry{es} out sharp and helpless.",
+          "You held {client} right on the edge by easing off the grinding when {they} got too close — and now you press your cunt hard against {theirs} and finish it, and {they} cum{s} with a full-body shudder."
         ],
         fail: [
           "The grind builds and fades and {client} exhale{s} flat on {their} back, unable to reach the finish from this angle.",
@@ -645,10 +661,14 @@ window.NARRATION = {
       focus: ["You grip the table's edge and pull {client}'s cock in as deep as it'll go, and the whole table rattles."],
       finish: {
         success: [
-          "The table slams the wall hard as {client} cum{s} — cock buried, hips driving in, the whole room hearing every second of it.",
-          "{Client} grabs the table's edge and spill{s} inside you with a sharp, breaking cry, legs going rigid, cock jerking through every pulse.",
-          "{They} fuck{es} you right to the finish on the table — cock throbbing, cups on the floor, {their} forehead dropped to your shoulder.",
-          "You brace on your hands behind you and feel {client} cum{s} hard — cock pulsing inside you, table groaning beneath you both."
+          "You brace your hands on the table and clench as {client}'s cock throbs inside you — {they} slam{s} the table into the wall and cum{s} with a breaking cry, flooding you.",
+          "You wrap your legs around {client} and grip tight as {their} cock bucks inside you — {they} grab{s} the table edge and spill{s} with a sharp, wrecked sound, legs going rigid.",
+          "You pull {client} in hard with your heels and clench through every throb — {their} cock floods you and {their} forehead drops to your shoulder, shaking.",
+          "You lean back on the table, squeeze your cunt hard around {client}'s cock, and feel {them} cum{s} — {their} hips snap forward and {they} moan{s} low while it pulses inside you."
+        ],
+        expert_success: [
+          "You've had {client}'s cock at exactly the right angle this whole time — so when it swells you clench and lock your legs, and {they} cum{s} into you against the wall with a sound that rattles the cups still standing.",
+          "You felt the grip tighten on the table edge and knew — so you tightened your cunt and rolled your hips in that particular way, and {client} spill{s} inside you with a helpless, surprised cry."
         ],
         bare_success: [
           "Ass bare on the table, {client}'s cock spending inside you — the hard wood beneath you and the warm wet inside you all at once.",
@@ -688,10 +708,14 @@ window.NARRATION = {
       focus: ["You pull {client} hard against you and quicken the fucking, and {they} gasp{s} against your lips."],
       finish: {
         success: [
-          "Face to face when {client} cum{s} — you watch every flicker of it cross {their} expression, cock pulsing inside you, {their} lips parted against yours.",
-          "{They} grip{s} your ass and pull{s} you hard against {their} cock as {they} spill{s}, the two of you locked together, barely moving.",
-          "{Client} cum{s} quietly, face pressed to yours, cock throbbing, one arm pulling you so close there's nothing between you.",
-          "You feel the orgasm in {client}'s whole body — the shiver, the exhale, the cock pulsing inside you — from an inch away."
+          "You press your face close and squeeze your cunt around {client}'s pulsing cock — you're close enough to watch every flicker of the orgasm cross {their} face as {they} spill{s} inside you.",
+          "You pull {client} in hard with the leg hooked over {their} hip and clench through the flood — {they} grab{s} your ass and hold you locked against {their} cock, shaking.",
+          "You bear down on {client}'s cock as it throbs and feel {their} lips part against yours — {they} cum{s} quietly, completely, the orgasm moving through both of you from an inch away.",
+          "You feel {client}'s cock swell and you tighten your cunt around it — {they} spill{s} inside you face-to-face, shivering, chest pressed to yours, completely open."
+        ],
+        expert_success: [
+          "You've kept {client} right here, looking at you, for long enough — now you clench and roll your hips and let {their} cock finish inside you while you watch {their} face go completely undone.",
+          "You know what {client}'s orgasm looks like on this face — so when you see it starting, you lock your leg around {their} hip, tighten your cunt, and let {them} spend into you, watching every second of it."
         ],
         bare_success: [
           "Bare and face to face when {they} cum{s}, you feel {their} cock spending inside you and {their} whole chest shuddering against yours.",
@@ -727,10 +751,14 @@ window.NARRATION = {
       high: ["{Client} trembles, holding your hips up, cock buried deep as {they} fight{s} not to cum yet.", "You arch against {client}'s grip, cunt clenching around {their} cock, and {they} gasp{s}, nearly undone."],
       finish: {
         success: [
-          "{Client} grips your raised hips and cum{s} — cock driving in deep at that angle, spilling inside you as {their} arms shake.",
-          "Still holding you up, {client} spill{s} with a stunned, breathless cry — cock buried at a depth that leaves {them} trembling.",
-          "{They} pound{s} through the orgasm with your hips in {their} hands, cock pulsing, the edge of the bed rattling beneath you.",
-          "{Client} lock{s} your hips in place and cum{s} deep — the angle hitting somewhere that leaves {them} unable to do anything but shake."
+          "You arch your hips into {client}'s cock and clench as it throbs — {they} cum{s} with both hands locked on your raised hips, driving in hard at that angle while {their} arms shake.",
+          "You squeeze your cunt tight around {client}'s cock as it floods you at that lifted angle — {they} spill{s} with a stunned, breathless cry, buried deep.",
+          "You bear down on {client}'s cock as {they} pound{s} through the orgasm — {their} hips drive and the bed rattles and you clench through every pulse.",
+          "You grip the sheets and clenching tight as {client}'s cock throbs inside you — {they} lock{s} your hips in place and cum{s} deep, unable to do anything but shake and spend."
+        ],
+        expert_success: [
+          "You kept your hips arched at exactly the right angle the whole time — when {client}'s cock swells, you clench and push down onto it, and {they} cum{s} with a broken, helpless cry at a depth you put {them} at on purpose.",
+          "You knew that angle would break {client}: you held it, squeezed, and let {their} cock finish deep inside you. {They} shudder{s}, arms trembling, spending everything they had."
         ],
         bare_success: [
           "Your bare hips in {client}'s bare hands, {their} cock spending inside you at that raw, open angle.",
@@ -764,10 +792,14 @@ window.NARRATION = {
       high: ["{Client} grips the chair until {their} knuckles whiten, cock throbbing against your tongue, gasping.", "Enthroned and helpless, {client} is seconds from flooding your mouth."],
       finish: {
         success: [
-          "{Client} cum{s} in your mouth — cock pulsing against your tongue, {their} grip on the chair going white, a helpless sound escaping {their} throat.",
-          "You swallow {client} down, throat working, as {they} spill{s} — head back against the chair, hips lifting off the seat, completely undone.",
-          "{Their} cock throbs hard and floods your mouth and {client} let{s} out a broken, breathless cry into the ceiling.",
-          "Kneeling between {their} thighs, you take every pulse of {client}'s orgasm — cock jerking against your tongue, hand fisted in your hair."
+          "You keep your mouth working as {client}'s cock throbs against your tongue, shooting hot down your throat — you swallow, and swallow again, and don't pull off until {they} {are} done.",
+          "{Client}'s cock floods your mouth and you seal your lips and swallow it down, throat working — {they} spill{s} with a helpless cry into the ceiling, hips lifting off the chair.",
+          "You feel the cock pulse and take it deeper, swallowing around the head — {client} let{s} out a broken, breathless sound and {their} hand fists in your hair as {they} cum{s}.",
+          "You press your tongue against {client}'s pulsing cock and swallow every throb — {they} jerk{s} in the chair, hand white-knuckled on the arm, completely undone between your lips."
+        ],
+        expert_success: [
+          "You've been reading this cock long enough to know the exact tightening that comes before — so you take {client} deeper and swallow hard against the head the moment {their} hips lift, and {they} flood your throat with a stunned, cracked cry.",
+          "You kept the suction slow and deliberate until {client}'s thighs were shaking — then you took {their} cock all the way down and swallowed, and {they} cum{s} into your throat like {they} had no choice."
         ],
         fail: [
           "{Client}'s cock softens against your tongue without finishing — {they} reach{es} down, pulls you up, looks away.",
@@ -797,10 +829,14 @@ window.NARRATION = {
       high: ["After all that teasing, {client}'s cock is leaking and {they} shiver at the lightest touch.", "{Client} arches into your oiled hands, begging you to finish what you started."],
       finish: {
         success: [
-          "{Client} cum{s} from your oiled hands alone — cock jerking in your grip, {their} whole body finally releasing everything the slow build wound up.",
-          "You stroke {client} through the finish, slick and steady, and {they} spill{s} over your fingers with a long, shuddering exhale.",
-          "After all that teasing, {client}'s orgasm is violent and helpless — cock throbbing in your fist, cum striping {their} stomach, mouth open on nothing.",
-          "{Client} grabs your wrist as {they} cum{s}, cock pulsing in your hand, slick and hot — not to stop you, just to hold on."
+          "You tighten your oiled fist as {client}'s cock throbs and stroke through every pulse — {they} spill{s} over your hand with a long, shaking exhale, body finally releasing everything you wound up.",
+          "You grip {client}'s cock and feel it jerk in your palm, slicking your fingers — {they} cum{s} hard, mouth open on nothing, and you stroke through it until {they} beg you to stop.",
+          "After all that teasing, {client}'s cock floods your fist in sharp, helpless pulses — you keep your grip tight and slow and milk every last drop out of {them}.",
+          "{Client} grab{s} your wrist as {their} cock bucks in your hand — not to stop you, just to hold something — and you stroke {them} through every throb until {they} {are} spent and shaking."
+        ],
+        expert_success: [
+          "You've been building {client} for long enough to know exactly when to tighten and quicken — so you do, your oiled hand working steady and deliberate, and {their} cock floods your palm as {they} cum{s} with a helpless, wrecked sound.",
+          "You held {client} at the edge twice before letting {them} finish — now your fist closes tight around {their} cock and you stroke through the orgasm, and {they} spill{s} hard, completely undone by the waiting."
         ],
         fail: [
           "All that slow patience and the tension bleeds out without breaking — {client}'s cock softens in your oiled hands without cumming.",
@@ -831,10 +867,14 @@ window.NARRATION = {
       high: ["{Client} trembles, shoving {their} ass back onto your cock, close to cumming from this alone.", "Slow and deep in {client}'s ass, you carry {them} right to the edge."],
       finish: {
         success: [
-          "{Client} cum{s} with your cock still in {their} ass — spilling untouched, cock jerking, {their} whole body clenching tight around you.",
-          "{They} shove{s} back hard onto your cock as {they} cum{s}, ass gripping you, a broken, raw sound pressed into the pillow.",
-          "You feel {client}'s ass seize around your cock as {they} spill{s} — tight and shaking, cumming from this alone.",
-          "{Client} reach{es} back and grip{s} your hip to hold you deep as {they} cum{s}, cock pulsing against the sheets, ass working your cock through every pulse."
+          "You press in deep and still as {client}'s ass clenches around your cock — {they} spill{s} untouched, cock jerking, ass gripping you through every pulse.",
+          "{Client} shoves back onto your cock as {their} orgasm hits — ass going impossibly tight around you — and you drive forward to meet it, feeling every clench and shudder from the inside.",
+          "You feel {client}'s ass seize around your cock and bear into it, filling {them} deep through the whole orgasm — {they} spill{s} with a raw, broken sound into the pillow.",
+          "{Client} reach{es} back and grip{s} your hip and you hold still and deep as {their} ass works your cock through the finish — {they} cum{s} with a helpless sound, cock pulsing against the sheets."
+        ],
+        expert_success: [
+          "You've had {client} exactly where you want {them} for the last several strokes — so when {their} ass tightens, you press in deep and still, and {they} cum{s} with your cock buried in {their} ass, shaking apart from the inside.",
+          "You felt the ass start to grip and pulled back deliberately, then pushed in slow and full — and {client} spill{s} untouched with a cry into the pillow, ass clenching tight around you through every pulse."
         ],
         bare_success: [
           "Skin against skin, your cock buried in {client}'s ass when {they} cum{s} — you feel every clench and shudder from the inside.",
@@ -868,10 +908,14 @@ window.NARRATION = {
       high: ["You hold the arched bridge through shaking arms, cunt working {client}'s cock, and {they} {are} undone beneath you.", "{Client} clings to your waist, trembling, cock throbbing on the edge of cumming."],
       finish: {
         success: [
-          "{Client} grips your waist and cum{s} — cock buried deep at that lifted angle, spending inside you as your arms shake and hold.",
-          "Still arched over {them}, you feel {client} spill{s} with a stunned, breathless cry — cock throbbing at a depth that leaves {them} wrecked.",
-          "{They} pound{s} up into you through the orgasm, cock pulsing, the bridge finally breaking as you both collapse.",
-          "{Client} lock{s} your hips down and cum{s} deep — the bridge angle doing something neither of you can name but both of you will remember."
+          "You hold the arch with shaking arms and clench your cunt around {client}'s cock as it throbs — {they} grip{s} your waist and cum{s} up into you, spending deep.",
+          "Still arched over {client}, you squeeze hard around {their} pulsing cock — {they} spill{s} with a stunned, breathless cry, buried at the full depth of the bridge.",
+          "You bear down onto {client}'s cock as {they} pound{s} up through the orgasm — the bridge finally breaks as you both collapse, cock still throbbing inside you.",
+          "You lock the bridge angle and clench your cunt tight as {client}'s cock floods you — {they} cum{s} deep with a wrecked, helpless sound you'll both remember."
+        ],
+        expert_success: [
+          "You've held this bridge through burning arms because you know what this angle does to {client} — and when {their} cock swells, you clench and push down onto it, and {they} cum{s} into you with a cry that cracks right down the middle.",
+          "You held the bridge longer than comfortable, kept {client}'s cock at that exact depth — then you squeezed and tilted your hips the last inch, and {they} spill{s} inside you with a helpless shout, completely ruined."
         ],
         fail: [
           "Your arms give before {client}'s cock gets there — you collapse and the orgasm collapses with you.",
@@ -901,10 +945,14 @@ window.NARRATION = {
       high: ["The stillness breaks like a dam — {client} starts fucking you hard and comes apart trembling.", "Wrapped together, breathing as one, you carry {client} to an orgasm that starts somewhere deep and quiet."],
       finish: {
         success: [
-          "The stillness breaks all at once — {client} cum{s} without a single thrust, cock pulsing inside you in long, deep waves, {their} breath going ragged against your mouth.",
-          "{They} shudder{s} from somewhere deep and quiet, cock spending inside you while {their} forehead stays pressed to yours.",
-          "{Client} cum{s} slowly, completely, cock throbbing in the stillness — nothing violent, just the full emptying of everything built in the silence.",
-          "Breathing as one when {client} cum{s}: you feel the orgasm move through {their} cock into your body before you hear it in {their} voice."
+          "You feel {client}'s cock begin to throb inside you and clench your cunt tight — {they} cum{s} without a single thrust, the orgasm moving through both of you in long, deep waves.",
+          "You squeeze your cunt around {client}'s cock in the stillness and feel it start to pulse — {they} shudder{s} into you slowly, spending deep, forehead still pressed to yours.",
+          "{Client}'s cock fills and throbs inside you and you hold it there, clenching softly — {they} cum{s} completely, quietly, the whole orgasm carried in the stillness.",
+          "You feel the pulse start through {client}'s cock before you hear it in {their} voice — you tighten your cunt and breathe and let {them} finish inside you, deep and trembling."
+        ],
+        expert_success: [
+          "You've held this stillness through everything — through {client}'s twitching and the urge to move — and now you clench your cunt in one slow, deliberate squeeze, and {their} cock floods you as {they} cum{s} with a long, shaking exhale.",
+          "You knew the stillness was doing the work — felt {client}'s cock getting heavier inside you — so you gave them one small movement, just enough, and {they} spill{s} into you without warning, completely stripped by the quiet."
         ],
         fail: [
           "The stillness held nothing in the end — {client}'s cock softens inside you and the meditative mood becomes just two people sitting very close.",
@@ -943,10 +991,14 @@ window.NARRATION = {
       focus: ["You draw the cords tighter and take complete control, and {client} trembles and leaks for you."],
       finish: {
         success: [
-          "{Client} cum{s} with {their} wrists still bound — cock jerking untouched, a helpless, fractured sound coming out of {them} as {they} have no hands to hide behind.",
-          "Wrists tied, {client} spill{s} and can do nothing but shudder through it, completely at your mercy from start to finish.",
-          "{They} cum{s} hard with bound hands straining against the silk, cock dripping, {their} whole body working against the restraint as {they} fall apart.",
-          "You watch {client} come apart at the end of the cord — cock spending, bound arms trembling, nothing to grab, nothing to control."
+          "You bring {client}'s cock to the edge with your hands and then pull away — and {they} cum{s} untouched, cock jerking against nothing, wrists straining the cord with a fractured, helpless sound.",
+          "You decide when {client} gets to finish — and when you give it to {them}, they spill{s} hard, cock spending while {their} bound hands can do nothing but fist and shake.",
+          "You tighten the cords one fraction as {client}'s cock drips, and the restraint breaks {them} open — {they} cum{s} with both wrists straining and a raw, desperate cry, completely at your mercy.",
+          "You watch {client}'s cock throb untouched and let {them} spend — wrists in the silk, nothing to grab, nothing to control, completely ruined by you."
+        ],
+        expert_success: [
+          "You've learned exactly how long to hold {client} at the edge — long enough that when you finally give permission, their cock floods the air with a helpless, fractured sound, wrists pulling against the cord like {they} forgot {they} were tied.",
+          "You brought {client} here deliberately, step by step — the silk, the waiting, the withheld touch — so their cock spends in one crashing wave the moment you let it, bound hands shaking, nothing held back."
         ],
         dressed_success: [
           "Still dressed except where it matters, {client} cum{s} with {their} wrists bound and {their} cock bare — the contrast somehow making it worse for {them} in the best way.",
@@ -986,10 +1038,14 @@ window.NARRATION = {
       focus: ["You find a fast, merciless pace, and {client} loses all composure across your lap, cock throbbing."],
       finish: {
         success: [
-          "{Client} cum{s} across your lap from the spanking alone — cock untouched and spending, a sharp cry punched out of {them} mid-stroke.",
-          "One last hard slap and {client} goes rigid and spill{s}, cock jerking against your thigh, ass burning and wet-eyed and completely undone.",
-          "{They} moan{s} and cum{s} from your hand alone — ass stinging red, cock dripping onto your lap without either of you touching it.",
-          "{Client}'s hips grind against your thigh and {they} cum{s} — messy and helpless and loud, ass hot under your palm."
+          "You land a sharp slap and hold your palm there, feeling {client}'s ass burn under your hand — {they} cry{es} out sharp and cum{s}, cock jerking untouched against your thigh.",
+          "You hit hard and then soothe and then hit hard again — and {client} goes rigid across your lap and spill{s}, cock spending against your leg, ass red and shaking.",
+          "You keep the pace steady and feel {client}'s hips grinding harder against you — then {they} cum{s} from your hand alone, cock flooding your lap in wet, helpless pulses.",
+          "One last flat-palmed slap to {client}'s burning ass and {they} grind{s} into your thigh and cum{s} — loud, messy, completely undone, and not a single finger on {their} cock."
+        ],
+        expert_success: [
+          "You've calibrated every slap tonight — harder, then softer, then precisely the right hit to that exact spot — and when {client}'s cock starts dripping you know {they} {are} there. One deliberate palm strike and {they} cum{s} untouched, crying out.",
+          "You held {client} to the same rhythm long enough that {their} cock was dripping before you changed pace — and when you did, one sharp hit sent {them} over. {They} spill{s} against your lap with a raw, helpless sound, ass on fire."
         ],
         fail: [
           "Too close and then the rhythm stutters. {Client} go{es} still across your lap, cock still hard, the orgasm withdrawn.",
@@ -1025,10 +1081,14 @@ window.NARRATION = {
       focus: ["You commit entirely to the role — voice, body, every word — and {client} forgets there was ever anything else."],
       finish: {
         success: [
-          "{Client} cum{s} inside the fiction — still in character, or barely, the fantasy and the real orgasm tangled together completely.",
-          "{They} lose{s} the scene entirely at the end, the character dropping away, and what's left underneath is just {them} — spent, shaking, and grateful.",
-          "{Client} speak{s} {their} character's last line and then fall{s} apart — cock spending, voice breaking, the performance dissolving into something real.",
-          "The roleplay reaches its climax and {client}'s cock reaches {their}s — {they} cum{s} with the scene still going, and it is the best kind of ending."
+          "You stay perfectly in character as {client}'s cock throbs inside you — {they} spend while the scene is still running, hips snapping, voice cracking, the fiction and the orgasm completely tangled.",
+          "You give {client} the line their character needed to hear and feel their cock flood you in answer — {they} lose{s} the scene entirely, the character dropping away into something raw and real.",
+          "{Client} speak{s} {their} character's last line and then fall{s} apart — cock jerking, voice breaking, the performance dissolving into a genuine, helpless finish.",
+          "The scene reaches its climax and you clench your cunt around {client}'s cock right on cue — {they} cum{s} with the fiction still going, and the sound {they} make{s} is completely real."
+        ],
+        expert_success: [
+          "You built the scene to lead here — every line of dialogue, every touch, all staged to put {client} exactly where they'd break — and when their cock throbs inside you, you say the one line that finishes it. {They} cum{s} with their character's voice cracking.",
+          "You've played {client}'s scene so deeply that the fiction *is* the fucking by now — so when you deliver the moment, their cock spends inside you with a raw, uncontrolled sound that has nothing to do with performance."
         ],
         fail: [
           "The scene breaks at the worst moment and {client}'s cock decides it can't suspend disbelief while going soft.",
@@ -1064,10 +1124,14 @@ window.NARRATION = {
       focus: ["You overwhelm {client} with touch after touch in rapid succession and {they} can't catch {their} breath or composure."],
       finish: {
         success: [
-          "Blind and shaking, {client} cum{s} — unable to see it coming, unable to prepare, the orgasm hitting {them} full in the dark.",
-          "{They} cry{es} out without warning when {they} spill{s} — blindfolded, helpless, cock jerking in the dark where {they} can't see and can't brace.",
-          "{Client} cum{s} from a touch {they} never saw coming, cock flooding, {their} whole body arching off the bed in complete, sightless surrender.",
-          "You feel {client}'s cock pulse before you hear the sound — then {they} {are} cumming loud and shaking, still unable to see the hands that broke {them}."
+          "You touch {client} where they can't anticipate and feel {their} cock throb — you wrap your hand around it and stroke through the orgasm as {they} cum{s} blind, helpless, arching into the dark.",
+          "You put your mouth on {client}'s cock without warning and swallow once — {they} cry{es} out and spill{s} immediately, cock jerking between your lips, unable to see or brace.",
+          "You grip {client}'s cock and feel it flood your hand — {they} cum{s} from a touch {they} never saw coming, arching off the bed, sightless and completely broken.",
+          "You feel the cock pulse in your hand before you hear the sound — then you close your grip and stroke {client} through every throb as {they} cum{s} loud and shaking, still blind."
+        ],
+        expert_success: [
+          "You've spent this session mapping every place {client}'s body flinches — now you touch them in the sequence that breaks them, the one they can't predict, and wrap your hand around their cock the moment it swells. {They} flood your palm with a startled cry.",
+          "You withheld touch long enough that {client} was shaking from anticipation alone — and when you finally wrapped your hand around their cock and stroked once, they cum{s} immediately, unable to see, unable to stop, completely yours."
         ],
         fail: [
           "The darkness held too much anxiety and not enough heat — {client}'s cock goes soft under the blindfold without the orgasm.",
@@ -1103,10 +1167,14 @@ window.NARRATION = {
       focus: ["You alternate hot wax and cold wine faster and faster until {client} can't stop shaking."],
       finish: {
         success: [
-          "{Client} cum{s} from the temperature alone — your warm mouth on {their} cock and cold wine dripping onto {their} thighs at once, the contrast too much to survive.",
-          "Hot wax on {their} chest, your cold wine-wet hand on {their} cock, and {client} spill{s} — shaking, burned and chilled and spent all at once.",
-          "{They} cry{es} out and cum{s} hard, body still twitching between hot and cold, cock jerking through the finish.",
-          "A drip of wax at exactly the right moment and {client} cum{s} — a full-body shudder, cock flooding, mouth open on a long, broken sound."
+          "You press your warm mouth to {client}'s cock and let cold wine drip from your tongue onto {their} thigh at the same moment — the contrast hits and {their} cock floods your mouth as {they} cum{s}.",
+          "You grip {client}'s cock with your wine-chilled hand and breathe hot air against the head — and {they} spill{s} into your palm, burning and frozen all at once, shaking through the contradiction.",
+          "You drip wax onto {client}'s chest and immediately press cold glass against {their} cock — {they} cry{es} out and cum{s} hard, still twitching between sensations.",
+          "You time the wax perfectly — a single drop at the right instant — and feel {client}'s cock jerk in your hand and flood it, {their} mouth falling open on a long, wrecked sound."
+        ],
+        expert_success: [
+          "You've mapped {client}'s responses all session — which temperature makes them gasp, which edge makes them buck — so you combine them in one deliberate sequence: cold grip, warm mouth, wax drop. {Their} cock floods your palm before the last sensation even lands.",
+          "You know the exact pairing that breaks {client}: warm breath on the cock, cold wine on the inner thigh, in that order. You do it, and feel {their} cock throb and spill against your lips with a helpless, stunned sound."
         ],
         fail: [
           "The contrast lost its edge and {client}'s cock made up its mind — soft, finished with the game before the game was done.",
@@ -1143,9 +1211,13 @@ window.NARRATION = {
       finish: {
         success: [
           '"Cum," you say, and {client} obey{s} — cock spending at the single word, {their} whole body breaking open on command.',
-          "{They} cum{s} exactly when you allow it, cock jerking, a sharp and grateful cry escaping {them} as the permission finally lands.",
           "You give the word and {client} shatter{s} — cock pulsing, breath gone, {their} obedience paid in full.",
-          "{Client} cum{s} without touching {their} cock, from your command alone — {their} body trained to your voice, spending at a word."
+          "You keep {client} on the edge with nothing but silence and your eyes, then say \"now\" — and {their} cock floods {their} hand, a helpless, grateful cry torn out of {them}.",
+          "You withhold permission until {client}'s cock is dripping and {their} voice is cracked with asking — then you nod, once, and {they} cum{s} with a wrecked, full-body shudder."
+        ],
+        expert_success: [
+          "You've trained {client} exactly to this point: voice gone, cock straining, everything waiting on one word. You let the silence stretch three beats past comfortable, then give it — and {they} spend immediately, the orgasm breaking like it had been held behind a door.",
+          "You know how long to hold {client} at the edge before the command lands loudest — so you wait, and watch {their} cock drip, and say the word at the exact moment it will undo {them} completely. {They} cum{s} with a raw, cracked sound, completely in your hands."
         ],
         fail: [
           "The command comes out wrong — uncertain, too late — and {client}'s cock decides not to obey.",
@@ -1186,6 +1258,10 @@ window.NARRATION = {
           "{Client} cum{s} crying out at the praise — cock spending, voice cracking on the compliment that finally did it.",
           '"That\'s it — exactly that — you\'re perfect," and {client} is gone — cock flooding, {their} whole body answering your voice.'
         ],
+        expert_success: [
+          "You've learned exactly which words break {client} — not generic praise but the specific, true thing {they} need to hear — so you say it now, low and certain, and {their} cock floods as {they} cum{s} with a raw, grateful sound.",
+          "You built {client} up slowly all session with exactly calibrated praise, and now you deliver the line that finishes it — \"you're perfect\" — and {their} cock spends in one helpless pulse, face completely open and undone."
+        ],
         fail: [
           "The praise lands hollow at the end and {client}'s cock knows the difference — it softens before the finish.",
           "{They} {are} flushed and wanting and the orgasm is just out of reach because the words stopped ringing true."
@@ -1224,6 +1300,10 @@ window.NARRATION = {
           "{Client} spill{s} to your words: you told {them} exactly when and how, and {their} cock obeyed every syllable.",
           "Your voice in {their} ear describing every pulse of {their} orgasm — {client} cum{s} loud and shaking, the filth and the finish inseparable.",
           "You tell {client} you can feel {them} cumming and that sends {them} further in — cock jerking, a wrecked sound, your words the last thing {they} hear before {they} fall apart."
+        ],
+        expert_success: [
+          "You've been narrating {client}'s body back to {them} all session — what {their} cock looks like, what it feels like in your hand — so when you describe {them} cumming before it happens, {their} cock makes the words true. {They} spill{s} with a stunned, helpless sound.",
+          "You built the filth to a precise pitch all session, and now you put your mouth to {client}'s ear and tell {them} exactly how {they} {are} going to cum — and {their} cock obeys every word, spending hard while you narrate every pulse."
         ],
         fail: [
           "The right words never came and {client}'s cock felt the absence — hard and wanting and the orgasm just not there.",
@@ -1265,6 +1345,10 @@ window.NARRATION = {
           "{They} can't hold it anymore — cock pulsing through {their} clothing, a desperate, helpless groan from the chair, watching you finish the show.",
           "{Client} cum{s} forbidden to touch {their} own cock, watching yours, and the orgasm is entirely your doing and not a single touch."
         ],
+        expert_success: [
+          "You've learned {client}'s breaking point precisely — how long to hold eye contact, which angle does it, when to touch yourself — so you deploy all of it in sequence, and {they} cum{s} in the chair with a helpless sound, cock spending untouched through {their} clothes.",
+          "You built the show to a deliberate peak — slow, then slower, then one exact move you know {client} can't survive — and watch {their} cock spend through {their} breeches as {they} lose control in the chair, hands white on the armrests, never allowed to help."
+        ],
         fail: [
           "Watching wasn't enough — {client}'s cock wants what the eyes have been promised, and you give {them} neither.",
           "{They} shift{s} in the chair, cock hard and unsatisfied, the show over without the finish."
@@ -1303,6 +1387,10 @@ window.NARRATION = {
           "{They} spill{s} with the shutters open and the street below and {their} cock spending loud enough for anyone to hear.",
           "The knowledge that someone might be listening is what breaks {client} — {they} cum{s} hard and only half-quietly, cock throbbing, daring them to knock.",
           "{Client} look{s} at the open shutter and cum{s}, loud, because that's the whole point — cock pulsing, nothing held back, the city below invited to witness."
+        ],
+        expert_success: [
+          "You planned the moment — open shutter, voices audible below, and you at full voice when {client}'s cock swells inside you — so you clench your cunt and moan loud and deliberate, and {they} cum{s} in a crashing wave, exposed to everyone and utterly wrecked by it.",
+          "You timed {client}'s finish to the footsteps in the hall — you've done this long enough to feel the cock twitch, and you let yourself go loud right when they pass. {Client} cum{s} in a helpless, half-stifled rush, cock flooding you while the sound carries."
         ],
         fail: [
           "Someone actually does knock and {client}'s cock makes its feelings known by going immediately soft.",
@@ -1343,6 +1431,10 @@ window.NARRATION = {
           "{Client} come{s} apart kneeling at your feet — cock jerking, both hands wrapped around your foot, the orgasm wrenched out of {them} by something as simple as your arch against {their} lips.",
           "You feel {client} cum{s} against your sole, cock throbbing, a low, worshipful sound escaping {them} as {they} spend themselves on your feet."
         ],
+        expert_success: [
+          "You've learned the exact pressure and angle that breaks {client}: sole against the cock, toes curled, heel pressed just so — so you give it to {them} now, deliberate and unhurried, and {they} cum{s} over your feet with a shaking, reverent sound.",
+          "You held {client} on the edge for three long minutes with nothing but the arch of your foot against {their} cock — and when you curl your toes and press down, {they} spend across your sole with a raw, helpless moan, the whole body giving."
+        ],
         fail: [
           "The devotion built to nothing — {client}'s cock goes soft mid-worship, the reverence outpacing the arousal.",
           "{They} set{s} your foot down gently, cock soft, the session over without the finish."
@@ -1381,6 +1473,10 @@ window.NARRATION = {
           "You bring the strap down one final time and {client} fall{s} apart — cock jerking, voice breaking, the pain and the orgasm arriving together.",
           "{They} had been close for three strokes and the fourth breaks {them} — cum striping the sheets, a raw sound, ass burning under your hand.",
           "{Client} spill{s} while the sting is still fresh — cock untouched and spent, {their} whole body shaking with the rhythm you built into {them}."
+        ],
+        expert_success: [
+          "You've calibrated every stroke tonight — force, interval, placement — so when {client}'s cock starts dripping you already know the next hit will finish {them}. You bring the strap down with precision and {they} cum{s} with a cracked cry, ass burning, cock spending untouched.",
+          "You've kept {client} at the exact threshold for four strokes, reading the cock for how close it is — and now you quicken the pace by one, land the hit at the right spot, and {they} fall apart. {They} spill{s} with a raw sound, the sting and the orgasm inseparable."
         ],
         fail: [
           "The strap's rhythm never found the right pace and {client}'s cock softened between strokes without the finish.",
