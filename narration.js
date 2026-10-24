@@ -105,10 +105,14 @@ window.NARRATION = {
       focus: ["You lock your ankles behind {client} and pull {them} all the way in, and {they} gasp{s} against your mouth as you squeeze tight around {their} cock."],
       finish: {
         success: [
-          "{Client} buries {their} cock to the hilt and shudder{s}, spending inside you with a ragged, broken sound against your throat.",
-          "Face pressed to your neck, {client} cum{s} hard — hips snapping through it, cock pulsing, hands fisting in the sheets beside your head.",
-          "You feel every twitch as {they} spill{s} inside you, {their} whole body shaking through the release, forehead to yours.",
-          "{Client} cries out and drives in deep, filling you as {their} rhythm stutters and falls apart completely."
+          "You arch hard into {client}'s cock as it throbs inside you, clenching around every pulse — {they} bury{es} deep and shake apart against your throat.",
+          "You lock your legs around {client}'s hips and squeeze tight, grinding through {their} orgasm as {their} cock floods you — {their} voice breaks on the exhale.",
+          "{Client}'s cock swells and jerks inside you and you bear down on it, drawing out every throb while {they} shudder{s} and grip{s} the sheets beside your head.",
+          "You claw at {client}'s back and clench your cunt around {their} pulsing cock, pulling {them} through the finish — {they} cry{es} out, forehead to yours, completely undone."
+        ],
+        expert_success: [
+          "You felt it building — the hitch in {their} breath, the cock swelling — so you clenched hard and bore up into {them}, and {client} cum{s} with a stunned, helpless sound, like {they} didn't see it coming even as you brought {them} there.",
+          "You've learned the exact angle that sends {client} over — you grind into it and hold it and feel {their} cock throb its warning before {they} spill{s} inside you, deep and shaking, already ruined before the first pulse."
         ],
         bare_success: [
           "Chest to chest and skin slick with sweat, {they} cum{s} hard inside you — you feel every pulse of it where your bodies are joined.",
@@ -152,10 +156,14 @@ window.NARRATION = {
       focus: ["You fuck {client} hard and relentless, cunt working {their} cock without mercy, and {they} grip{s} your hips to keep from bucking {them}self off the bed."],
       finish: {
         success: [
-          "{Client} grab{s} your hips and slams you down onto {their} cock as {they} cum{s} — you feel every throb of it from the inside.",
-          "You grind {client} through {their} orgasm, cunt clenching tight around {their} cock, and watch {their} face crack open beneath you.",
-          "{They} spill{s} inside you with your name on {their} lips, hips bucking up hard to bury {their} cock as deep as it goes.",
-          "{Client}'s cock jerks inside you and {they} moan{s} out loud, hands white-knuckled on your thighs as you ride {them} through it."
+          "You grind down and clench tight as {client}'s cock throbs inside you — {they} grab{s} your hips and slam you onto every pulse, spending hard with a wrecked sound.",
+          "You roll your hips slow and deliberate through {client}'s orgasm, milking {their} cock as it floods you, watching {their} face fall completely apart beneath you.",
+          "You feel the twitch and the swell and you ride it — cunt gripping {their} jerking cock, hips rolling, working {client} through every wave until {they} {are} shaking.",
+          "{Client}'s cock bucks hard inside you and you bear down on it, clenching around every jerk — {they} cry{es} out, hands white-knuckled on your thighs, nowhere to go."
+        ],
+        expert_success: [
+          "You've kept {client} exactly here, on the edge, for long enough — now you drop your hips and grind in tight, deliberate circles and {their} cock floods you before {they} can catch a breath.",
+          "You know the moment — the deepened flush, the cock going rigid beneath you — so you clench and ride it, and {client} spill{s} inside you with a helpless, stricken sound, totally in your hands."
         ],
         bare_success: [
           "You come down hard onto {client}'s cock as {they} cum{s}, your bare thighs slapping {their} hips, nothing between you.",
@@ -200,10 +208,14 @@ window.NARRATION = {
       focus: ["You lean forward and ride {client}'s cock harder and faster, and behind you {they} lose{s} any composure {they} had left."],
       finish: {
         success: [
-          "{Client} grips your ass with both hands and cums inside you, hips surging up off the bed, a guttural sound escaping {their} throat.",
-          "You feel {them} go rigid beneath you and then shudder apart — cock pulsing hard inside you, hands bruising your hips.",
-          "{They} spill{s} deep inside you with a low, broken groan, fingers digging into your ass as {their} hips judder and still.",
-          "You grind down hard as {client} cums, working {their} cock through every pulse, your ass pressed flush to {their} hips."
+          "You press your ass down hard and grind back as {client}'s cock throbs inside you — {they} grip{s} your hips and surge up, spending deep with a raw, gutted sound.",
+          "You feel {them} stiffen beneath you and squeeze your cunt tight around {their} pulsing cock, riding every jerk — {they} shudder{s} apart, hands bruising your hips.",
+          "{Client}'s cock floods you and you rock back into it, clenching through every pulse — {they} let{s} out a low, broken sound that doesn't stop until {their} hips still.",
+          "You grind your ass flush to {client}'s hips as {they} spill{s} inside you, working {their} cock through the whole orgasm, and {they} can do nothing but hold on."
+        ],
+        expert_success: [
+          "You've been reading {client}'s body all session — so when {their} cock swells beneath you, you press back hard and clench tight, and {they} cum{s} with a startled, stricken cry, hands locked on your ass.",
+          "You roll your hips in the angle you know breaks {them} and hold it — {client}'s cock bucks and floods inside you, and you don't stop grinding until {they} {are} limp and breathless beneath you."
         ],
         bare_success: [
           "Nothing covering either of you when {they} cum{s} — just {their} bare hands on your bare ass and {their} cock spending inside you.",
@@ -244,10 +256,14 @@ window.NARRATION = {
       focus: ["You brace against the headboard and shove back hard onto {client}'s cock, and {they} can only hold on and let you use {them}."],
       finish: {
         success: [
-          "{Client} slams into you one last time and cums with both hands locked on your hips, cock throbbing deep inside you.",
-          "A sharp, desperate groan behind you and then {they} {are} spilling — hips stuttering, cock jerking, grip going slack.",
-          "{Client} buries {their} cock to the hilt and shudder{s} through the whole orgasm, forehead dropping to your spine.",
-          "You shove back onto {client}'s cock as {they} cum{s}, and {their} helpless cry fills the room."
+          "You shove back hard and clench tight as {client}'s cock throbs inside you — {they} slam{s} forward and cum{s} with both hands locked on your hips, the whole bed jolting.",
+          "You hear the hitch and feel the cock swell and you push back onto it, squeezing through every pulse — {client}'s broken groan spills into the room as {they} spend.",
+          "{Client} buries {their} cock deep and you bear down around it, grinding back through the orgasm — {they} shudder{s}, forehead dropping to your spine, shaking all the way through.",
+          "You shove your ass hard onto {client}'s cock as {they} cum{s}, clenching around every jerk — {they} cry{es} out helplessly and {their} hips snap forward through the whole finish."
+        ],
+        expert_success: [
+          "You felt the rhythm break behind you — that specific catch in the breath, the cock swelling — so you clenched hard and drove back, and {client} cum{s} with a strangled cry, spending deep inside you before {they} even knew it was happening.",
+          "From this angle you know exactly how to finish {client}: press back, tighten, and hold the angle. {Their} cock floods you in three hard pulses and {they} collapse{s} against your back, completely wrecked."
         ],
         bare_success: [
           "Bare skin slapping against bare skin as {client} cum{s} — the wet sound of it and {their} broken groan and {their} cock pulsing inside you all at once.",
@@ -288,10 +304,14 @@ window.NARRATION = {
       focus: ["You press back hard onto {client}'s cock and quicken the grind, and {their} arm locks around your waist."],
       finish: {
         success: [
-          "{Client}'s arm crushes you against {their} body as {they} cum{s} — cock pulsing inside you, lips pressed hard to the back of your neck.",
-          "{They} spill{s} with a muffled groan into your hair, hips rolling slow and deep through every pulse.",
-          "{Client} whispers your name and then goes apart — cock jerking inside you, chest shuddering against your back.",
-          "Tangled together, {client} cum{s} quietly and completely, {their} cock warm and full inside you as {they} shake."
+          "You press back into {client}'s cock as it throbs inside you, clenching tight and rolling your hips through the orgasm — {their} arm crushes you close and {they} moan{s} into the back of your neck.",
+          "You feel the pulse build and you push back onto it, squeezing around every throb — {client} spill{s} with a muffled, wrecked sound into your hair, hips grinding slow and deep.",
+          "{Client} whispers your name and you clench hard around {their} pulsing cock and grind back until {they} come apart completely, shaking against you.",
+          "Tangled together, you rock back into {client}'s cock as it floods you — {they} cum{s} with {their} arm locked around your waist, shuddering quietly from the inside out."
+        ],
+        expert_success: [
+          "You felt {client}'s cock swell before {their} breathing changed — so you pressed back and clenched and held it there, and {they} spill{s} inside you with a stunned, helpless sound, {their} whole body one long shiver against your back.",
+          "You know {client}'s patterns well enough to feel the finish coming from a mile off. You tighten and grind back in the exact way you've learned breaks {them}, and {they} cum{s} with a broken exhale, arms pulling you hard into {their} body."
         ],
         bare_success: [
           "Back flush to {client}'s bare chest when {they} cum{s}, {their} cock spending inside you and {their} skin damp against yours.",
@@ -331,10 +351,14 @@ window.NARRATION = {
       focus: ["You wrap both legs around {client} and grind yourself onto {their} cock, and the wall takes everything else."],
       finish: {
         success: [
-          "{Client} pins you against the wall and cum{s} — cock driving in hard one last time, a sharp, wrecked sound against your ear.",
-          "Both of you barely upright, {client} spill{s} inside you standing up, legs giving, grip on the wall the only thing keeping you both there.",
-          "{They} bury{es} {their} cock and shudder{s} through it, forehead against the stone above your shoulder, cock pulsing in you.",
-          "You feel {client} cum{s} with your back still pressed to the wall — {their} hips grinding you into the plaster as {they} spend."
+          "You lock your legs tighter around {client} and clench as {their} cock throbs inside you — {they} slam{s} in one last time and cum{s} with a sharp, wrecked sound against your ear.",
+          "You grip {client}'s shoulders and grind your hips down onto {their} cock through the whole orgasm, both of you barely upright, the wall the only thing keeping you there.",
+          "{They} bury{es} {their} cock and you squeeze hard around it, feeling every pulse — {client} shudder{s} against you, forehead to the stone, cock flooding you.",
+          "You press your cunt harder onto {client}'s cock as {they} cum{s}, grinding the last of it out of {them} while {their} hips shudder into you and the plaster."
+        ],
+        expert_success: [
+          "You've had your legs locked around {client} this whole time — so when {their} cock swells, you clench tight and roll your hips onto it, and {they} cum{s} in a crashing wave, voice breaking against your ear.",
+          "You felt {client} getting there and hooked your leg tighter, pulled {them} in deeper, and bore down on {their} cock — {they} spill{s} inside you pressed to the wall, shaking, completely at your mercy."
         ],
         bare_success: [
           "Bare against the cold wall, {client} cum{s} inside you and you feel the heat of it from hip to thigh.",
@@ -374,10 +398,14 @@ window.NARRATION = {
       focus: ["You suck {client}'s cock like you mean it, throat working, and {they} come{s} apart so hard {they} forget to keep licking."],
       finish: {
         success: [
-          "{Client}'s cock throbs against your tongue and then floods your mouth — {they} moan{s} hard into your cunt as {they} cum{s}.",
-          "You swallow {client} down as {they} spill{s}, cock pulsing against the back of your throat, {their} whole face buried between your thighs.",
-          "{They} cum{s} in your mouth with a muffled cry, cock jerking, and {their} tongue falters and goes still against your cunt.",
-          "You feel {client} losing it before {they} do — cock swelling, hips lifting, and then {they} {are} spilling down your throat while {they} groan into you."
+          "You keep sucking as {client}'s cock throbs against your tongue — {they} flood your mouth and moan hard into your cunt, and you swallow without pulling off.",
+          "{Client}'s cock swells and jerks in your mouth and you seal your lips tighter, throat working through every pulse — {they} moan{s} into your cunt as {they} cum{s}.",
+          "You feel {client} losing it and take {them} deeper, tongue pressing as {their} cock floods your mouth — {they} cry{es} muffled into your thighs and go limp.",
+          "{Their} cock pulses three times against the back of your throat and you swallow all of it, still grinding your cunt against {their} face — {client} moan{s} through the whole finish."
+        ],
+        expert_success: [
+          "You felt the cock twitch on your tongue and tightened your lips, swallowed against the head — the exact pressure that breaks {client}. {They} flood your mouth with a helpless, muffled cry, and you don't pull off until {they} {are} done.",
+          "You knew {client} was close from the way {their} tongue stuttered against you, so you worked your throat down over {their} cock and swallowed — {they} cum{s} with a strangled moan into your cunt, twitching through every pulse."
         ],
         fail: [
           "{Client}'s cock goes soft against your tongue as {their} focus splits and neither act gets {them} there.",
@@ -413,10 +441,14 @@ window.NARRATION = {
       focus: ["You grip {client}'s shoulders and grind harder on {their} cock, working {their} lap with real intent, and {they} cling{s} to you."],
       finish: {
         success: [
-          "Wrapped around each other, {client} cum{s} without breaking the embrace — cock buried and pulsing, {their} arms tightening until you can't breathe.",
-          "{They} press{es} {their} forehead hard to yours and shudder{s} through the orgasm, cock spending inside you, shaking all the way through.",
-          "{Client} cum{s} quietly, deeply — cock pulsing in you, both of you still, {their} exhale warm against your mouth.",
-          "You feel {client} come apart from the inside out — cock throbbing in your cunt, both arms locked around your back, {their} whole body one long tremor."
+          "You squeeze your thighs around {client}'s hips and grind in tight as {their} cock throbs — {they} cum{s} with {their} arms crushing you close, cock pulsing deep inside you.",
+          "You press your forehead to {client}'s and clench your cunt around {their} swelling cock — {they} shudder{s} through the orgasm, spending inside you with a long, warm exhale.",
+          "You bear down on {client}'s cock and roll your hips in slow circles as it floods you — {they} press{es} {their} lips to yours and cum{s} quietly, completely, the tremor moving through both of you.",
+          "You feel {client} starting to lose it — cock throbbing deep — so you lock your legs tighter and grind, and {they} come apart all at once, arms locked around your back, pouring into you."
+        ],
+        expert_success: [
+          "You've held {client} at this depth, at this pace, until {their} whole body is wound to breaking — and then you clench and roll your hips and let them finish, feeling {their} cock throb everything it built into you.",
+          "You counted {client}'s breaths getting shallower, felt the cock deepen its pulse — so you squeezed and rocked and whispered one word, and {they} cum{s} trembling, completely inside your hands."
         ],
         bare_success: [
           "Every inch of bare skin touching when {they} cum{s} — {their} cock inside you and {their} chest against yours and nothing else.",
