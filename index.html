@@ -170,6 +170,13 @@
   .viz-dress-tag.self { border-color: #5a4a7a; color: #9b80c4; background: #100e18; }
   @keyframes arousal-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
   .fig-hot { animation: arousal-pulse 1.1s ease-in-out infinite; }
+  /* Close-up detail panel */
+  .body-viz-closeup { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+  .closeup-label { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); white-space: nowrap; }
+  .closeup-fig { display: block; background: #0c0907; border: 1px solid #2a1e18; border-radius: 6px; padding: 4px; }
+  .closeup-fig svg { display: block; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes closeup-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+  .closeup-hot { animation: closeup-pulse 1.1s ease-in-out infinite; }
 
   /* Panels */
   .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin: 4px 0 12px; animation: fade .25s ease; }
@@ -454,44 +461,486 @@ const TECH_DESC = {
   impact_play: "The strap rises and falls in a steady rhythm — measured, controlled. Each strike blooms into warmth, the sting transmuting into something deeper with every pass. The count matters. The pace matters. He holds both."
 };
 const ICON_PATHS = {
-  /* face-to-face penetration: two stick figures lying toward each other, hips joined */
-  face: '<circle cx="5" cy="8" r="2"/><line x1="5" y1="10" x2="5" y2="15"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="3" y1="18" x2="5" y2="15"/><line x1="7" y1="18" x2="5" y2="15"/><circle cx="19" cy="16" r="2"/><line x1="19" y1="14" x2="19" y2="9"/><line x1="16" y1="11" x2="22" y2="11"/><line x1="17" y1="6" x2="19" y2="9"/><line x1="21" y1="6" x2="19" y2="9"/><line x1="8" y1="13" x2="16" y2="13"/>',
-  /* cowgirl: figure seated upright straddling a reclining figure below */
-  ontop: '<circle cx="12" cy="4" r="2"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="14" x2="12" y2="12"/><line x1="15" y1="14" x2="12" y2="12"/><circle cx="12" cy="18" r="2"/><line x1="5" y1="18" x2="19" y2="18"/><line x1="7" y1="15" x2="12" y2="18"/><line x1="17" y1="15" x2="12" y2="18"/><line x1="9" y1="14" x2="15" y2="14"/>',
-  /* doggy: figure bent forward, penetrated from behind by kneeling figure */
-  behind: '<circle cx="6" cy="7" r="2"/><line x1="6" y1="9" x2="10" y2="14"/><line x1="3" y1="10" x2="9" y2="10"/><line x1="8" y1="18" x2="10" y2="14"/><line x1="12" y1="18" x2="10" y2="14"/><circle cx="17" cy="9" r="2"/><line x1="17" y1="11" x2="17" y2="16"/><line x1="14" y1="13" x2="20" y2="13"/><line x1="15" y1="19" x2="17" y2="16"/><line x1="19" y1="19" x2="17" y2="16"/><line x1="10" y1="13" x2="14" y2="12"/>',
-  /* spooning: two figures lying on side, one curled behind the other */
-  side: '<circle cx="8" cy="8" r="2"/><path d="M8 10 C7 13 9 15 8 17"/><line x1="5" y1="11.5" x2="11" y2="11.5"/><line x1="6" y1="17" x2="10" y2="17"/><circle cx="15" cy="10" r="2"/><path d="M15 12 C14 14 16 16 15 18"/><line x1="12" y1="13.5" x2="18" y2="13.5"/><line x1="13" y1="18" x2="17" y2="18"/><line x1="10.5" y1="14" x2="13" y2="14"/>',
-  /* standing wall pin: one figure pressing another against wall, both upright */
-  standing: '<line x1="3" y1="2" x2="3" y2="22"/><circle cx="8" cy="5" r="2"/><line x1="8" y1="7" x2="8" y2="14"/><line x1="5" y1="9.5" x2="11" y2="9.5"/><line x1="6" y1="18" x2="8" y2="14"/><line x1="10" y1="18" x2="8" y2="14"/><circle cx="16" cy="6" r="2"/><line x1="16" y1="8" x2="16" y2="15"/><line x1="13" y1="10.5" x2="19" y2="10.5"/><line x1="14" y1="19" x2="16" y2="15"/><line x1="18" y1="19" x2="16" y2="15"/><line x1="8" y1="12" x2="13" y2="12"/>',
-  /* seated lotus: two figures seated upright facing each other, joined at lap */
-  seated: '<circle cx="8" cy="5" r="2"/><line x1="8" y1="7" x2="8" y2="13"/><line x1="5" y1="9" x2="11" y2="9"/><line x1="5" y1="17" x2="8" y2="13"/><line x1="11" y1="17" x2="8" y2="13"/><line x1="5" y1="17" x2="11" y2="17"/><circle cx="16" cy="5" r="2"/><line x1="16" y1="7" x2="16" y2="13"/><line x1="13" y1="9" x2="19" y2="9"/><line x1="13" y1="17" x2="16" y2="13"/><line x1="19" y1="17" x2="16" y2="13"/><line x1="13" y1="17" x2="19" y2="17"/><line x1="11" y1="12" x2="13" y2="12"/>',
-  /* 69 / oral: two figures head-to-groin, mouths at each other's sex */
-  oral: '<circle cx="6" cy="5" r="2"/><line x1="6" y1="7" x2="8" y2="13"/><line x1="3" y1="9" x2="9" y2="9"/><line x1="4" y1="17" x2="6" y2="13"/><line x1="8" y1="17" x2="6" y2="13"/><circle cx="18" cy="19" r="2"/><line x1="18" y1="17" x2="16" y2="11"/><line x1="15" y1="15" x2="21" y2="15"/><line x1="20" y1="7" x2="18" y2="11"/><line x1="16" y1="7" x2="18" y2="11"/><line x1="8" y1="13" x2="16" y2="11"/>',
-  /* handjob / manual: one figure\'s arm reaching to other figure\'s groin */
-  manual: '<circle cx="6" cy="5" r="2"/><line x1="6" y1="7" x2="6" y2="14"/><line x1="3" y1="9.5" x2="9" y2="9.5"/><line x1="4" y1="18" x2="6" y2="14"/><line x1="8" y1="18" x2="6" y2="14"/><circle cx="18" cy="5" r="2"/><line x1="18" y1="7" x2="18" y2="14"/><line x1="15" y1="9.5" x2="21" y2="9.5"/><line x1="16" y1="18" x2="18" y2="14"/><line x1="20" y1="18" x2="18" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/><path d="M9 11 Q12 13 15 11"/>',
-  /* scissoring / pretzel: two figures with legs intertwined, hips pressed together */
-  grind: '<circle cx="5" cy="6" r="2"/><line x1="5" y1="8" x2="7" y2="13"/><line x1="2" y1="10" x2="8" y2="10"/><line x1="3" y1="17" x2="7" y2="13"/><line x1="11" y1="17" x2="7" y2="13"/><circle cx="19" cy="6" r="2"/><line x1="19" y1="8" x2="17" y2="13"/><line x1="16" y1="10" x2="22" y2="10"/><line x1="21" y1="17" x2="17" y2="13"/><line x1="13" y1="17" x2="17" y2="13"/><line x1="11" y1="17" x2="13" y2="17"/>',
-  /* bondage: figure with arms raised and bound above head */
-  rope: '<line x1="12" y1="2" x2="12" y2="5"/><path d="M10 2 Q12 1 14 2"/><circle cx="12" cy="7" r="2"/><line x1="12" y1="9" x2="12" y2="16"/><line x1="8" y1="11.5" x2="16" y2="11.5"/><line x1="10" y1="20" x2="12" y2="16"/><line x1="14" y1="20" x2="12" y2="16"/><path d="M8 11.5 Q7 8.5 10 9"/><path d="M16 11.5 Q17 8.5 14 9"/>',
-  /* spanking: one figure bent over another\'s lap, hand raised to strike */
-  impact: '<circle cx="7" cy="5" r="2"/><line x1="7" y1="7" x2="7" y2="12"/><line x1="4" y1="9.5" x2="10" y2="9.5"/><line x1="5" y1="15" x2="7" y2="12"/><line x1="9" y1="15" x2="7" y2="12"/><circle cx="17" cy="10" r="2"/><line x1="17" y1="12" x2="17" y2="17"/><line x1="14" y1="14" x2="20" y2="14"/><line x1="15" y1="20" x2="17" y2="17"/><line x1="19" y1="20" x2="17" y2="17"/><line x1="9" y1="13" x2="14" y2="13"/><path d="M20 7 L22 4" stroke-linecap="round"/>',
-  /* roleplay / mask: theatrical drama mask with a second face peek */
-  mask: '<path d="M7 4 Q12 2 17 4 Q20 9 18 14 Q16 18 12 18 Q8 18 6 14 Q4 9 7 4z"/><circle cx="9.5" cy="9" r="1.2"/><circle cx="14.5" cy="9" r="1.2"/><path d="M9 13 Q12 15.5 15 13"/><path d="M4 5 Q2 3 3 6"/><path d="M20 5 Q22 3 21 6"/>',
-  /* blindfold: figure with band across eyes, arms slightly raised in heightened sense */
-  blind: '<circle cx="12" cy="6" r="2"/><line x1="12" y1="8" x2="12" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="10" y1="19" x2="12" y2="15"/><line x1="14" y1="19" x2="12" y2="15"/><rect x="7" y="4.5" width="10" height="3" rx="1.5"/><line x1="6" y1="6" x2="4" y2="6"/><line x1="18" y1="6" x2="20" y2="6"/>',
-  /* candle / temperature play: dripping candle flame with wax trails */
-  flame: '<line x1="12" y1="22" x2="12" y2="14"/><ellipse cx="12" cy="13.5" rx="2" ry="1"/><path d="M12 13 Q14.5 9 12.5 6 Q11 8 9 7 Q10.5 9.5 12 13z"/><path d="M10 21 Q10.5 18.5 9.5 16.5"/><path d="M14 20 Q13.5 18 14.5 16"/>',
-  /* crown: prominent crown for dominance/submission */
-  crown: '<path d="M4 19 L4 13 L8.5 17 L12 9 L15.5 17 L20 13 L20 19 Z"/><line x1="3.5" y1="21" x2="20.5" y2="21"/><circle cx="4" cy="13" r="1.5"/><circle cx="12" cy="9" r="1.5"/><circle cx="20" cy="13" r="1.5"/>',
-  /* lips to ear / dirty talk: mouth shape close to ear shape */
-  voice: '<path d="M3 10 Q3 6 7 6 Q11 6 11 10 Q11 13 7 14 Q6 14 5 13 L4 15 L6 13 Q3 13 3 10z"/><path d="M14 9 Q14 6 17 6 Q20 6 20 9 L20 12 Q19 13 17 13 L17 15"/><path d="M16 8 Q17.5 7.5 19 8"/>',
-  /* watching eye: large open eye, explicit detail */
-  eye: '<path d="M2 12 Q12 3 22 12 Q12 21 2 12z"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="2"/><circle cx="13.5" cy="10.5" r="0.8"/>',
-  /* foot fetish: foot raised being grasped/kissed */
-  feet: '<path d="M7 20 Q6 16 8 13 Q10 10 11 7"/><path d="M11 7 Q11.5 5 13.5 5.5 Q13 8 11 9"/><path d="M11 9 Q13 7 15 8 Q14 10.5 12 10.5"/><path d="M12 10.5 Q14 8.5 16 10 Q15.5 12 13 12"/><path d="M13 12 Q15 10.5 16.5 12 Q16 14.5 14 14.5"/><path d="M7 20 Q11 21.5 14 14.5"/><circle cx="18" cy="8" r="2"/><line x1="18" y1="10" x2="16.5" y2="13"/><line x1="15" y1="11" x2="21" y2="11"/>',
+  /* missionary: figure on back, legs raised, partner between thighs penetrating */
+  face: `
+    <circle cx="5" cy="5" r="1.8"/>
+    <path d="M5 6.8 Q4.5 10 5 13 Q5.5 15 6 16"/>
+    <path d="M3.5 9 Q5 8.5 6.5 9"/>
+    <path d="M6 16 Q7.5 19 7 21"/>
+    <path d="M6 16 Q4 19.5 5 21.5"/>
+    <path d="M4 13 Q2.5 15.5 3 17"/>
+    <circle cx="17" cy="4" r="1.8"/>
+    <path d="M17 5.8 Q16.5 9 17 12 Q17.5 14 18 15.5"/>
+    <path d="M15.5 8.5 Q17 8 18.5 8.5"/>
+    <path d="M18 15.5 Q20 13 20.5 15 Q21 17 20 19"/>
+    <path d="M18 15.5 Q17 17.5 17.5 20"/>
+    <path d="M7 14 Q10 11 14 12 Q16 12.5 17 14"/>
+    <path d="M6.5 17 Q9 16 11 17 Q13 18 14 17"/>`,
+
+  /* cowgirl: figure upright straddling, hips wide, knees bent to sides, penetrated from below */
+  ontop: `
+    <circle cx="12" cy="2.5" r="1.8"/>
+    <path d="M12 4.3 Q11 6.5 11.5 9 Q12 11 12 12.5"/>
+    <path d="M10 6.5 Q12 6 14 6.5"/>
+    <path d="M10.5 7 Q9.5 9 9 12 Q8.5 14 9 15.5"/>
+    <path d="M13.5 7 Q14.5 9 15 12 Q15.5 14 15 15.5"/>
+    <path d="M9 15.5 Q7.5 17 7 19.5"/>
+    <path d="M15 15.5 Q16.5 17 17 19.5"/>
+    <circle cx="12" cy="19" r="1.6"/>
+    <path d="M6.5 19 Q9 18.5 12 19 Q15 18.5 17.5 19"/>
+    <path d="M8 17 Q12 16 16 17"/>
+    <path d="M12 12.5 Q11.5 15 12 17"/>`,
+
+  /* doggy style: figure on hands and knees, rear raised, partner kneeling behind penetrating */
+  behind: `
+    <circle cx="4" cy="5.5" r="1.8"/>
+    <path d="M4 7.3 Q4.5 9.5 6 11 Q7.5 12.5 9 13"/>
+    <path d="M2.5 9 Q4 8.5 5.5 9.5"/>
+    <path d="M2.5 10 Q2 12.5 3 14"/>
+    <path d="M9 13 Q10.5 14.5 11 16 Q11.5 18 11 20"/>
+    <path d="M9 13 Q10 15 9.5 17 Q9 19 10 21"/>
+    <circle cx="19" cy="7" r="1.8"/>
+    <path d="M19 8.8 Q18.5 11.5 18 14 Q17.5 16.5 18 18"/>
+    <path d="M17 11 Q19 10.5 21 11"/>
+    <path d="M16 18 Q17 20.5 16.5 22"/>
+    <path d="M18 18 Q19.5 20 19 22"/>
+    <path d="M11 16 Q14 14.5 16 15 Q17.5 15.5 18 16"/>`,
+
+  /* spooning: two bodies curved together on side, rear entry, close embrace */
+  side: `
+    <circle cx="6" cy="7" r="1.8"/>
+    <path d="M6 8.8 Q5 11 5.5 13.5 Q6 16 6.5 18"/>
+    <path d="M4.5 11 Q6 10.5 7.5 11.5"/>
+    <path d="M6.5 18 Q8 20 8.5 22"/>
+    <path d="M6.5 18 Q5.5 20.5 5 22"/>
+    <path d="M4 14 Q3 16 3.5 18"/>
+    <circle cx="15" cy="9" r="1.8"/>
+    <path d="M15 10.8 Q14 13 14.5 15.5 Q15 17.5 15.5 19"/>
+    <path d="M13.5 13 Q15 12.5 16.5 13.5"/>
+    <path d="M15.5 19 Q17 21 17.5 22.5"/>
+    <path d="M15.5 19 Q14.5 21.5 14 22.5"/>
+    <path d="M7.5 15 Q10 14 12 14.5 Q13.5 15 14 16"/>
+    <path d="M7 11.5 Q10 10 12 11"/>`,
+
+  /* standing: one figure lifted or pressed against wall, legs wrapped, penetrated standing */
+  standing: `
+    <line x1="2" y1="1.5" x2="2" y2="22.5" stroke-width="1.2"/>
+    <circle cx="7" cy="4" r="1.8"/>
+    <path d="M7 5.8 Q6.5 8.5 7 11 Q7.5 13 8 14.5"/>
+    <path d="M5.5 8 Q7 7.5 8.5 8.5"/>
+    <path d="M8 14.5 Q6 17 7.5 19 Q8 20.5 7.5 22"/>
+    <path d="M8 14.5 Q10 17 9.5 19.5"/>
+    <circle cx="17" cy="5" r="1.8"/>
+    <path d="M17 6.8 Q16.5 9.5 17 12 Q17.5 14 18 15.5"/>
+    <path d="M15.5 9.5 Q17 9 18.5 9.5"/>
+    <path d="M18 15.5 Q20 13.5 20.5 16 Q21 18 20 20.5"/>
+    <path d="M18 15.5 Q16.5 17 17 20"/>
+    <path d="M8.5 12 Q12 10.5 15 11 Q16.5 11.5 17 13"/>
+    <path d="M7.5 16 Q12 14.5 15.5 15.5"/>`,
+
+  /* seated lap: one figure seated in other's lap, facing away or toward, penetrated */
+  seated: `
+    <circle cx="12" cy="3" r="1.8"/>
+    <path d="M12 4.8 Q11 7 11.5 9.5 Q12 11.5 12 13"/>
+    <path d="M10.5 7.5 Q12 7 13.5 7.5"/>
+    <path d="M10 13 Q8 15 8.5 17 Q9 18.5 8 20"/>
+    <path d="M14 13 Q16 15 15.5 17 Q15 18.5 16 20"/>
+    <path d="M8 20 Q10 21.5 16 20"/>
+    <circle cx="12" cy="18" r="1.6"/>
+    <path d="M5 20 Q8.5 19 12 20 Q15.5 19 19 20"/>
+    <path d="M6.5 17 Q9 16 12 16.5 Q15 16 17.5 17"/>
+    <path d="M12 13 Q11.5 15.5 12 17"/>
+    <path d="M10 8.5 Q7 10 6 13 Q5.5 15 6.5 17"/>`,
+
+  /* oral sex performed on reclining figure: giver between receiver's thighs, head down */
+  oral: `
+    <circle cx="18" cy="4" r="1.8"/>
+    <path d="M18 5.8 Q18.5 8.5 18 11 Q17.5 13.5 17 15"/>
+    <path d="M16.5 8.5 Q18 8 19.5 8.5"/>
+    <path d="M17 15 Q18.5 17.5 19 20"/>
+    <path d="M17 15 Q15.5 18 16 20.5"/>
+    <path d="M20 12 Q21.5 14 21 16"/>
+    <circle cx="6" cy="16" r="1.8"/>
+    <path d="M6 14.2 Q7 11.5 9 9.5 Q11 7.5 13 7"/>
+    <path d="M4.5 14.5 Q6 13.8 7.5 14.5"/>
+    <path d="M13 7 Q15 7 16 8.5 Q17 10 16 11.5"/>
+    <path d="M16 11.5 Q14 11 13 12 Q12.5 12.5 13 13"/>
+    <path d="M3 17 Q2 19.5 3 21.5"/>
+    <path d="M5 20 Q4 21.5 4.5 23"/>`,
+
+  /* manual stimulation: one figure's hand at other's groin, explicit reach */
+  manual: `
+    <circle cx="6" cy="4" r="1.8"/>
+    <path d="M6 5.8 Q5.5 8.5 6 11 Q6.5 13 7 14.5"/>
+    <path d="M4.5 8.5 Q6 8 7.5 8.5"/>
+    <path d="M7 14.5 Q6 17 6.5 20"/>
+    <path d="M7 14.5 Q8.5 17 8 20"/>
+    <circle cx="18" cy="4" r="1.8"/>
+    <path d="M18 5.8 Q17.5 8.5 18 11 Q18.5 13.5 18 16"/>
+    <path d="M16.5 8.5 Q18 8 19.5 8.5"/>
+    <path d="M18 16 Q19 18.5 19.5 21"/>
+    <path d="M18 16 Q16.5 18.5 17 21"/>
+    <path d="M8 11 Q11 12 14 11.5 Q16 11 17 12"/>
+    <path d="M8 11 Q9 13.5 10.5 14"/>
+    <path d="M14.5 12 Q15.5 14 16 15.5"/>`,
+
+  /* scissoring / tribbing: two figures on sides, legs intertwined, vulvas pressed */
+  grind: `
+    <circle cx="4" cy="5" r="1.8"/>
+    <path d="M4 6.8 Q4.5 9 5.5 11 Q6.5 12.5 7 14"/>
+    <path d="M2.5 9.5 Q4 9 5.5 9.5"/>
+    <path d="M7 14 Q9.5 16 10 18 Q10.5 19.5 9 21"/>
+    <path d="M7 14 Q6.5 17 7.5 19.5"/>
+    <circle cx="20" cy="5" r="1.8"/>
+    <path d="M20 6.8 Q19.5 9 18.5 11 Q17.5 12.5 17 14"/>
+    <path d="M18.5 9.5 Q20 9 21.5 9.5"/>
+    <path d="M17 14 Q14.5 16 14 18 Q13.5 19.5 15 21"/>
+    <path d="M17 14 Q17.5 17 16.5 19.5"/>
+    <path d="M10 18 Q12 17 14 18"/>
+    <path d="M9.5 15.5 Q12 14.5 14.5 15.5"/>`,
+
+  /* bondage: figure bound wrists above head to post, spread and exposed */
+  rope: `
+    <line x1="12" y1="1" x2="12" y2="4" stroke-width="1"/>
+    <path d="M10 1.5 Q12 0.5 14 1.5"/>
+    <path d="M10 3.5 L9.5 4.5 L10.5 4.5 Z"/>
+    <path d="M14 3.5 L13.5 4.5 L14.5 4.5 Z"/>
+    <circle cx="12" cy="6.5" r="1.8"/>
+    <path d="M12 8.3 Q11.5 11 12 13.5 Q12.5 15.5 12 17"/>
+    <path d="M10.5 11 Q12 10.5 13.5 11"/>
+    <path d="M8.5 10 Q7 12 8 14"/>
+    <path d="M15.5 10 Q17 12 16 14"/>
+    <path d="M12 17 Q10 19.5 10.5 22"/>
+    <path d="M12 17 Q14 19.5 13.5 22"/>
+    <path d="M9 13 Q7.5 15 8.5 16.5"/>
+    <path d="M15 13 Q16.5 15 15.5 16.5"/>`,
+
+  /* impact / spanking: one figure bent over, exposed rear up, other's hand raised to strike */
+  impact: `
+    <circle cx="5" cy="5" r="1.8"/>
+    <path d="M5 6.8 Q5.5 9 7 10.5 Q8.5 12 10 12.5"/>
+    <path d="M3.5 9 Q5 8.5 6.5 9.5"/>
+    <path d="M3 11 Q2 13 3 15"/>
+    <path d="M10 12.5 Q11.5 14 12 16 Q12.5 18 11.5 20"/>
+    <path d="M10 12.5 Q10.5 15 10 17.5"/>
+    <circle cx="19" cy="4" r="1.8"/>
+    <path d="M19 5.8 Q18.5 8 18 10 Q17.5 12 17.5 14"/>
+    <path d="M17.5 8.5 Q19 8 20.5 8.5"/>
+    <path d="M17.5 14 Q16 16.5 16.5 19"/>
+    <path d="M17.5 14 Q19 16 18.5 19"/>
+    <path d="M12.5 15 Q15 13.5 16.5 14"/>
+    <path d="M21 3 Q22.5 1 23 3 Q22 4.5 21 3"/>`,
+
+  /* masked roleplay: two figures, one wearing full mask, kneeling dynamic */
+  mask: `
+    <path d="M9 3 Q12 1.5 15 3 Q17.5 6 16.5 10 Q15.5 13.5 12 14 Q8.5 13.5 7.5 10 Q6.5 6 9 3z"/>
+    <ellipse cx="10" cy="7.5" rx="1.3" ry="1.5"/>
+    <ellipse cx="14" cy="7.5" rx="1.3" ry="1.5"/>
+    <path d="M10 11 Q12 12.5 14 11"/>
+    <path d="M12 14 Q11.5 16 12 17.5"/>
+    <path d="M10 16.5 Q8.5 18.5 9 21"/>
+    <path d="M14 16.5 Q15.5 18.5 15 21"/>
+    <path d="M10.5 10.5 Q12 9.5 13.5 10.5"/>
+    <circle cx="4" cy="18" r="1.5"/>
+    <path d="M4 19.5 Q3.5 21.5 4 23"/>
+    <path d="M2.5 21.5 Q4 21 5.5 21.5"/>`,
+
+  /* blindfolded: figure blindfolded, kneeling, another stands before them */
+  blind: `
+    <circle cx="12" cy="5" r="1.8"/>
+    <rect x="8.5" y="3.5" width="7" height="2.5" rx="1.2"/>
+    <line x1="7.5" y1="4.8" x2="5.5" y2="4.8" stroke-width="1"/>
+    <line x1="16.5" y1="4.8" x2="18.5" y2="4.8" stroke-width="1"/>
+    <path d="M12 6.8 Q11 9.5 11.5 12 Q12 14 12 15.5"/>
+    <path d="M10 9.5 Q12 9 14 9.5"/>
+    <path d="M9 12 Q7.5 14 8.5 16"/>
+    <path d="M15 12 Q16.5 14 15.5 16"/>
+    <path d="M12 15.5 Q10.5 18.5 11 22"/>
+    <path d="M12 15.5 Q13.5 18.5 13 22"/>
+    <path d="M10 10 Q8 11 7 13"/>
+    <path d="M8 7 Q6 9 6 12"/>`,
+
+  /* wax / temperature play: figure restrained, candle held above bare skin */
+  flame: `
+    <circle cx="12" cy="4" r="1.8"/>
+    <path d="M12 5.8 Q11 8.5 11.5 11 Q12 13.5 12 15"/>
+    <path d="M10.5 9 Q12 8.5 13.5 9"/>
+    <path d="M12 15 Q10 18 10.5 21"/>
+    <path d="M12 15 Q14 18 13.5 21"/>
+    <path d="M9.5 12 Q8 14.5 9 16.5"/>
+    <path d="M14.5 12 Q16 14.5 15 16.5"/>
+    <line x1="20" y1="1.5" x2="20" y2="9.5"/>
+    <ellipse cx="20" cy="9.5" rx="1.5" ry="0.8"/>
+    <path d="M20 9 Q21.5 6.5 20.5 4.5 Q19.5 6 18.5 5.5 Q19.5 7 20 9z"/>
+    <path d="M18.5 10 Q18 13 17 14.5"/>
+    <path d="M12 10 Q15 9.5 17 11"/>`,
+
+  /* dominant/submissive: one figure kneeling, other standing commanding over them */
+  crown: `
+    <path d="M7 1.5 L7 5 L10 3.5 L12 7 L14 3.5 L17 5 L17 1.5 Z"/>
+    <line x1="6.5" y1="7" x2="17.5" y2="7"/>
+    <circle cx="12" cy="11" r="1.8"/>
+    <path d="M12 12.8 Q11.5 15.5 12 17.5"/>
+    <path d="M10.5 15 Q12 14.5 13.5 15"/>
+    <path d="M10.5 20 Q8.5 21.5 9 23"/>
+    <path d="M13.5 20 Q15.5 21.5 15 23"/>
+    <path d="M12 17.5 Q10.5 19 10.5 20"/>
+    <path d="M12 17.5 Q13.5 19 13.5 20"/>
+    <path d="M10 15.5 Q8 17 8.5 19"/>
+    <path d="M14 15.5 Q16 17 15.5 19"/>`,
+
+  /* dirty talk / breath on neck: figure behind with lips at ear, bodies pressed */
+  voice: `
+    <circle cx="8" cy="5" r="1.8"/>
+    <path d="M8 6.8 Q7.5 9.5 8 12 Q8.5 14.5 8 16.5"/>
+    <path d="M6.5 9.5 Q8 9 9.5 9.5"/>
+    <path d="M8 16.5 Q6.5 19 7 22"/>
+    <path d="M8 16.5 Q9.5 19 9 22"/>
+    <circle cx="16" cy="6" r="1.8"/>
+    <path d="M16 7.8 Q15.5 10 16 12.5 Q16.5 15 16 17"/>
+    <path d="M14.5 10.5 Q16 10 17.5 10.5"/>
+    <path d="M16 17 Q17.5 19.5 17 22"/>
+    <path d="M16 17 Q14.5 19.5 15 22"/>
+    <path d="M9.5 10 Q12 9.5 14 10"/>
+    <path d="M15 7.5 Q16.5 5.5 18 6.5 Q18.5 7.5 17.5 8.5"/>
+    <path d="M17.5 8.5 Q16.5 9 15.5 8.5"/>`,
+
+  /* voyeur / exhibitionist: figure displayed, another watching from angle */
+  eye: `
+    <path d="M1 12 Q12 2 23 12 Q12 22 1 12z"/>
+    <circle cx="12" cy="12" r="4.5"/>
+    <circle cx="12" cy="12" r="2.5"/>
+    <circle cx="13.5" cy="10.5" r="1"/>
+    <path d="M8 8 Q9 6.5 11 6"/>
+    <path d="M16 8 Q17 6.5 15 6"/>`,
+
+  /* foot worship: figure's foot raised, other figure's mouth at sole/toes */
+  feet: `
+    <circle cx="17" cy="5" r="1.8"/>
+    <path d="M17 6.8 Q17.5 9.5 16 11.5 Q14.5 13 13 14"/>
+    <path d="M15.5 9.5 Q17 9 18.5 9.5"/>
+    <path d="M19.5 8 Q21 9.5 20.5 11.5"/>
+    <path d="M13 14 Q11 15.5 10.5 17.5 Q10 19.5 11 21"/>
+    <path d="M13 14 Q13.5 16.5 12.5 19"/>
+    <path d="M10 16 Q8 15.5 7.5 17 Q7 18.5 8.5 19"/>
+    <path d="M8.5 19 Q10 19.5 11 18.5"/>
+    <path d="M11 18.5 Q12.5 17.5 12.5 19"/>
+    <path d="M12.5 19 Q13.5 20.5 12 21.5"/>
+    <path d="M12 21.5 Q10 22 10.5 21"/>
+    <circle cx="5" cy="14" r="1.8"/>
+    <path d="M5 15.8 Q5.5 17.5 7.5 18"/>`,
+
   heart: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>'
 };
+
+// Close-up contact zone paths — 16×16 viewBox showing the explicit join between bodies
+// Drawn at 64×64px; stroke-only linework, no fill except glistening detail
+const CLOSEUP_PATHS = {
+  // Missionary / face-to-face: cock entering from below, labia spread around shaft, thighs framing
+  face: `
+    <path d="M3 13 Q5 11 8 12 Q8.5 11 8 10" stroke="#c9993a55" stroke-width="1.8"/>
+    <path d="M8 12 Q8.5 10.5 9 10 Q9.5 9.5 10 10 Q10.5 10.5 10 12" stroke-width="1.3"/>
+    <path d="M9 10 Q9.5 8 9.5 6 Q9.8 4 10 3" stroke-width="1.4"/>
+    <path d="M10 10 Q10.5 8 10.5 6 Q10.7 4 11 3" stroke-width="1.4"/>
+    <path d="M8 12 Q7.5 13.5 8 14.5 Q8.5 15.5 9.5 15.5 Q10.5 15.5 11 14.5 Q11.5 13.5 11 12" stroke-width="1.3"/>
+    <path d="M5 14 Q6.5 13 8 14" stroke-width=".9" stroke-dasharray="1 1"/>
+    <path d="M11 14 Q12.5 13 14 13.5" stroke-width=".9" stroke-dasharray="1 1"/>
+    <circle cx="9.7" cy="14.8" r=".6" stroke-width=".8"/>`,
+
+  // Cowgirl: shaft entering up into seated figure, labia hugging shaft, thighs on sides
+  ontop: `
+    <path d="M7 14 Q8 12 9.5 11.5 Q11 11 12 12 Q13 13 13 14" stroke-width="1.3"/>
+    <path d="M9.5 11.5 Q9.5 9.5 9.8 7.5 Q10 5 10.2 3" stroke-width="1.4"/>
+    <path d="M12 12 Q12 9.5 11.8 7.5 Q11.5 5 11.3 3" stroke-width="1.4"/>
+    <path d="M7 14 Q6 15 6.5 15.8" stroke-width=".9"/>
+    <path d="M13 14 Q14 15 13.5 15.8" stroke-width=".9"/>
+    <path d="M9.5 11.5 Q9 11 8.5 11.5 Q8 12.5 8.5 13.5" stroke-width="1" stroke-dasharray="1.2 .8"/>
+    <path d="M12 12 Q12.5 11 13 11.5 Q13.5 12.5 13 13.5" stroke-width="1" stroke-dasharray="1.2 .8"/>
+    <ellipse cx="10.7" cy="12.2" rx=".5" ry=".8" stroke-width=".8"/>`,
+
+  // Doggy / behind: shaft entering from behind, rear curves, penetration angle visible
+  behind: `
+    <path d="M2 8 Q4 7 6.5 8.5 Q8.5 9.5 9 11" stroke-width="1.3"/>
+    <path d="M2 11 Q4 10 6.5 11.5 Q8 12.5 8.5 14" stroke-width="1.3"/>
+    <path d="M9 11 Q10 11.5 10.5 12.5 Q11 13.5 10.5 14.5" stroke-width="1.2"/>
+    <path d="M8.5 14 Q9.5 15.5 10.5 14.5" stroke-width="1.1"/>
+    <path d="M10.5 11 Q12 10.5 13.5 10 Q14.5 9.5 15 8.5" stroke-width="1.5"/>
+    <path d="M10.5 12 Q12 11.5 13.5 11 Q14.5 10.5 15 9.5" stroke-width="1.5"/>
+    <path d="M4 8.5 Q3.5 9.5 4 10.5" stroke-width=".9" stroke-dasharray="1 1"/>
+    <circle cx="9.4" cy="12.8" r=".55" stroke-width=".8"/>`,
+
+  // Spooning / side: shaft entering from behind at hip angle, curved buttocks visible
+  side: `
+    <path d="M2 9 Q4.5 7.5 7 8.5 Q8.5 9.5 9 11.5" stroke-width="1.3"/>
+    <path d="M2 12 Q4.5 11 7 11.8 Q8.5 12.5 9 14" stroke-width="1.3"/>
+    <path d="M9 11.5 Q9.8 12 10.2 12.5 Q10.8 13.5 10.5 14.5" stroke-width="1.2"/>
+    <path d="M9 14 Q9.8 15.2 10.5 14.5" stroke-width="1.1"/>
+    <path d="M10.5 10 Q12 9.5 13.5 9 Q14.5 8.5 15 7.5" stroke-width="1.4"/>
+    <path d="M10.5 11.5 Q12 11 13.5 10.5 Q14.5 10 15 9" stroke-width="1.4"/>
+    <path d="M5.5 8.5 Q5 10 5.5 11.5" stroke-width=".9" stroke-dasharray="1 1"/>
+    <circle cx="9.4" cy="12.6" r=".55" stroke-width=".8"/>`,
+
+  // Standing: vertical shaft, labia gripping from front, thigh-gap framing
+  standing: `
+    <path d="M5 3 Q5.5 6 5.5 9 Q5.5 12 5.2 14.5" stroke-width="1.5"/>
+    <path d="M7 3 Q7.5 6 7.5 9 Q7.5 12 7.3 14.5" stroke-width="1.5"/>
+    <path d="M3.5 10 Q4.5 9.5 5.5 10.5 Q6.2 11.5 7.5 10.5 Q8.5 9.5 9.5 10" stroke-width="1.2"/>
+    <path d="M3.5 13 Q4.5 12.5 5.5 13 Q6.2 14 7.5 13 Q8.5 12.5 9.5 13" stroke-width="1.1"/>
+    <path d="M5.5 10.5 Q6 12 6.2 14.5" stroke-width="1.3"/>
+    <path d="M7.5 10.5 Q7 12 7.3 14.5" stroke-width="1.3"/>
+    <path d="M3 14 Q2.5 15.5 3 16" stroke-width=".9"/>
+    <path d="M10 14 Q10.5 15.5 10 16" stroke-width=".9"/>
+    <circle cx="6.4" cy="12.5" r=".6" stroke-width=".8"/>`,
+
+  // Seated lap: shaft entering vertically into seated figure from below
+  seated: `
+    <path d="M6.5 3 Q7 5 7 8 Q7 10.5 7 12.5" stroke-width="1.5"/>
+    <path d="M8.5 3 Q9 5 9 8 Q9 10.5 9 12.5" stroke-width="1.5"/>
+    <path d="M4 12.5 Q5.5 11 7 12 Q7.7 13 9 12 Q10.5 11 12 12.5" stroke-width="1.2"/>
+    <path d="M4 15 Q5.5 13.5 7 14.5 Q7.7 15.5 9 14.5 Q10.5 13.5 12 15" stroke-width="1.1"/>
+    <path d="M7 12 Q7.5 13.5 7.5 15.5" stroke-width="1.3"/>
+    <path d="M9 12 Q8.5 13.5 8.5 15.5" stroke-width="1.3"/>
+    <path d="M3 12.5 Q2.5 14 3 15" stroke-width=".9"/>
+    <path d="M13 12.5 Q13.5 14 13 15" stroke-width=".9"/>
+    <circle cx="8" cy="13.5" r=".6" stroke-width=".8"/>`,
+
+  // Oral / 69: tongue flat against vulva, labia parted, explicit contact
+  oral: `
+    <path d="M3 8 Q5 6.5 8 7.5 Q10.5 8.5 12.5 8" stroke-width="1.2"/>
+    <path d="M3 11 Q5 9.5 8 10.5 Q10.5 11.5 12.5 11" stroke-width="1.2"/>
+    <path d="M6.5 7.5 Q6 9.5 6.5 11" stroke-width="1.4"/>
+    <path d="M9.5 7.8 Q9 9.5 9.5 11" stroke-width="1.4"/>
+    <path d="M4 11 Q5 12.5 6 13 Q7 13.5 8.5 13 Q9.5 12 10 11.5" stroke-width="1.3"/>
+    <path d="M8 12 Q8.5 13.5 9 14 Q9.5 13.5 10 12.5" stroke-width="1.1"/>
+    <path d="M12 9.5 Q13.5 9 14.5 9.5 Q14 11 12.5 11" stroke-width="1.1"/>
+    <path d="M13.5 9.5 Q13.5 10.5 14 11" stroke-width=".9" stroke-dasharray="1 .8"/>
+    <circle cx="8" cy="12.5" r=".5" stroke-width=".8"/>`,
+
+  // Manual: fingers wrapped around shaft, explicit hand-grip detail
+  manual: `
+    <path d="M7 3 Q7.3 5 7.3 8 Q7.3 11 7 13" stroke-width="1.5"/>
+    <path d="M9 3 Q9.3 5 9.3 8 Q9.3 11 9 13" stroke-width="1.5"/>
+    <path d="M4 6.5 Q4.5 5.5 5.5 5.5 Q6.3 5.5 7 6" stroke-width=".9"/>
+    <path d="M4 8.5 Q4.5 7.5 5.5 7.5 Q6.3 7.5 7 8" stroke-width=".9"/>
+    <path d="M4 10.5 Q4.5 9.5 5.5 9.5 Q6.3 9.5 7 10" stroke-width=".9"/>
+    <path d="M9 6 Q9.7 5.5 10.5 5.5 Q11.5 5.5 12 6.5" stroke-width=".9"/>
+    <path d="M9 8 Q9.7 7.5 10.5 7.5 Q11.5 7.5 12 8.5" stroke-width=".9"/>
+    <path d="M9 10 Q9.7 9.5 10.5 9.5 Q11.5 9.5 12 10.5" stroke-width=".9"/>
+    <path d="M4 5.5 Q3 8 4 11" stroke-width="1.2"/>
+    <path d="M12 6.5 Q13 8.5 12 11" stroke-width="1.2"/>
+    <ellipse cx="8" cy="8.2" rx="1.3" ry=".6" stroke-width=".8" stroke-dasharray="1.5 1"/>`,
+
+  // Scissoring / grind: two vulvas pressed face-to-face, labia interlock
+  grind: `
+    <path d="M2 7 Q4 5.5 7 6.5 Q8.5 7.5 9 9.5" stroke-width="1.2"/>
+    <path d="M2 10 Q4 8.5 7 9.5 Q8.5 10.5 9 12.5" stroke-width="1.2"/>
+    <path d="M14 7 Q12 5.5 9.5 6.5 Q8 7.5 8 9.5" stroke-width="1.2"/>
+    <path d="M14 10 Q12 8.5 9.5 9.5 Q8 10.5 8 12.5" stroke-width="1.2"/>
+    <path d="M6 6.5 Q5.5 9 6 11" stroke-width="1.3"/>
+    <path d="M8 9 Q8.2 10.5 8.5 12" stroke-width="1.3"/>
+    <path d="M9 9.5 Q9 11 9.5 12.5" stroke-width="1.3"/>
+    <circle cx="8.3" cy="10.5" r=".6" stroke-width=".9"/>
+    <path d="M7 9.5 Q7.5 10.5 8 10.5 Q8.5 10.5 9 9.5" stroke-width="1" stroke-dasharray="1.2 .8"/>`,
+
+  // Bondage: wrists bound, rope wrap detail close up
+  rope: `
+    <path d="M6 2 L6 14" stroke-width="1.5"/>
+    <path d="M10 2 L10 14" stroke-width="1.5"/>
+    <path d="M4.5 4 Q6 3.2 8 3.5 Q10 3.2 11.5 4" stroke-width="1.1"/>
+    <path d="M4.5 7 Q6 6.2 8 6.5 Q10 6.2 11.5 7" stroke-width="1.1"/>
+    <path d="M4.5 10 Q6 9.2 8 9.5 Q10 9.2 11.5 10" stroke-width="1.1"/>
+    <path d="M4.5 13 Q6 12.2 8 12.5 Q10 12.2 11.5 13" stroke-width="1.1"/>
+    <path d="M4 3 Q3 5 4 7 Q3 9 4 11 Q3 13 4 15" stroke-width="1"/>
+    <path d="M12 3 Q13 5 12 7 Q13 9 12 11 Q13 13 12 15" stroke-width="1"/>
+    <path d="M6 5 Q8 5.5 10 5" stroke-width=".8" stroke-dasharray="1.2 .8"/>
+    <path d="M6 8 Q8 8.5 10 8" stroke-width=".8" stroke-dasharray="1.2 .8"/>
+    <path d="M6 11 Q8 11.5 10 11" stroke-width=".8" stroke-dasharray="1.2 .8"/>`,
+
+  // Impact: hand open striking bare rear — palm, fingers spread, impact point
+  impact: `
+    <path d="M2 5 Q4 4.5 7 5.5 Q10 6.5 12 6" stroke-width="1.3"/>
+    <path d="M2 9 Q4 8.5 7 9.5 Q10 10.5 12 10" stroke-width="1.3"/>
+    <path d="M5.5 5.3 Q5 7.5 5.5 9.3" stroke-width="1.2"/>
+    <path d="M8 5.7 Q7.5 7.5 8 9.5" stroke-width="1.2"/>
+    <path d="M14 3 Q14.5 4.5 14 6 Q15.5 5 16 6.5 Q15.5 8 14 7.5" stroke-width="1.1"/>
+    <path d="M14 7.5 Q15 9 14.5 10 Q13.5 10.5 13 9.5" stroke-width="1.1"/>
+    <path d="M13 5 Q12 6.5 13 8.5 Q12 9.5 13 11" stroke-width="1.2"/>
+    <path d="M13 11 Q12 13 11 13.5 Q10.5 12 11.5 11" stroke-width="1.1"/>
+    <path d="M7.5 9.5 Q9 10.5 10.5 10" stroke-width=".9" stroke-dasharray="1 1"/>`,
+
+  // Mask: lips pressed to cheek/neck, kissing contact detail
+  mask: `
+    <path d="M4 7 Q6 5 10 5.5 Q13 6 14 8.5 Q13.5 11 11 12 Q8 12.5 6 11 Q4 10 4 7z" stroke-width="1.2"/>
+    <ellipse cx="7.5" cy="7.5" rx="1.5" ry="1.8" stroke-width="1.1"/>
+    <ellipse cx="11.5" cy="7.5" rx="1.5" ry="1.8" stroke-width="1.1"/>
+    <path d="M7 10 Q9 11.5 12 10" stroke-width="1.2"/>
+    <path d="M8.5 10.3 Q9.2 11 10 10.3" stroke-width="1" stroke-dasharray="1 .8"/>
+    <circle cx="7.5" cy="7.5" r=".6" stroke-width=".8"/>
+    <circle cx="11.5" cy="7.5" r=".6" stroke-width=".8"/>`,
+
+  // Blindfold: fabric binding tight across eyes, close detail
+  blind: `
+    <path d="M2 7 Q8 4 14 7 Q8 9 2 7z" stroke-width="1.3"/>
+    <path d="M2 7 Q8 5 14 7" stroke-width="1.1" stroke-dasharray="2 1"/>
+    <path d="M2 7.5 Q3 9 5 8.5 Q7 8 8 9 Q9 10 11 9 Q13 8 14 8.5" stroke-width=".9"/>
+    <path d="M1.5 6 L1.5 8.5" stroke-width="1.2"/>
+    <path d="M14.5 6 L14.5 8.5" stroke-width="1.2"/>
+    <path d="M5 7 Q8 8 11 7" stroke-width=".9" stroke-dasharray="1 .8"/>`,
+
+  // Wax / flame: wax drip landing on bare skin, drop impact
+  flame: `
+    <path d="M8 1 Q9.5 3 9 5.5 Q8 3.5 7 4 Q8 5 8 7" stroke-width="1.2"/>
+    <path d="M8 7 Q7.5 10 8 12" stroke-width="1.3"/>
+    <path d="M5 13 Q6.5 11.5 8 12 Q9.5 12.5 11 11.5" stroke-width="1.1"/>
+    <path d="M8 12 Q7.5 14 8 15.5 Q8.5 16 9 15 Q9.5 13.5 9.5 12" stroke-width="1.1"/>
+    <path d="M6 14 Q6.5 15.5 8 16" stroke-width=".9" stroke-dasharray="1 1"/>
+    <path d="M9.5 13.5 Q11 14 11.5 13" stroke-width=".9" stroke-dasharray="1 1"/>
+    <circle cx="8.2" cy="15.5" r=".5" stroke-width=".8"/>`,
+
+  // Crown / dom-sub: hand gripping collar or hair, knuckle detail
+  crown: `
+    <path d="M4 5 Q4.5 4 5.5 4 Q6.5 4 7 5 Q7 6.5 6 7 Q5 7 4.5 6" stroke-width="1.1"/>
+    <path d="M6.5 4 Q7 3 8 3 Q9 3 9.5 4 Q9.5 5.5 8.5 6 Q7.5 6 7 5" stroke-width="1.1"/>
+    <path d="M9 3.5 Q9.5 2.5 10.5 2.5 Q11.5 2.5 12 3.5 Q12 5 11 5.5 Q10 5.5 9.5 4.5" stroke-width="1.1"/>
+    <path d="M4 6.5 Q3 8.5 3.5 10.5 Q4.5 12 6 12.5" stroke-width="1.2"/>
+    <path d="M12 5 Q13 7 12.5 9.5 Q12 11.5 10.5 12.5" stroke-width="1.2"/>
+    <path d="M6 12.5 Q8 14 10.5 12.5" stroke-width="1.2"/>
+    <path d="M5 9 Q8 10.5 11 9" stroke-width=".9" stroke-dasharray="1.5 1"/>`,
+
+  // Voice / breath: lips close to ear, exhale suggestion
+  voice: `
+    <path d="M2 8 Q4 6 6.5 6.5 Q8.5 7.5 9 9.5 Q8.5 11.5 6.5 12 Q4 12.5 2 11 Q1.5 9.5 2 8z" stroke-width="1.2"/>
+    <path d="M7 8 Q7.5 9 7.5 10 Q7 11 6 11" stroke-width=".9"/>
+    <path d="M9 9.5 Q11 9 12.5 9.5 Q13 10.5 12.5 11.5" stroke-width="1.1"/>
+    <path d="M9.5 11 Q11 10.5 12.5 11" stroke-width=".9" stroke-dasharray="1.2 .8"/>
+    <path d="M10 12.5 Q11.5 12 13 12.5" stroke-width=".8" stroke-dasharray="1 1"/>
+    <path d="M4 8.5 Q4.5 9.5 4 10.5" stroke-width=".9" stroke-dasharray="1 .8"/>`,
+
+  // Eye: iris close-up, pupil dilated, lash detail
+  eye: `
+    <path d="M1 8 Q8 2 15 8 Q8 14 1 8z" stroke-width="1.2"/>
+    <circle cx="8" cy="8" r="3.5" stroke-width="1.2"/>
+    <circle cx="8" cy="8" r="2" stroke-width="1.1"/>
+    <circle cx="9" cy="7" r="1" stroke-width=".8"/>
+    <path d="M4 5 Q5 3.5 7 3" stroke-width=".9"/>
+    <path d="M12 5 Q11 3.5 9 3" stroke-width=".9"/>
+    <path d="M4 11 Q5 12.5 7 13" stroke-width=".9"/>
+    <path d="M12 11 Q11 12.5 9 13" stroke-width=".9"/>`,
+
+  // Feet: toe pads, arch, sole — bare foot sole-up
+  feet: `
+    <path d="M4 13 Q3.5 8 5 4 Q6 2 8 2 Q10 2 11 4 Q12 6.5 11.5 9.5 Q11 12 10 13.5" stroke-width="1.3"/>
+    <path d="M4 13 Q5 14.5 6.5 14.8 Q8 15 9.5 14.8 Q11 14.5 11.5 13.5" stroke-width="1.2"/>
+    <circle cx="5.5" cy="2.5" r=".9" stroke-width="1"/>
+    <circle cx="7.5" cy="1.8" r=".9" stroke-width="1"/>
+    <circle cx="9.3" cy="2" r=".9" stroke-width="1"/>
+    <circle cx="10.8" cy="2.8" r=".9" stroke-width="1"/>
+    <path d="M4 8 Q5.5 9 7.5 9 Q9.5 9 11 8" stroke-width=".9" stroke-dasharray="1.5 1"/>`,
+
+  // fallback heart
+  heart: '<path d="M8 14s-5-3.2-5-7a3 3 0 0 1 5-1.8A3 3 0 0 1 13 7c0 3.8-5 7-5 7z"/>'
+};
+
 function svgIcon(name) { return `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.heart}</svg>`; }
 
 const SKILL_LABEL = { oral: "Oral", vaginal: "Vaginal", anal: "Anal", manual: "Manual", kink: "Kink", performance: "Performance", persuasion: "Persuasion", insight: "Insight" };
@@ -797,11 +1246,19 @@ function bodyViz(e) {
   }
 
   const figClass = isHot ? "fig-icon fig-hot" : "fig-icon";
+  const closeupClass = isHot ? "closeup-hot" : "";
+  const closeupPaths = CLOSEUP_PATHS[iconKey] || CLOSEUP_PATHS.heart;
 
   return `<div class="body-viz">
     <div class="body-viz-fig">
       <svg viewBox="0 0 24 24" class="${figClass}" style="stroke:${strokeColor};" aria-label="${info[1]}">${ICON_PATHS[iconKey] || ICON_PATHS.heart}</svg>
       ${clothOverlay}${selfClothOverlay}
+      <div class="body-viz-closeup">
+        <span class="closeup-label">detail</span>
+        <div class="closeup-fig">
+          <svg viewBox="0 0 16 16" width="64" height="64" class="${closeupClass}" style="stroke:${strokeColor};stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;" aria-hidden="true">${closeupPaths}</svg>
+        </div>
+      </div>
     </div>
     <div class="body-viz-info">
       <div class="viz-pos-label">${info[1]}</div>
