@@ -99,6 +99,11 @@
   .chip.gold { border-color: #7a6232; color: var(--gold); }
   .chip.warn { border-color: #7a3a2f; color: #eaa08f; }
   .chip.calm { border-color: #2f5d59; color: #9fd3cd; }
+  .chip.chip-tap { cursor: pointer; user-select: none; }
+  .chip.chip-tap:active { opacity: .75; }
+  .chip.chip-open { border-color: var(--ink2); color: var(--ink); background: var(--card2); }
+  .tech-detail { width: 100%; margin: 4px 0 8px; padding: 10px 14px; background: var(--card2); border-left: 2px solid var(--line2); border-radius: 4px; font-size: .82rem; color: var(--ink2); font-style: italic; line-height: 1.55; }
+  .tech-detail p { margin: 0; }
   .bigmeter { margin-top: 14px; }
   .bigmeter .lbl { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink2); }
   .bigmeter .track { height: 10px; border-radius: 5px; }
@@ -383,6 +388,40 @@ const TECH_INFO = {
   dominance_and_submission: ["crown", "Kink", "You command, they obey"], praise_kink: ["voice", "Play", "Told how good they are"],
   dirty_talk: ["voice", "Play", "Whispered filth in the ear"], voyeurism: ["eye", "Play", "They watch — cannot touch"],
   exhibitionism: ["eye", "Play", "Risk of being seen fucking"], foot_fetish: ["feet", "Fetish", "Feet worked, licked, worshipped"], impact_play: ["impact", "Kink", "Strapped, steady rhythm"]
+};
+const TECH_DESC = {
+  missionary: "Your client lays you on your back and climbs between your thighs. He lines himself up at your entrance, teasing the tip against your folds before pushing in slow — cock sliding deep as your legs wrap around him, face to face, his weight pressing you down.",
+  cowgirl: "He settles back and you climb on top, straddling his hips. You reach down, grip his cock, and guide it to your opening — sinking down inch by inch until he's buried inside you, your thighs gripping his waist as you start to move.",
+  reverse_cowgirl: "You mount him facing away, reaching back to take hold of his cock and press it to your entrance. You lower yourself down slowly, his shaft filling you from a different angle — his hands find your hips as you start to roll and grind.",
+  doggy_style: "He bends you over, hand pressing between your shoulder blades. You feel him position himself behind you, cockhead nudging at your entrance — then a steady push forward, splitting you open as he grips your hips and pulls you back onto him.",
+  spooning: "He curls behind you, bodies fitted together. His cock finds your entrance from behind, pressing in slow and deep — your back against his chest, his arm wrapped across you, every thrust rocking you forward as he fucks you from inside the curve of his body.",
+  standing: "He pins you against the wall, hands gripping your waist. You hook a leg around him as he reaches down to line himself up, cockhead pressing at your slick folds before driving in — weight of him holding you there, feet barely touching the floor.",
+  "69": "You arrange yourselves head to toe — your mouth finds his cock while his face buries between your thighs. He spreads you open with his tongue just as you wrap your lips around him, both of you working each other at the same time.",
+  lotus: "He sits cross-legged and you lower yourself into his lap, facing him, arms around his shoulders. You reach between your bodies to guide his cock inside you — sinking down until you're fully seated, his hands on your lower back, pulling you close.",
+  pretzel_dip: "He turns you sideways, one leg raised over his shoulder while the other stays flat. He positions himself at your entrance and presses in — the angle drives him deeper than you expected, a full stretch as he finds his grip and starts to move.",
+  coital_alignment_techniq: "Missionary position, but he rides higher — cock inside you, his pubic bone grinding directly against your clit with every slow roll forward. No hard thrusting, just deliberate pressure and drag, your body pinned under his weight.",
+  leapfrog: "Down on your elbows, ass raised, face buried in the sheets. He kneels behind you, takes hold of your hips, and presses his cock to your entrance — pushing in deep on the first stroke, the angle hitting differently as you grip the mattress.",
+  scissoring: "You tangle your legs with hers, cunts pressed together — shifting and rocking until your folds meet with friction. Her hips roll against yours, finding a rhythm, the wet heat of her grinding slick against you.",
+  tabletop: "He sits you on the edge of the table, pushes your knees apart, and steps between them. He traces his cock along your folds first, watching your face — then tilts your hips back and slides in, hands gripping the backs of your thighs.",
+  "side_by_side_face-to-fac": "You lie on your sides facing each other, close enough to feel his breath. He hooks one of your legs over his hip, reaches between you to angle himself at your entrance, and eases in — cock filling you slowly while your foreheads almost touch.",
+  slow_burn: "He pours oil into his palms and warms it before he touches you — fingers trailing from shoulder to hip, no urgency. His hands work their way down, slow and deliberate, building until your skin feels like it's humming under every pass.",
+  the_throne: "You sink to your knees in front of him. He doesn't have to ask — you reach up, wrap your hand around the base of his cock, and take the head into your mouth, tongue pressing the underside as you start to move down.",
+  butterfly: "He stands at the edge of the bed, pulling your hips to meet him — legs raised, ankles at his shoulders. The angle tilts you open, and he presses in deep on the first stroke, cock reaching somewhere that makes you catch your breath.",
+  anal: "He works you open first — fingers slicked, pressing slow until you're stretched and ready. Then he positions himself behind you, cockhead nudging your tight ring of muscle, and pushes forward steady — easing deeper as you breathe through it.",
+  bridge: "You arch your back hard, palms and feet on the bed, hips lifted high. He kneels beneath you and guides his cock to your entrance from below — you sink your weight down onto him, taking him in at a sharp upward angle.",
+  tantric_union: "You sit in his lap facing him, legs wrapped around his waist. There's no rush — he enters you slowly, and you stay there, barely moving, breathing together. The sensation builds in waves from the stillness itself.",
+  bondage: "Your wrists are bound — rope, cord, or his hand pinning them above your head. Helpless to direct what happens next, every touch lands sharper when you can't prepare for it. He takes his time.",
+  spanking: "You drape across his lap, ass bared and raised. He rubs a slow circle before the first strike lands — the crack of his palm against your skin sharp and clean, warmth spreading out from the point of impact.",
+  roleplay: "You step into someone else's skin — the character's posture, voice, wants. Whatever scene he's written in his head, you make it real, playing your role until the line between act and appetite gets slippery.",
+  sensory_deprivation: "The blindfold strips everything back to touch. Every brush of fingers lands without warning, every breath against your neck makes you shiver. You can't see — you can only feel exactly what he decides to give you.",
+  temperature_play: "The drip of hot wax hits your skin first — sharp flare, then spreading warmth. Before it fades, cold follows: ice traced in the same path, making your nerves sing at the contrast. He alternates until you're trembling.",
+  dominance_and_submission: "The dynamic is the point. You hold the frame — what's allowed, what's not, how far he goes. He tests the edges and you hold them, or you yield when yielding is the act. Power shifts by design.",
+  praise_kink: "You tell him exactly how well he's doing — specific, warm, true. The words land visibly: shoulders loosening, pace changing, a sound he can't quite keep in. He needs to hear it. You give it freely.",
+  dirty_talk: "Close enough that your lips brush his ear, voice low. You tell him exactly what you're doing to him, what you want, what he sounds like — words landing like touches, crude and precise and deliberate.",
+  voyeurism: "He watches — that's his pleasure. You perform for that gaze, aware of his eyes tracking every movement, every expression. The watching itself is the act. He doesn't lay a hand on you. He doesn't need to.",
+  exhibitionism: "Someone might see. That's the edge — the possibility, the risk. Out in the open, half-dressed, fucking somewhere you shouldn't. His hands on you where anyone could walk in. The exposure is the thrill.",
+  foot_fetish: "You offer your foot and he takes it in both hands — thumbs working the arch, fingers wrapping the ankle. He lowers his mouth and drags his tongue along the sole, eyes on yours while he works his way to your toes.",
+  impact_play: "The strap rises and falls in a steady rhythm — measured, controlled. Each strike blooms into warmth, the sting transmuting into something deeper with every pass. The count matters. The pace matters. He holds both."
 };
 const ICON_PATHS = {
   face: '<circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/>',
@@ -1118,12 +1157,13 @@ const UI = {
     const techChip = (id, extra) => {
       const t = masteryTier(id);
       const it = anyItem(id);
-      return `<span class="chip ${preferred.includes(id) ? "gold" : ""}">${preferred.includes(id) ? "★ " : ""}${it.name}${t ? ` · ${MASTERY_NAMES[t]}` : ""}${extra || ""}</span>`;
+      const hasDesc = !!TECH_DESC[id];
+      return `<span class="chip ${preferred.includes(id) ? "gold" : ""}${hasDesc ? " chip-tap" : ""}" ${hasDesc ? `onclick="(function(el){var d=el.nextElementSibling;if(d&&d.classList.contains('tech-detail')){d.remove();el.classList.remove('chip-open');}else{var n=document.createElement('div');n.className='tech-detail';n.innerHTML='<p>${(TECH_DESC[id]||"").replace(/'/g,"&#39;")}</p>';el.insertAdjacentElement('afterend',n);el.classList.add('chip-open');}el.parentElement&&el.parentElement.style&&(el.parentElement.style.flexWrap='wrap');})(this)"` : ""}>${preferred.includes(id) ? "★ " : ""}${it.name}${t ? ` · ${MASTERY_NAMES[t]}` : ""}${hasDesc ? " ▾" : ""}${extra || ""}</span>`;
     };
     const locked = INDEX.positions.filter(p => !state.knownPositions.includes(p.id));
-    UI.panel(v, "Techniques", "Using a technique trains its skill and builds mastery: Practiced (+1), Expert (+2), Master (+3). Class techniques (★) hit harder. Train at any guildhouse to improve faster.",
-      `<div class="sub" style="margin:0 0 4px">Positions</div><div class="chips" style="margin-top:0">${state.knownPositions.filter(isPosition).map(id => techChip(id)).join("")}</div>
-       <div class="sub" style="margin:10px 0 4px">Kinks you know</div><div class="chips" style="margin-top:0">${knownKinks().length ? knownKinks().map(id => techChip(id)).join("") : `<span class="empty">None yet — succeed at a client's request to learn one.</span>`}</div>
+    UI.panel(v, "Techniques", "Using a technique trains its skill and builds mastery: Practiced (+1), Expert (+2), Master (+3). Class techniques (★) hit harder. Tap any known technique to see what it involves.",
+      `<div class="sub" style="margin:0 0 4px">Positions</div><div class="chips" style="margin-top:0;flex-wrap:wrap">${state.knownPositions.filter(isPosition).map(id => techChip(id)).join("")}</div>
+       <div class="sub" style="margin:10px 0 4px">Kinks you know</div><div class="chips" style="margin-top:0;flex-wrap:wrap">${knownKinks().length ? knownKinks().map(id => techChip(id)).join("") : `<span class="empty">None yet — succeed at a client's request to learn one.</span>`}</div>
        ${locked.length ? `<div class="sub" style="margin:10px 0 4px">Still to learn</div><div class="chips" style="margin-top:0">${locked.map(p => `<span class="chip">${p.name} · ${p.req ? `${SKILL_LABEL[p.skill]} ${state.skills[p.skill]}/${p.req}` : "from a client or level-up"}</span>`).join("")}</div>` : ""}`);
 
     const specs = (c.specialties || []).map(nameOf), lims = (c.limits || []).map(nameOf);
