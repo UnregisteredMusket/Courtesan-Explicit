@@ -1421,7 +1421,18 @@ const Narrator = {
     const N = this.data();
     const k = success ? "success" : partial ? "partial" : "fail";
     if (e.party && N.group && N.group.finish) return this.line("gfin:" + k, N.group.finish[k], e);
-    return this.line("fin:" + k, (N.finish || {})[k === "partial" ? "fail" : k], e);
+    // technique-specific finish lines take priority
+    const techId = e.item && e.item.id;
+    const techEntry = techId && N.techniques && N.techniques[techId];
+    const dressKey = e.dress === 0 ? "bare" : e.dress === 1 ? "loose" : "dressed";
+    const finK = k === "partial" ? "fail" : k;
+    if (techEntry && techEntry.finish) {
+      // try dress-specific pool first, fall back to generic finish pool
+      const dressPool = techEntry.finish[dressKey + "_" + finK] || techEntry.finish[dressKey];
+      const pool = dressPool || techEntry.finish[finK] || techEntry.finish.success;
+      if (pool && pool.length) return this.line("tfin:" + techId + ":" + finK, pool, e);
+    }
+    return this.line("fin:" + finK, (N.finish || {})[finK], e);
   }
 };
 
