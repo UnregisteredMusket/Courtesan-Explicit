@@ -1941,6 +1941,7 @@ const Game = {
       patron: o.patron, npc: o.npc, cg: o.cg, who: this.whoOf(o), spec: o.spec, couple: o.couple || null, curMove: o.item, dc: t.dc, gross: t.gross,
       climax: max, climaxMax: max, round: 1, maxRounds: rounds, party, focus: 0, unlocks: [],
       dress: isKink(o.item.id) ? 1 : 2, selfDress: 2,
+      arousal: 0,
       advantageRounds: adv, lastMoveId: null, repeat: 0, combo: 0,
       text: t.note || "You take them to bed."
     };
@@ -2001,7 +2002,7 @@ const Game = {
       kicker: `${e.spec && e.spec.trial ? "Rank trial · " : ""}Round ${e.round} of ${e.maxRounds}`,
       title: e.party ? `With ${e.npc.name}` : e.who,
       body: Narrator.on() ? e.text : `${e.text}\n<em>They are ${mood}.</em>`,
-      html: actPanel(e),
+      html: actPanel(e) + `<div class="bigmeter" style="margin-top:8px"><div class="lbl"><span>Arousal</span><span>${e.arousal || 0}%</span></div><div class="track" style="background:#3a2c22"><div class="fill" style="height:100%;border-radius:5px;width:${clamp(e.arousal || 0, 0, 100)}%;background:#e05c7a;transition:width .3s"></div></div></div>`,
       meter: { label: e.party ? `${e.npc.name}'s satisfaction` : "Satisfaction", value: pct, pips: { max: e.maxRounds, used: e.round - 1 } },
       roll: this.lastRoll, chips
     });
@@ -2107,6 +2108,27 @@ const Game = {
     // Practice makes perfect: every round trains the skill used and builds mastery of the technique.
     trainFromRound(p.skill, isTech ? pos.id : null, r.success);
     e.unlocks.push(...checkUnlocks());
+    // Player arousal: builds per round, spikes on liked positions, pops on orgasm.
+    if (isTech || kind === "command" || kind === "together") {
+      const playerLikes = (state.character.likes || []);
+      let gain = 5;
+      if (playerLikes.includes(pos.id)) gain += 12;
+      if (r.success) gain += 3;
+      e.arousal = Math.min(100, (e.arousal || 0) + gain);
+      if (e.arousal >= 100) {
+        e.arousal = 0;
+        const orgasmLines = [
+          " The tension that's been coiling inside you finally breaks — you shudder through it, a quiet gasp, and come back to yourself.",
+          " A wave of heat crests through you and you have to press your lips together not to make a sound. You shiver once and keep going.",
+          " You lose the thread for a moment — body arching, breath catching — then pull yourself back to the job. Better.",
+          " The build finally releases. You keep your face neutral but your fingers curl. You breathe through it.",
+          " You tip over the edge before you can stop it, trembling through the crest, then straightening like nothing happened."
+        ];
+        e.text += orgasmLines[Math.floor(Math.random() * orgasmLines.length)];
+        const techSkill = pos.skill || e.skill || "vaginal";
+        state.skills[techSkill] = Math.min(100, (state.skills[techSkill] || 0) + 3);
+      }
+    }
     e.repeat = p.repeat;
     e.lastMoveId = p.moveId;
     e.round++;
@@ -3552,7 +3574,16 @@ function applyDraft(t, d) {
     hair: d.hair, eyes: d.eyes, mark: d.mark, voice: d.voice, body: { ...BODY_DEFAULT, ...(d.body || {}) }, experience: d.difficulty,
     class: d.cls, subclass: d.sub, background: d.background, motivation: d.motive,
     specialties: [...(d.specs || [])], limits: [...(d.limits || [])],
-    traits: [...d.traits], feat: d.feat && FEATS[d.feat] ? FEATS[d.feat].name : null
+    traits: [...d.traits], feat: d.feat && FEATS[d.feat] ? FEATS[d.feat].name : null,
+    likes: (() => {
+      const pool = Object.keys(TECH_INFO).filter(id => !(d.limits || []).includes(id));
+      const out = [];
+      while (out.length < 3 && pool.length) {
+        const i = Math.floor(Math.random() * pool.length);
+        out.push(pool.splice(i, 1)[0]);
+      }
+      return out;
+    })()
   });
   t.attributes = { ...d.attrs };
   DIFFICULTIES[d.difficulty].apply(t);
