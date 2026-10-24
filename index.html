@@ -138,6 +138,21 @@
   .odds.md { color: var(--mid); border-color: #6b5228; }
   .odds.lo { color: var(--bad); border-color: #6b3328; }
   .price { flex: none; font-size: .82rem; color: var(--gold); font-variant-numeric: tabular-nums; }
+  /* Action button accent borders by kind */
+  .btn-work  { border-left: 3px solid #c9993a; }
+  .btn-focus { border-left: 3px solid #c9993a; }
+  .btn-tease { border-left: 3px solid #9b80c4; }
+  .btn-undress { border-left: 3px solid #9b80c4; }
+  .btn-strip { border-left: 3px solid #9b80c4; }
+  .btn-rush  { border-left: 3px solid #9b80c4; }
+  .btn-recover { border-left: 3px solid #5da8c0; }
+  .btn-command { border-left: 3px solid #c45a5a; }
+  .btn-together { border-left: 3px solid #c9993a; }
+  /* Drink / substance bar */
+  .drink-bar { margin-top: 8px; }
+  .drink-bar .lbl { display: flex; justify-content: space-between; font-size: .76rem; color: #d98ab0; margin-bottom: 3px; }
+  .drink-bar .track { height: 8px; border-radius: 4px; background: #3a1e2c; }
+  .drink-bar .fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #c45a8a, #e07aaa); transition: width .4s; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .grid2 .btn { padding: 9px 10px; }
 
@@ -682,6 +697,36 @@ const sign = n => (n >= 0 ? "+" : "") + n;
 function getMod(s) { return Math.floor((s - 10) / 2); }
 function getFameTier(f) { return FAME_TIERS.reduce((a, t) => f >= t.min ? t : a, FAME_TIERS[0]); }
 function getFameIndex() { return FAME_TIERS.filter(t => state.fame >= t.min).length - 1; }
+
+// Satisfaction meter → mood phrase (DoL-style)
+function satisfactionPhrase(pct) {
+  if (pct >= 90) return "desperate for release";
+  if (pct >= 75) return "close to the edge";
+  if (pct >= 55) return "fully turned on";
+  if (pct >= 35) return "warming up nicely";
+  if (pct >= 15) return "starting to respond";
+  return "still cold";
+}
+
+// Dress state label for kicker
+function dressKicker(dress, selfDress) {
+  const parts = [];
+  if (dress === 1) parts.push("loosened");
+  else if (dress === 0) parts.push("them bare");
+  if (selfDress === 1) parts.push("you loosened");
+  else if (selfDress === 0) parts.push("you bare");
+  return parts.length ? " · " + parts.join(", ") : "";
+}
+
+// Fame label split: low fame = Discreet, high fame = Notorious
+function fameLabel(fame) {
+  if (fame >= 160) return "Legendary";
+  if (fame >= 100) return "Notorious";
+  if (fame >= 50)  return "Recognised";
+  if (fame >= 20)  return "Whispered";
+  return "Unknown";
+}
+
 function isKink(id) { return INDEX.kinks.some(k => k.id === id); }
 function isPosition(id) { return INDEX.positions.some(p => p.id === id); }
 function getPosition(id) { return INDEX.positions.find(p => p.id === id) || INDEX.positions[0]; }
@@ -989,7 +1034,7 @@ const UI = {
         ${state.debt ? `<span><b style="color:var(--bad)">${state.debt}</b> debt</span>` : ""}
         ${started ? `<span><b style="color:${state.standing < RANKS[state.rank].standing ? "var(--bad)" : "var(--c-xp)"}">${state.standing}</b> standing</span>` : ""}
         <span><b style="color:var(--c-rep)">${state.reputation}</b> rep</span>
-        <span style="color:var(--c-fame)">${fame.name}</span>
+        <span style="color:var(--c-fame)" title="Fame: ${state.fame}">${fame.name}${state.fame >= 100 ? " · Notorious" : state.fame >= 20 ? " · Recognised" : " · Discreet"}</span>
         <span>Lv <b style="color:var(--c-xp)">${state.level}</b></span>
         ${state.trauma ? `<span title="Trauma: at 100 you burn out">Trauma <b style="color:${state.trauma >= 60 ? "var(--bad)" : "var(--c-trauma)"}">${state.trauma}</b></span>` : ""}
         ${state.inspiration ? `<span style="color:var(--gold)">✧ Inspired</span>` : ""}
@@ -997,8 +1042,9 @@ const UI = {
       <div class="meters">
         ${meter("Energy", state.energy, "var(--c-energy)")}
         ${meter("Health", state.health, "var(--c-health)")}
-        ${meter("Stress", state.stress, "var(--c-stress)")}
+        ${meter(state.stress >= 80 ? "Stress — fraying" : state.stress >= 50 ? "Stress — tense" : "Stress", state.stress, "var(--c-stress)")}
         ${meter("Control", state.control, "var(--c-control)")}
+        ${state.trauma ? meter("Trauma" + (state.trauma >= 60 ? " — critical" : state.trauma >= 30 ? " — building" : ""), state.trauma, "var(--c-trauma)") : ""}
       </div>
       <div class="deltas" id="deltas"></div>`;
   },
@@ -1068,7 +1114,7 @@ const UI = {
 
   makeButton(c) {
     const b = document.createElement("button");
-    b.className = "btn" + (c.primary ? " primary" : "") + (c.danger ? " danger" : "") + (c.quiet ? " quiet" : "");
+    b.className = "btn" + (c.primary ? " primary" : "") + (c.danger ? " danger" : "") + (c.quiet ? " quiet" : "") + (c.kind ? " btn-" + c.kind : "");
     let badge = "";
     if (typeof c.odds === "number") {
       const pct = Math.round(c.odds * 100);
@@ -1153,7 +1199,7 @@ const UI = {
       UI.bar("Level " + state.level, state.xp, state.xpToNext, "var(--c-xp)", `${state.xp}/${state.xpToNext}`) +
       `<div class="kv" style="margin-top:8px">
         <span>Proficiency</span><span>+${state.proficiencyBonus}</span>
-        <span>Fame</span><span>${fame.name} (${state.fame})</span>
+        <span>Fame</span><span>${fame.name} · ${state.fame >= 100 ? "Notorious" : state.fame >= 50 ? "Recognised" : state.fame >= 20 ? "Whispered" : "Discreet"} (${state.fame})</span>
         <span>Reputation</span><span>${state.reputation}</span>
         <span>Inspiration</span><span>${state.inspiration ? "Ready" : "—"}</span>
         <span>Exhaustion</span><span style="color:${state.exhaustion ? "var(--bad)" : "inherit"}">${state.exhaustion}</span>
@@ -1879,27 +1925,36 @@ const Game = {
         this.showOffer();
       } });
     }
+    if (!o.drinkOffered) {
+      ch.push({ label: "Pour them a drink", hint: "Lowers their guard · stress −1/round during the encounter", action: () => {
+        o.drinkOffered = true; o.drinkAccepted = true;
+        this.showOffer();
+      } });
+    } else if (o.drinkAccepted) {
+      ch.push({ label: "Wine poured", hint: "They're warming up · stress −1/round", quiet: true, disabled: true });
+    }
     ch.push({ section: "Terms" });
     const payHint = o.gross ? `~${o.gross} coin · ` : "";
+    const drink = o.drinkAccepted || false;
     ch.push({ label: o.spec ? "Begin" : "Accept", hint: `${payHint}stress +${o.stress} · ${meta.label} per round${o.revealed ? "" : " · odds before reading"}`, odds: odds(meta, shownDC), primary: true,
-      action: () => this.beginEncounter({ dc: realDC, gross: o.gross, stress: o.stress }) });
+      action: () => this.beginEncounter({ dc: realDC, gross: o.gross, stress: o.stress, drink }) });
     if (state.inspiration) {
-      ch.push({ label: o.spec ? "Begin, inspired" : "Accept, inspired", hint: `${o.gross ? `~${o.gross + 4} coin · ` : ""}advantage on the first round · spends Inspiration`, odds: chanceOf(meta.bonus, shownDC, true, meta.dis), action: () => this.beginEncounter({ dc: realDC, gross: o.gross ? o.gross + 4 : 0, stress: Math.max(1, o.stress - 2), inspiration: true }) });
+      ch.push({ label: o.spec ? "Begin, inspired" : "Accept, inspired", hint: `${o.gross ? `~${o.gross + 4} coin · ` : ""}advantage on the first round · spends Inspiration`, odds: chanceOf(meta.bonus, shownDC, true, meta.dis), action: () => this.beginEncounter({ dc: realDC, gross: o.gross ? o.gross + 4 : 0, stress: Math.max(1, o.stress - 2), inspiration: true, drink }) });
     }
     if (!o.spec) {
       if (state.control >= 60) {
         ch.push({ label: "Name your price", hint: `~${Math.round(o.gross * 1.3)} coin · harder to please · Control 60+`, odds: odds(meta, shownDC + 1),
-          action: () => this.beginEncounter({ dc: realDC + 1, gross: Math.round(o.gross * 1.3), stress: o.stress + 1 }) });
+          action: () => this.beginEncounter({ dc: realDC + 1, gross: Math.round(o.gross * 1.3), stress: o.stress + 1, drink }) });
       }
       const pm = skillMeta("persuasion");
       ch.push({ label: "Negotiate gentler terms", hint: `~${Math.floor(o.gross * 0.65)} coin · success: easier and calmer`, odds: odds(pm, realDC), action: () => {
         const r = check(pm, realDC);
         const g = Math.floor(o.gross * 0.65);
-        if (r.success) this.beginEncounter({ dc: realDC - 2, gross: g, stress: 2, note: "They agree to gentler terms." });
-        else this.beginEncounter({ dc: realDC, gross: g, stress: o.stress, note: "They take the lower price but won't budge on anything else." });
+        if (r.success) this.beginEncounter({ dc: realDC - 2, gross: g, stress: 2, note: "They agree to gentler terms.", drink });
+        else this.beginEncounter({ dc: realDC, gross: g, stress: o.stress, note: "They take the lower price but won't budge on anything else.", drink });
       } });
       if (state.classFeatures.command && isKink(o.item.id)) {
-        ch.push({ label: "Command the scene", hint: `~${o.gross + 6} coin · more stress`, odds: odds(meta, realDC + 1), action: () => this.beginEncounter({ dc: realDC + 1, gross: o.gross + 6, stress: o.stress + 2 }) });
+        ch.push({ label: "Command the scene", hint: `~${o.gross + 6} coin · more stress`, odds: odds(meta, realDC + 1), action: () => this.beginEncounter({ dc: realDC + 1, gross: o.gross + 6, stress: o.stress + 2, drink }) });
       }
       const free = state.control >= 60 || isLimit;
       ch.push({ label: isLimit ? "Refuse: it's one of your limits" : "Turn them away", hint: free ? (isLimit ? "No penalty" : "On your own terms · no penalty (Control 60+)") : "−1 standing · −1 reputation · −2 control", quiet: !isLimit, primary: isLimit, action: () => {
@@ -1942,8 +1997,9 @@ const Game = {
       climax: max, climaxMax: max, round: 1, maxRounds: rounds, party, focus: 0, unlocks: [],
       dress: isKink(o.item.id) ? 1 : 2, selfDress: 2,
       arousal: 0,
+      drinkActive: !!t.drink,
       advantageRounds: adv, lastMoveId: null, repeat: 0, combo: 0,
-      text: t.note || "You take them to bed."
+      text: t.note || (t.drink ? "You've had a glass together. The room is warmer already." : "You take them to bed.")
     };
     this.offer = null;
     const en = state.encounter;
@@ -1997,13 +2053,17 @@ const Game = {
     if (e.combo > 1) chips.push({ text: `Rhythm ×${e.combo}`, cls: "gold" });
     if (e.lastMoveId && e.repeat) chips.push({ text: "Getting repetitive", cls: "warn" });
     if (e.advantageRounds) chips.push({ text: "Advantage this round", cls: "gold" });
+    if (e.drinkActive) chips.push({ text: "Wine · stress −1/round", cls: "calm" });
     e.prefs.likes.forEach(id => chips.push({ text: "♥ " + nameOf(id), cls: "like" }));
+    const drinkBar = e.drinkActive ? `<div class="drink-bar"><div class="lbl"><span>🍷 Warmth</span><span>active</span></div><div class="track"><div class="fill" style="width:${clamp((e.arousal || 0) * 0.6 + 40, 0, 100)}%"></div></div></div>` : "";
+    const arousalBar = `<div class="bigmeter" style="margin-top:8px"><div class="lbl"><span>Arousal</span><span>${e.arousal || 0}%</span></div><div class="track" style="background:#3a2c22"><div class="fill" style="height:100%;border-radius:5px;width:${clamp(e.arousal || 0, 0, 100)}%;background:#e05c7a;transition:width .3s"></div></div></div>`;
+    const dressNote = dressKicker(e.dress, e.selfDress);
     UI.scene({
-      kicker: `${e.spec && e.spec.trial ? "Rank trial · " : ""}Round ${e.round} of ${e.maxRounds}`,
+      kicker: `${e.spec && e.spec.trial ? "Rank trial · " : ""}Round ${e.round} of ${e.maxRounds}${dressNote}`,
       title: e.party ? `With ${e.npc.name}` : e.who,
       body: Narrator.on() ? e.text : `${e.text}\n<em>They are ${mood}.</em>`,
-      html: actPanel(e) + `<div class="bigmeter" style="margin-top:8px"><div class="lbl"><span>Arousal</span><span>${e.arousal || 0}%</span></div><div class="track" style="background:#3a2c22"><div class="fill" style="height:100%;border-radius:5px;width:${clamp(e.arousal || 0, 0, 100)}%;background:#e05c7a;transition:width .3s"></div></div></div>`,
-      meter: { label: e.party ? `${e.npc.name}'s satisfaction` : "Satisfaction", value: pct, pips: { max: e.maxRounds, used: e.round - 1 } },
+      html: actPanel(e) + arousalBar + drinkBar,
+      meter: { label: e.party ? `${e.npc.name} — ${satisfactionPhrase(pct)}` : satisfactionPhrase(pct), value: pct, pips: { max: e.maxRounds, used: e.round - 1 } },
       roll: this.lastRoll, chips
     });
 
@@ -2020,7 +2080,7 @@ const Game = {
         if (tier) notes.push(MASTERY_NAMES[tier]);
       }
       notes.push(`${p.meta.label} · −${p.energy} energy`);
-      return { label, hint: notes.join(" · "), odds: p.odds, disabled: state.energy < p.energy, reason: "Not enough energy", action: () => this.doRound(kind, pos) };
+      return { kind, label, hint: notes.join(" · "), odds: p.odds, disabled: state.energy < p.energy, reason: "Not enough energy", action: () => this.doRound(kind, pos) };
     };
     const short = o => { o.hint = o.hint.replace(/ · −\d+ energy$/, ""); return o; };
 
@@ -2104,6 +2164,7 @@ const Game = {
     }
     if (stress > 0) stress += Math.floor(state.trauma / 25);
     if (stress > 0 && state.classFeatures.unflappable) stress -= 1;
+    if (e.drinkActive && stress > 0) stress = Math.max(0, stress - 1); // wine buffers stress slightly
     state.stress = clamp(state.stress + stress, 0, 100);
     // Practice makes perfect: every round trains the skill used and builds mastery of the technique.
     trainFromRound(p.skill, isTech ? pos.id : null, r.success);
