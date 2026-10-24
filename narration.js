@@ -1587,7 +1587,7 @@ window.NARRATION = {
   /* Group encounters. {client} is the partner you're focused on; {other} is another guest. */
   group: {
     open: [
-      "{Client} and {other} arrive together, already half-hard and sharing a look that says they've discussed what they want from you.",
+      "{Client} and {other} arrive together, sharing a look that says they've discussed what they want from you.",
       "Two of them and one of you. {Client} grins and reaches for you first; {other} blushes but {their} {cock} is just as interested.",
       "You lead {client} and {other} upstairs, a hand in each of theirs, already deciding the order."
     ],
@@ -1599,16 +1599,54 @@ window.NARRATION = {
     ],
     together: {
       success: [
-        "You pull {client} and {other} together and work both their cocks at once, mouth and hands full.",
+        "You pull {client} and {other} together and work both of them at once, mouth and hands full.",
         "Mouths and hands and slick skin everywhere — for a breathless moment all three of you move as one.",
         "You weave between them, and both {client} and {other} moan your name in the same breath."
       ],
-      fail: ["You try to fuck both of them at once and end up satisfying no one.", "Someone's elbow, someone's knee, wrong holes and crossed limbs — the moment tangles past saving."]
+      fail: ["You try to take both of them at once and end up satisfying no one.", "Someone's elbow, someone's knee, wrong holes and crossed limbs — the moment tangles past saving."]
     },
     finish: {
-      success: ["The room is warm and slick and quiet at last, everyone spent and smiling.", "They leave arm in arm, cocks soft and thoroughly drained, promising to come back together."],
+      success: ["The room is warm and slick and quiet at last, everyone spent and smiling.", "They leave arm in arm, thoroughly drained, promising to come back together."],
       partial: ["Some of them leave grinning; the rest pull on their clothes with the quiet of the unsatisfied.", "Not everyone got fucked the way they wanted, and everyone knows it."],
-      fail: ["They dress in silence, avoiding each other's eyes, cocks soft and moods sour.", "More awkward tangle than orgy. They leave with nothing between them but disappointment."]
+      fail: ["They dress in silence, avoiding each other's eyes, moods sour.", "More awkward tangle than orgy. They leave with nothing between them but disappointment."]
+    }
+  },
+
+  /* couple: narration for pre-formed couples — they know each other, have a dynamic, and you're the third party invited into it */
+  couple: {
+    open: [
+      "{Client} lets {other} through the door first, a small automatic courtesy that tells you everything about who leads.",
+      "They come in with the ease of people who've shared a bed for a long time. {Client} glances at {other} and then at you — the question has already been discussed.",
+      "You can read it immediately: {client} is excited and hiding it; {other} wanted this more. They've negotiated the terms between themselves.",
+      "{Client} and {other} stand close in the way people do when they're used to each other's gravity. {Other} speaks first. \"We were told you were the one to ask.\""
+    ],
+    spill: [
+      "{Other} exchange{es} a glance with {client} — an old, fluent language between them.",
+      "{Other} reach{es} for {client}'s hand, watching you work.",
+      "{Other} murmur{s} something low to {client} that isn't meant for you, but {client} flush{es}.",
+      "{Other} watch{es} you with {client} and you catch {them} biting {their} lip."
+    ],
+    together: {
+      success: [
+        "You bring them together, hands and mouths, and for a moment they're looking at each other through you — something wordless and old passing between them.",
+        "All three of you tangled now, and {client} and {other} move around you the way people do when they share a body of water, unconsciously adjusting.",
+        "You draw them both in and they find each other's hands without looking."
+      ],
+      fail: ["The two of them are too attuned to each other and not enough to you — the rhythm goes wrong.", "You get between them at the wrong moment and break something that was building. {Client} sighs."]
+    },
+    finish: {
+      success: [
+        "They leave the way they came in — close, easy, {client}'s hand at the small of {other}'s back. You gave them something to keep.",
+        "Afterward they're quiet together, the good kind of quiet. {Client} squeezes {other}'s hand and doesn't let go. They came here for each other as much as for you."
+      ],
+      partial: [
+        "One of them leaves satisfied; the other leaves understanding something about their relationship they didn't walk in with.",
+        "{Client} looks at {other} and there's a private conversation happening that you're not part of. They'll be fine. But tonight didn't go the way they planned."
+      ],
+      fail: [
+        "There's a stiffness between {client} and {other} as they dress. This was meant to be something they shared. It didn't land.",
+        "They leave polite and careful with each other — which means you broke something small tonight. {Other} doesn't look at {client} on the way out."
+      ]
     }
   },
 

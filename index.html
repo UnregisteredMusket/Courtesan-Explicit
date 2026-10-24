@@ -1415,7 +1415,7 @@ const Narrator = {
   },
   open(e) {
     const N = this.data();
-    const parts = [e.party && N.group ? this.line("gopen", N.group.open, e) : this.line("open:" + e.ctx, (N.open || {})[e.ctx], e)];
+    const parts = [e.party && N.couple && N.couple.open ? this.line("copen", N.couple.open, e) : e.party && N.group ? this.line("gopen", N.group.open, e) : this.line("open:" + e.ctx, (N.open || {})[e.ctx], e)];
     if (e.revealed) parts.push(this.line("temp:" + e.typeKey, (N.temperament || {})[e.typeKey], e));
     const t = (N.techniques || {})[e.item.id];
     if (t) parts.push(this.line("start:" + e.item.id, t.start, e));
@@ -1452,7 +1452,10 @@ const Narrator = {
     if (isTech && !o.repeat && o.success && o.disliked) main = this.line("disliked", N.disliked, e) || main;
     if (main) parts.push(main);
     if (isTech && !o.repeat && o.success && o.liked) parts.push(this.line("liked", N.liked, e));
-    if (e.party && N.group && o.success && o.kind !== "together" && o.kind !== "recover") parts.push(this.line("gspill", N.group.spill, e));
+    if (e.party && o.success && o.kind !== "together" && o.kind !== "recover") {
+      if (e.couple && N.couple && N.couple.spill) parts.push(this.line("cspill", N.couple.spill, e));
+      else if (N.group) parts.push(this.line("gspill", N.group.spill, e));
+    }
     if (o.kind === "strip" && o.success && !e.party) parts.push(this.bodyLine(e, e.prefs && e.prefs.body));
     if (isTech && !o.repeat && N.mastery) {
       const tier = masteryTier(o.pos.id), raw = state.skills[o.pos.skill] || 0;
@@ -1467,6 +1470,7 @@ const Narrator = {
   finish(e, success, partial) {
     const N = this.data();
     const k = success ? "success" : partial ? "partial" : "fail";
+    if (e.party && e.couple && N.couple && N.couple.finish) return this.line("cfin:" + k, N.couple.finish[k], e);
     if (e.party && N.group && N.group.finish) return this.line("gfin:" + k, N.group.finish[k], e);
     // technique-specific finish lines take priority
     const techId = e.item && e.item.id;
@@ -1759,14 +1763,31 @@ const Game = {
       const w = NPC_GENDER[cand.id] === "male" ? fit : 1 - fit;
       if (Math.random() < 0.3 * Math.min(1, w * 2)) npc = cand;
     } }
+    const COUPLE_TYPES = [
+      { rel: "newlyweds", blurb: "Married three weeks ago. This is their honeymoon treat." },
+      { rel: "lovers", blurb: "They've been together long enough to know exactly what they want from a night like this." },
+      { rel: "a long-term couple", blurb: "Comfortable enough with each other that embarrassment isn't part of tonight." },
+      { rel: "two old friends who finally crossed a line", blurb: "Something shifted between them recently. They're still figuring out what it means." },
+      { rel: "a merchant and her favorite clerk", blurb: "The arrangement is open enough that this counts as a gift for both of them." },
+      { rel: "a pair of officers on their last night before deployment", blurb: "One of them talked the other into this. Neither of them minds." },
+      { rel: "an artist and their muse", blurb: "They've spent months studying each other. Tonight they're spending it differently." },
+      { rel: "nobles who've been discreet about this for years", blurb: "The discretion is habit now. They don't need it here." }
+    ];
     let party = null;
+    let coupleData = null;
     if (group) {
       party = [];
+      // 35% of size-2 groups are a pre-formed couple
+      const isCouple = n === 2 && !spec && Math.random() < 0.35;
+      if (isCouple) coupleData = pick(COUPLE_TYPES);
       for (let i = 0; i < n; i++) {
-        const cg = clientGender();
+        // couples can be same-sex; use shared gender roll for visual coherence ~40% of time
+        const cg = (isCouple && i === 1 && Math.random() < 0.4) ? party[0].cg : clientGender();
         let nm = pick(NAMES[cg]);
         while (party.some(m => m.name === nm)) nm = pick(NAMES[cg]);
         const mp = makePrefs(); mp.body = rollBodyPref();
+        // couples share a like — the thing they came for together
+        if (isCouple && i === 1) mp.likes[0] = party[0].prefs.likes[0];
         party.push({ name: nm, cg, prefs: mp });
       }
       party.forEach(m => { m.prefs.dislikes = m.prefs.dislikes.filter(id => id !== item.id); });
@@ -1787,7 +1808,7 @@ const Game = {
     if (state.classFeatures.ropeMaster && (item.id === "bondage" || item.id === "dominance_and_submission")) gross = Math.round(gross * 1.2);
 
     this.offer = {
-      item, prefs, type, patron, npc, party, spec: spec || null, tier: c.tier,
+      item, prefs, type, patron, npc, party, couple: coupleData, spec: spec || null, tier: c.tier,
       stranger: pick(c.strangers),
       cg: spec && spec.cg ? spec.cg : npc && npc.id ? NPC_GENDER[npc.id] : clientGender(),
       baseDC: dc, gross,
@@ -1810,7 +1831,8 @@ const Game = {
     const isLimit = (state.character.limits || []).includes(o.item.id);
     const isSpec = (state.character.specialties || []).includes(o.item.id);
     const lines = [];
-    if (o.party) lines.push(`<em>${o.party.length === 2 ? "A pair" : "A party of three"} who want to share you between them${o.party.length === 2 ? "" : ", or each other"}.</em>`);
+    if (o.couple) lines.push(`<em>${cap(o.couple.rel)}. ${o.couple.blurb}</em>`);
+    else if (o.party) lines.push(`<em>${o.party.length === 2 ? "A pair" : "A party of three"} who want to share you between them${o.party.length === 2 ? "" : ", or each other"}.</em>`);
     if (o.npc && o.npc.blurb) lines.push(`<em>${cap(o.npc.blurb)}.</em>`);
     if (o.patron && !(o.spec && o.spec.name)) lines.push(`<em>Fine wool, a heavy ring, a servant waiting outside. Your name has reached the right ears.</em>`);
     if (o.spec && o.spec.trial) lines.push(`<em>The guild's examiners will judge every moment. There is no pay for a trial.</em>`);
@@ -1825,7 +1847,7 @@ const Game = {
       o.prefs.dislikes.forEach(id => chips.push({ text: "✕ " + nameOf(id), cls: "dislike" }));
     }
     if (o.revealed) chips.push({ text: o.type.name, cls: o.type.key === "dangerous" ? "warn" : o.type.key === "generous" ? "gold" : "calm" });
-    UI.scene({ kicker: o.spec && o.spec.trial ? "Rank trial" : o.party ? "A group approaches" : "A client approaches", title: this.whoOf(o), body: lines.join("\n"), chips, roll: this.lastRoll,
+    UI.scene({ kicker: o.spec && o.spec.trial ? "Rank trial" : o.couple ? "A couple arrives" : o.party ? "A group approaches" : "A client approaches", title: this.whoOf(o), body: lines.join("\n"), chips, roll: this.lastRoll,
       html: actPanel({ item: o.item, curMove: o.item, party: o.party, climax: 1, climaxMax: 1 }, true) });
 
     const meta = skillMeta(o.item.skill, { bonus: techBonus(o.item.id) });
@@ -1898,7 +1920,7 @@ const Game = {
     const rounds = 5 + (state.classFeatures.insatiable ? 1 : 0) + (party ? party.length - 1 + (state.classFeatures.ringmaster ? 1 : 0) : 0);
     state.encounter = {
       item: o.item, skill: o.item.skill, ctx: narrKey(o.tier), tier: o.tier, prefs: o.prefs, type: o.type, typeKey: o.type.key, revealed: o.revealed,
-      patron: o.patron, npc: o.npc, cg: o.cg, who: this.whoOf(o), spec: o.spec, curMove: o.item, dc: t.dc, gross: t.gross,
+      patron: o.patron, npc: o.npc, cg: o.cg, who: this.whoOf(o), spec: o.spec, couple: o.couple || null, curMove: o.item, dc: t.dc, gross: t.gross,
       climax: max, climaxMax: max, round: 1, maxRounds: rounds, party, focus: 0, unlocks: [],
       dress: isKink(o.item.id) ? 1 : 2, selfDress: 2,
       advantageRounds: adv, lastMoveId: null, repeat: 0, combo: 0,
