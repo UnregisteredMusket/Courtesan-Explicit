@@ -1385,7 +1385,14 @@ const Narrator = {
     if (!line) return "";
     const pr = CLIENT_PRONOUNS[e.cg] || CLIENT_PRONOUNS.male;
     const client = e.npc ? e.npc.name : e.patron ? "the patron" : "your client";
-    const map = { name: esc(state.character.name || ""), client, move: (e.curMove || e.item).name, other: e.otherName || "your other guest", ...garments(e.cg), ...pr };
+    const isFemaleClient = e.cg === "female";
+    const isFemalePc = (state.character.gender || "female") === "female";
+    const cockWord = isFemaleClient ? "toy" : "cock";
+    const map = { name: esc(state.character.name || ""), client, move: (e.curMove || e.item).name, other: e.otherName || "your other guest",
+      cock: cockWord,                              // client anatomy: toy for female, cock for male
+      mycock: isFemalePc ? "strap" : "cock",      // player anatomy: strap for female pc, cock for male pc
+      clit: isFemaleClient ? "clit" : "cock",
+      ...garments(e.cg), ...pr };
     return line.replace(/\{(\w+)\}/g, (m, k) => {
       const lower = k.charAt(0).toLowerCase() + k.slice(1);
       const v = map[k] !== undefined ? map[k] : map[lower];
