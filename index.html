@@ -3413,7 +3413,7 @@ const state = {
   settings: { narration: "full" },
   ironman: false,
   ended: false,
-  character: { name: "", gender: "female", clientele: "anyone", hair: "", eyes: "", mark: "none", voice: "", body: { ...BODY_DEFAULT }, specialties: [], limits: [], motivation: null, appearance: "average", build: "average", experience: "novice", class: null, subclass: null, background: null, feat: null, traits: [], portrait: null },
+  character: { name: "", gender: "female", clientele: "anyone", hair: "", eyes: "", mark: "none", voice: "", body: { ...BODY_DEFAULT }, specialties: [], limits: [], motivation: null, appearance: "average", build: "average", experience: "novice", race: null, class: null, subclass: null, background: null, feat: null, traits: [], portrait: null },
   npcPortraits: {},
   traitPoints: 0,
   classFeatures: {},
@@ -6971,6 +6971,81 @@ const BACKGROUNDS = {
     apply: t => { t.skills.performance += 6; setRel(t, "briar", { trust: 3 }); } }
 };
 
+const RACES = {
+  Human: {
+    hint: "+1 CHA, +1 WIS, +5 Persuasion · Versatile: start with 3 Beginner positions · broad adaptability",
+    apply: t => {
+      t.attributes.cha += 1; t.attributes.wis += 1; t.skills.persuasion += 5;
+      t.classFeatures.humanVersatile = true;
+      ["missionary", "cowgirl", "kneeling_oral"].forEach(id => learnFor(t, id));
+    }
+  },
+  Elf: {
+    hint: "+2 DEX, +1 CHA · Elf Grace: DC−1 on Advanced positions · unlock: Spooning, French Kiss, Worship",
+    apply: t => {
+      t.attributes.dex += 2; t.attributes.cha += 1;
+      t.classFeatures.elfGrace = true;
+      ["spooning", "french_kiss", "worship"].forEach(id => learnFor(t, id));
+    }
+  },
+  "Half-Elf": {
+    hint: "+1 CHA, +4 Persuasion, +4 Insight · Easy Rapport: all NPCs start with +3 trust · unlock: Cowgirl, Face Sitting",
+    apply: t => {
+      t.attributes.cha += 1; t.skills.persuasion += 4; t.skills.insight += 4;
+      t.classFeatures.halfElfCharm = true;
+      ["cowgirl", "face_sitting", "french_kiss"].forEach(id => learnFor(t, id));
+    }
+  },
+  Dwarf: {
+    hint: "+2 CON, +6 Manual · Stone Endurance: max energy +20 · unlock: Doggy Style, Tabletop, Eraser",
+    apply: t => {
+      t.attributes.con += 2; t.skills.manual += 6; t.energy += 20;
+      t.classFeatures.stoneEndurance = true;
+      ["doggy_style", "tabletop", "eraser"].forEach(id => learnFor(t, id));
+    }
+  },
+  Halfling: {
+    hint: "+1 DEX, +1 CHA · Halfling Luck: reroll one failed check per day · unlock: Reverse Cowgirl, Lap Seat, Kneeling Service",
+    apply: t => {
+      t.attributes.dex += 1; t.attributes.cha += 1;
+      t.classFeatures.halflingLuck = true;
+      ["reverse_cowgirl", "seated_lap", "kneeling_oral"].forEach(id => learnFor(t, id));
+    }
+  },
+  Tiefling: {
+    hint: "+2 CHA, +8 Kink · Infernal Allure: DC−2 on kink checks, risky clients seek you · unlock: Submissive, Prison Guard, Face Sitting",
+    apply: t => {
+      t.attributes.cha += 2; t.skills.kink += 8;
+      t.classFeatures.infernalAllure = true;
+      ["submissive", "prison_guard", "face_sitting"].forEach(id => learnFor(t, id));
+    }
+  },
+  "Half-Orc": {
+    hint: "+2 STR, +1 CON · Relentless Endurance: survive one knockout per encounter at 1 HP · unlock: Doggy Style, Spread Eagle, Leapfrog",
+    apply: t => {
+      t.attributes.str += 2; t.attributes.con += 1;
+      t.classFeatures.relentlessEndurance = true;
+      ["doggy_style", "spread_eagle", "leapfrog"].forEach(id => learnFor(t, id));
+    }
+  },
+  Gnome: {
+    hint: "+2 INT, +8 Manual · Artificer's Touch: training costs −10 coin · unlock: Scissoring, Eraser, Exotic Foreplay",
+    apply: t => {
+      t.attributes.int += 2; t.skills.manual += 8;
+      t.classFeatures.artificerTouch = true;
+      ["scissoring", "eraser", "exotic_foreplay"].forEach(id => learnFor(t, id));
+    }
+  },
+  Dragonborn: {
+    hint: "+2 STR, +1 CHA · Draconic Presence: once per encounter reduce client resistance by 5 · unlock: Missionary, Doggy Style, Kneeling Service",
+    apply: t => {
+      t.attributes.str += 2; t.attributes.cha += 1;
+      t.classFeatures.draconicPresence = true;
+      ["missionary", "doggy_style", "kneeling_oral"].forEach(id => learnFor(t, id));
+    }
+  }
+};
+
 const MOTIVES = {
   debt: { label: "Pay a family debt", hint: "Start owing 40 coin · +10% pay from every client",
     goal: "Clear the debt your family left you.",
@@ -7108,7 +7183,7 @@ function applyDraft(t, d) {
   Object.assign(t.character, {
     name: d.name, gender: d.gender, clientele: d.clientele, appearance: d.appearance, build: d.build,
     hair: d.hair, eyes: d.eyes, mark: d.mark, voice: d.voice, body: { ...BODY_DEFAULT, ...(d.body || {}) }, experience: d.difficulty,
-    class: d.cls, subclass: d.sub, background: d.background, motivation: d.motive,
+    race: d.race, class: d.cls, subclass: d.sub, background: d.background, motivation: d.motive,
     specialties: [...(d.specs || [])], limits: [...(d.limits || [])],
     traits: [...d.traits], feat: d.feat && FEATS[d.feat] ? FEATS[d.feat].name : null,
     likes: (() => {
@@ -7123,6 +7198,7 @@ function applyDraft(t, d) {
   });
   t.attributes = { ...d.attrs };
   DIFFICULTIES[d.difficulty].apply(t);
+  if (d.race && RACES[d.race]) RACES[d.race].apply(t);
   if (d.cls && CLASSES[d.cls]) {
     CLASSES[d.cls].apply(t);
     (CLASS_POSITIONS[d.cls] || []).slice(0, 2).forEach(id => learnFor(t, id));
@@ -7159,8 +7235,8 @@ const ARCHETYPES = [
       specs: ["bondage", "dominance_and_submission"], limits: ["foot_fetish"], traits: ["infamous", "marked", "keen"], feat: "silverTongue" } }
 ];
 
-const STEPS = ["identity", "looks", "body", "details", "difficulty", "path", "specialty", "attributes", "background", "motive", "desires", "traits", "review"];
-const STEP_NAMES = { identity: "Name", looks: "Looks", body: "Body", details: "Details", difficulty: "Difficulty", path: "Path", specialty: "Specialty", attributes: "Attributes", background: "Past", motive: "Reason", desires: "Desires", traits: "Traits", review: "Review" };
+const STEPS = ["identity", "race", "looks", "body", "details", "difficulty", "path", "specialty", "attributes", "background", "motive", "desires", "traits", "review"];
+const STEP_NAMES = { identity: "Name", race: "Race", looks: "Looks", body: "Body", details: "Details", difficulty: "Difficulty", path: "Path", specialty: "Specialty", attributes: "Attributes", background: "Past", motive: "Reason", desires: "Desires", traits: "Traits", review: "Review" };
 
 function cleanName(s) { return String(s || "").replace(/[<>"]/g, "").replace(/\s+/g, " ").trim().slice(0, 24); }
 function sel(label, hint, on, action, extra) {
@@ -7173,7 +7249,7 @@ const Creation = {
   blank() {
     return { name: "", gender: "female", clientele: "men", appearance: "average", build: "average",
       hair: HAIR[0], eyes: EYES[0], mark: "none", voice: "honeyed", body: { ...BODY_DEFAULT }, difficulty: "experienced",
-      cls: null, sub: null, attrs: { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 },
+      race: null, cls: null, sub: null, attrs: { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 },
       background: null, motive: null, specs: [], limits: [], traits: [], feat: null, ironman: false };
   },
 
@@ -7264,6 +7340,12 @@ const Creation = {
     ], { html, noPreview: true });
     const el = $("nameInput");
     if (el) el.oninput = () => this.readName();
+  },
+
+  race() {
+    const d = this.d;
+    this.frame("Your heritage", "Your ancestry shapes your body, instincts and early knowledge. Each race starts with unique positions and attributes.",
+      Object.keys(RACES).map(k => sel(k, RACES[k].hint, d.race === k, () => { d.race = k; this.next(); })));
   },
 
   looks() {
