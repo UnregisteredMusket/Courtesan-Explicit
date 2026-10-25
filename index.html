@@ -3590,6 +3590,19 @@ function grantClassPositions(extra) {
 /* ---------- Skill growth, mastery and unlocks ---------- */
 const MASTERY_AT = [0, 10, 30, 60];
 const MASTERY_NAMES = ["", "Practiced", "Expert", "Master"];
+
+// Position progression tree — min positions learned from previous tier to unlock next
+// Walks back through DIFF_ORDER to the nearest non-empty tier when a tier is missing
+const TIER_PREREQS = {
+  vaginal:     { Intermediate: 5, Advanced: 3, Expert: 2, Master: 1 },
+  anal:        { Advanced: 2, Expert: 1 },   // no Beginner tier, no gate on Intermediate
+  oral:        { Intermediate: 3, Advanced: 2 },
+  manual:      { Intermediate: 2, Advanced: 1 },
+  performance: { Advanced: 2 },              // no Intermediate tier, gates from Beginner
+  kink:        { Intermediate: 2, Advanced: 2 },
+};
+const DIFF_ORDER = ['Beginner', 'Intermediate', 'Advanced', 'Expert', 'Master'];
+
 const MASTERY_FLAVOR = [
   null,  // novice — no flavor
   ["Clean form. The motions are yours now.", "You move with confidence. They notice.", "Not your first time here. Feels like it."],
@@ -3703,15 +3716,62 @@ function genBookedReturn() {
     affinityLabel: cbAffinityLabel(e.affinity)
   };
 }
-function canLearn(id) { const p = INDEX.positions.find(x => x.id === id); return !!p && (state.skills[p.skill] || 0) >= (p.req || 0); }
+function canLearn(id) {
+  const pos = INDEX.positions.find(x => x.id === id);
+  if (!pos) return false;
+  // Skill score gate
+  if ((state.skills[pos.skill] || 0) < (pos.req || 0)) return false;
+  // Tier prerequisite gate: must know N positions from previous tier in same skill
+  const tierReq = (TIER_PREREQS[pos.skill] || {})[pos.difficulty];
+  if (tierReq) {
+    let prevIdx = DIFF_ORDER.indexOf(pos.difficulty) - 1;
+    while (prevIdx >= 0) {
+      const prevDiff = DIFF_ORDER[prevIdx];
+      const prevPool = INDEX.positions.filter(p => p.skill === pos.skill && p.difficulty === prevDiff);
+      if (prevPool.length > 0) {
+        const knownPrev = prevPool.filter(p => state.knownPositions.includes(p.id)).length;
+        if (knownPrev < tierReq) return false;
+        break;
+      }
+      prevIdx--;
+    }
+  }
+  return true;
+}
 function checkUnlocks() {
   const out = [];
   INDEX.positions.forEach(p => { if (p.req && !state.knownPositions.includes(p.id) && canLearn(p.id)) { state.knownPositions.push(p.id); out.push(p.name); } });
   return out;
 }
 function nextUnlock(sk) {
-  const c = INDEX.positions.filter(p => p.skill === sk && p.req && !state.knownPositions.includes(p.id)).sort((a, b) => a.req - b.req)[0];
-  return c ? `${c.name} at ${c.req}` : "";
+  // Show tier-gate hint if any tier is currently blocked
+  for (let di = 1; di < DIFF_ORDER.length; di++) {
+    const diff = DIFF_ORDER[di];
+    const tierReq = (TIER_PREREQS[sk] || {})[diff];
+    if (!tierReq) continue;
+    // Any unlearned positions in this tier?
+    const hasLocked = INDEX.positions.some(p => p.skill === sk && p.difficulty === diff && !state.knownPositions.includes(p.id));
+    if (!hasLocked) continue;
+    // Walk back to nearest non-empty prev tier
+    let prevIdx = di - 1, prevDiff = null;
+    while (prevIdx >= 0) {
+      const pd = DIFF_ORDER[prevIdx];
+      if (INDEX.positions.some(p => p.skill === sk && p.difficulty === pd)) { prevDiff = pd; break; }
+      prevIdx--;
+    }
+    if (!prevDiff) continue;
+    const knownPrev = INDEX.positions.filter(p => p.skill === sk && p.difficulty === prevDiff && state.knownPositions.includes(p.id)).length;
+    if (knownPrev < tierReq) {
+      const need = tierReq - knownPrev;
+      return `${need} more ${prevDiff} ${sk} to unlock ${diff}`;
+    }
+  }
+  // Skill-score gate hint
+  const c = INDEX.positions.filter(p => p.skill === sk && p.req && !state.knownPositions.includes(p.id) && canLearn(p.id)).sort((a, b) => a.req - b.req)[0];
+  if (c) return `${c.name} at ${c.req}`;
+  // If skill-score-gated but tier is open, show the next score-gated one regardless
+  const d = INDEX.positions.filter(p => p.skill === sk && p.req && !state.knownPositions.includes(p.id)).sort((a, b) => a.req - b.req)[0];
+  return d ? `${d.name} at ${d.req}` : "";
 }
 function trainFromRound(skill, techId, ok) {
   if (ok) state.skills[skill] = Math.min(100, (state.skills[skill] || 0) + 1);
