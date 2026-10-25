@@ -4466,7 +4466,65 @@ const UI = {
     ]);
     UI.panel(v, "Journal", "Most recent first.",
       state.journal.length ? state.journal.map(e => `<div class="entry ${e.k === "roll" ? "roll-entry" : ""}"><div class="when">Day ${e.d} · ${e.p}</div>${e.t}</div>`).join("") : `<div class="empty">Nothing written yet.</div>`);
-  }
+  },
+
+  /* ── Progression tree view ───────────────────────── */
+  viewTree(v) {
+    const skills = ["vaginal","oral","anal","manual","performance","kink"];
+    const skillLabel = { vaginal:"Vaginal",oral:"Oral",anal:"Anal",manual:"Manual",performance:"Performance",kink:"Kink" };
+    let html = '<div class="tree-grid">';
+
+    for (const sk of skills) {
+      const allInSkill = INDEX.positions.filter(p => p.skill === sk);
+      if (!allInSkill.length) continue;
+      html += `<div class="tree-skill-block"><div class="tree-skill-label">${skillLabel[sk]}</div>`;
+
+      const knownInSkill = allInSkill.filter(p => state.knownPositions.includes(p.id)).length;
+      const pct = allInSkill.length ? Math.round(100 * knownInSkill / allInSkill.length) : 0;
+      html += `<div class="tree-progress-bar"><div class="tree-progress-fill" style="width:${pct}%"></div></div>`;
+
+      for (const diff of DIFF_ORDER) {
+        const inTier = allInSkill.filter(p => p.difficulty === diff);
+        if (!inTier.length) continue;
+
+        // Check if this tier is gate-locked
+        const tierReq = (TIER_PREREQS[sk] || {})[diff];
+        let gateBlocked = false, gateMsg = "";
+        if (tierReq) {
+          let prevIdx = DIFF_ORDER.indexOf(diff) - 1;
+          while (prevIdx >= 0) {
+            const prevDiff = DIFF_ORDER[prevIdx];
+            const prevPool = allInSkill.filter(p => p.difficulty === prevDiff);
+            if (prevPool.length > 0) {
+              const kn = prevPool.filter(p => state.knownPositions.includes(p.id)).length;
+              if (kn < tierReq) {
+                gateBlocked = true;
+                gateMsg = `⟁ Gate: learn ${tierReq - kn} more ${prevDiff} to unlock`;
+              }
+              break;
+            }
+            prevIdx--;
+          }
+        }
+
+        const knownCount = inTier.filter(p => state.knownPositions.includes(p.id)).length;
+        html += `<div class="tree-tier-row"><div class="tree-tier-label">${diff} · ${knownCount}/${inTier.length}</div>`;
+        if (gateBlocked) html += `<div class="tree-gate-hint">${gateMsg}</div>`;
+        html += '<div class="tree-positions">';
+        for (const pos of inTier) {
+          const known = state.knownPositions.includes(pos.id);
+          const unlockable = !known && !gateBlocked && canLearn(pos.id);
+          const cls = known ? "known" : unlockable ? "unlockable" : "locked";
+          const title = known ? "Learned" : unlockable ? `Unlockable at skill ${pos.req || 0}` : gateBlocked ? "Tier locked" : `Requires skill ${pos.req || 0}`;
+          html += `<span class="tree-pos ${cls}" title="${title}">${esc(pos.name)}${known ? " ✓" : unlockable ? " ·" : " 🔒"}</span>`;
+        }
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+    v.innerHTML = html;
+  },
 };
 
 /* =========================================================
@@ -6443,64 +6501,6 @@ const Game = {
       Creation.start(false);
     };
     overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
-  },
-
-  /* ── Progression tree view ───────────────────────── */
-  viewTree(v) {
-    const skills = ["vaginal","oral","anal","manual","performance","kink"];
-    const skillLabel = { vaginal:"Vaginal",oral:"Oral",anal:"Anal",manual:"Manual",performance:"Performance",kink:"Kink" };
-    let html = '<div class="tree-grid">';
-
-    for (const sk of skills) {
-      const allInSkill = INDEX.positions.filter(p => p.skill === sk);
-      if (!allInSkill.length) continue;
-      html += `<div class="tree-skill-block"><div class="tree-skill-label">${skillLabel[sk]}</div>`;
-
-      const knownInSkill = allInSkill.filter(p => state.knownPositions.includes(p.id)).length;
-      const pct = allInSkill.length ? Math.round(100 * knownInSkill / allInSkill.length) : 0;
-      html += `<div class="tree-progress-bar"><div class="tree-progress-fill" style="width:${pct}%"></div></div>`;
-
-      for (const diff of DIFF_ORDER) {
-        const inTier = allInSkill.filter(p => p.difficulty === diff);
-        if (!inTier.length) continue;
-
-        // Check if this tier is gate-locked
-        const tierReq = (TIER_PREREQS[sk] || {})[diff];
-        let gateBlocked = false, gateMsg = "";
-        if (tierReq) {
-          let prevIdx = DIFF_ORDER.indexOf(diff) - 1;
-          while (prevIdx >= 0) {
-            const prevDiff = DIFF_ORDER[prevIdx];
-            const prevPool = allInSkill.filter(p => p.difficulty === prevDiff);
-            if (prevPool.length > 0) {
-              const kn = prevPool.filter(p => state.knownPositions.includes(p.id)).length;
-              if (kn < tierReq) {
-                gateBlocked = true;
-                gateMsg = `⟁ Gate: learn ${tierReq - kn} more ${prevDiff} to unlock`;
-              }
-              break;
-            }
-            prevIdx--;
-          }
-        }
-
-        const knownCount = inTier.filter(p => state.knownPositions.includes(p.id)).length;
-        html += `<div class="tree-tier-row"><div class="tree-tier-label">${diff} · ${knownCount}/${inTier.length}</div>`;
-        if (gateBlocked) html += `<div class="tree-gate-hint">${gateMsg}</div>`;
-        html += '<div class="tree-positions">';
-        for (const pos of inTier) {
-          const known = state.knownPositions.includes(pos.id);
-          const unlockable = !known && !gateBlocked && canLearn(pos.id);
-          const cls = known ? "known" : unlockable ? "unlockable" : "locked";
-          const title = known ? "Learned" : unlockable ? `Unlockable at skill ${pos.req || 0}` : gateBlocked ? "Tier locked" : `Requires skill ${pos.req || 0}`;
-          html += `<span class="tree-pos ${cls}" title="${title}">${esc(pos.name)}${known ? " ✓" : unlockable ? " ·" : " 🔒"}</span>`;
-        }
-        html += '</div></div>';
-      }
-      html += '</div>';
-    }
-    html += '</div>';
-    v.innerHTML = html;
   },
 
 
