@@ -6973,7 +6973,7 @@ const BACKGROUNDS = {
 
 const RACES = {
   Human: {
-    hint: "+1 CHA, +1 WIS, +5 Persuasion · Versatile: start with 3 Beginner positions · broad adaptability",
+    hint: "+1 CHA, +1 WIS, +5 Persuasion · Versatile · Human culture trades everywhere — Missionary, Cowgirl and Kneeling Service are what every common-house worker learns in the first week",
     apply: t => {
       t.attributes.cha += 1; t.attributes.wis += 1; t.skills.persuasion += 5;
       t.classFeatures.humanVersatile = true;
@@ -6981,7 +6981,7 @@ const RACES = {
     }
   },
   Elf: {
-    hint: "+2 DEX, +1 CHA · Elf Grace: DC−1 on Advanced positions · unlock: Spooning, French Kiss, Worship",
+    hint: "+2 DEX, +1 CHA · Elf Grace: DC−1 on Advanced positions · Elven intimacy is taught as an art form in the high courts — Spooning, French Kiss and Worship are cultural custom before adulthood",
     apply: t => {
       t.attributes.dex += 2; t.attributes.cha += 1;
       t.classFeatures.elfGrace = true;
@@ -6989,7 +6989,7 @@ const RACES = {
     }
   },
   "Half-Elf": {
-    hint: "+1 CHA, +4 Persuasion, +4 Insight · Easy Rapport: all NPCs start with +3 trust · unlock: Cowgirl, Face Sitting",
+    hint: "+1 CHA, +4 Persuasion, +4 Insight · Easy Rapport: all NPCs start with +3 trust · Raised in two worlds, Half-Elves learn social ease early — Cowgirl, Face Sitting and French Kiss come naturally from navigating both cultures",
     apply: t => {
       t.attributes.cha += 1; t.skills.persuasion += 4; t.skills.insight += 4;
       t.classFeatures.halfElfCharm = true;
@@ -6997,7 +6997,7 @@ const RACES = {
     }
   },
   Dwarf: {
-    hint: "+2 CON, +6 Manual · Stone Endurance: max energy +20 · unlock: Doggy Style, Tabletop, Eraser",
+    hint: "+2 CON, +6 Manual · Stone Endurance: max energy +20 · Dwarven craft-hall tradition extends to the bedroom — Doggy Style, Tabletop and Eraser are practical positions every dwarf picks up coming of age underground",
     apply: t => {
       t.attributes.con += 2; t.skills.manual += 6; t.energy += 20;
       t.classFeatures.stoneEndurance = true;
@@ -7005,7 +7005,7 @@ const RACES = {
     }
   },
   Halfling: {
-    hint: "+1 DEX, +1 CHA · Halfling Luck: reroll one failed check per day · unlock: Reverse Cowgirl, Lap Seat, Kneeling Service",
+    hint: "+1 DEX, +1 CHA · Halfling Luck: reroll one failed check per day · Halfling hearth culture is warm and unhurried — Reverse Cowgirl, Lap Seat and Kneeling Service are how half the shire greets a guest",
     apply: t => {
       t.attributes.dex += 1; t.attributes.cha += 1;
       t.classFeatures.halflingLuck = true;
@@ -7013,7 +7013,7 @@ const RACES = {
     }
   },
   Tiefling: {
-    hint: "+2 CHA, +8 Kink · Infernal Allure: DC−2 on kink checks, risky clients seek you · unlock: Submissive, Prison Guard, Face Sitting",
+    hint: "+2 CHA, +8 Kink · Infernal Allure: DC−2 on kink checks, risky clients seek you · Tieflings grow up navigating a world that already reads them as dangerous — Submissive, Prison Guard and Face Sitting are survival language learned young",
     apply: t => {
       t.attributes.cha += 2; t.skills.kink += 8;
       t.classFeatures.infernalAllure = true;
@@ -7021,7 +7021,7 @@ const RACES = {
     }
   },
   "Half-Orc": {
-    hint: "+2 STR, +1 CON · Relentless Endurance: survive one knockout per encounter at 1 HP · unlock: Doggy Style, Spread Eagle, Leapfrog",
+    hint: "+2 STR, +1 CON · Relentless Endurance: survive one knockout per encounter at 1 HP · Orc warrior rites are physical and direct — Doggy Style, Spread Eagle and Leapfrog come from a culture that never learned to be subtle about what it wants",
     apply: t => {
       t.attributes.str += 2; t.attributes.con += 1;
       t.classFeatures.relentlessEndurance = true;
@@ -7029,7 +7029,7 @@ const RACES = {
     }
   },
   Gnome: {
-    hint: "+2 INT, +8 Manual · Artificer's Touch: training costs −10 coin · unlock: Scissoring, Eraser, Exotic Foreplay",
+    hint: "+2 INT, +8 Manual · Artificer's Touch: training costs −10 coin · Gnomish tinkering culture teaches careful hands above everything — Scissoring, Eraser and Exotic Foreplay are techniques passed down in the workshops alongside the tools",
     apply: t => {
       t.attributes.int += 2; t.skills.manual += 8;
       t.classFeatures.artificerTouch = true;
@@ -7037,7 +7037,7 @@ const RACES = {
     }
   },
   Dragonborn: {
-    hint: "+2 STR, +1 CHA · Draconic Presence: once per encounter reduce client resistance by 5 · unlock: Missionary, Doggy Style, Kneeling Service",
+    hint: "+2 STR, +1 CHA · Draconic Presence: reduce client resistance by 5 once per encounter · Dragonborn honor culture teaches dominance through composed restraint — Missionary, Doggy Style and Kneeling Service are how power is demonstrated, not words",
     apply: t => {
       t.attributes.str += 2; t.attributes.cha += 1;
       t.classFeatures.draconicPresence = true;
