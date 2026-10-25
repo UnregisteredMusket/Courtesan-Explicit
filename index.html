@@ -316,23 +316,23 @@ const CITIES = [
     tastes: ["doggy_style", "standing", "spanking", "dirty_talk"],
     strangers: ["a salt-crusted sailor", "a ferryman with tar-black hands", "a young fisher with a week's wages", "a ship's mate on shore leave"],
     blurb: { morning: "Gulls wheel over the fish market. Half the guildhouse beds are still warm.", afternoon: "Sailors fresh off the boats crowd the quay, pockets heavy, cocks heavier.", night: "Lanterns sway over the harbor taverns. The best money and the worst hands both come after dark." } },
-  { id: "ashford", name: "Ashford", tier: 1, rank: 1, kind: "a wool town on the river", upkeep: 7, trouble: 0.05, venues: ["tavern"], npcs: ["marlow"],
+  { id: "ashford", name: "Ashford", tier: 1, rank: 1, kind: "a wool town on the river", upkeep: 7, trouble: 0.05, venues: ["tavern"], npcs: ["marlow", "nell"],
     tastes: ["missionary", "spooning", "roleplay", "praise_kink"],
     strangers: ["a wool merchant", "a drover in his market best", "a miller's heir", "a traveling clerk"],
     blurb: { morning: "Carts of fleece rumble over the bridge. The guilds open their doors before the cloth hall does.", afternoon: "Market day. Merchants with fat purses and bad marriages want more than cheering up.", night: "The inns along the river fill with drovers and dealers flush with coin and hungry for something soft to spend it on." } },
-  { id: "varenne", name: "Varenne", tier: 2, rank: 2, kind: "a city of bankers", upkeep: 10, trouble: 0.04, venues: ["tavern", "salon"], npcs: ["edric"],
+  { id: "varenne", name: "Varenne", tier: 2, rank: 2, kind: "a city of bankers", upkeep: 10, trouble: 0.04, venues: ["tavern", "salon"], npcs: ["edric", "theron"],
     tastes: ["cowgirl", "lotus", "voyeurism", "dominance_and_submission"],
     strangers: ["a moneylender's clerk", "a silk importer", "a banker's younger son", "a notary with ink-stained cuffs"],
     blurb: { morning: "Counting houses throw open their shutters. Rich men want their mornings started right.", afternoon: "Salons open their doors to anyone with wit, wealth or a body worth staring at.", night: "Behind every lit window in the banking quarter, someone is celebrating a fortune — and paying well to do it right." } },
-  { id: "lysmoor", name: "Lysmoor", tier: 3, rank: 3, kind: "a cathedral city", upkeep: 12, trouble: 0.03, venues: ["tavern", "salon"], npcs: [],
+  { id: "lysmoor", name: "Lysmoor", tier: 3, rank: 3, kind: "a cathedral city", upkeep: 12, trouble: 0.03, venues: ["tavern", "salon"], npcs: ["cassian", "isolde", "dame_rennick"],
     tastes: ["sensory_deprivation", "bondage", "praise_kink", "side_by_side_face-to-fac"],
     strangers: ["a scholar from the cathedral school", "a pilgrim far from home", "a choirmaster", "a wealthy penitent"],
     blurb: { morning: "Bells ring over the cathedral close. The most devout clients come to you before morning prayers.", afternoon: "Scholars argue in the cloisters; the pious pass discreet notes with their confessions still fresh.", night: "Lysmoor pretends to sleep early. Its sins are quiet, very specific and obscenely well paid." } },
-  { id: "aurelle", name: "Aurelle", tier: 4, rank: 4, kind: "the seat of the royal court", upkeep: 16, trouble: 0.03, venues: ["salon", "court"], npcs: ["edric"],
+  { id: "aurelle", name: "Aurelle", tier: 4, rank: 4, kind: "the seat of the royal court", upkeep: 16, trouble: 0.03, venues: ["salon", "court"], npcs: ["edric", "lady_cassia"],
     tastes: ["lotus", "roleplay", "temperature_play", "exhibitionism"],
     strangers: ["a courtier in borrowed finery", "a foreign envoy", "a royal huntsman", "a lady-in-waiting's brother"],
     blurb: { morning: "Heralds cry the day's audiences from the palace steps. Courtiers who spent the night in your bed slip out before the crowds.", afternoon: "The court strolls the palace gardens, trading gossip and favorable introductions to anyone who can fuck well and keep secrets.", night: "Masques, banquets and candlelit galleries. At court, every night is a performance — and the real show happens behind closed doors." } },
-  { id: "valcourt", name: "Valcourt", tier: 5, rank: 5, kind: "the capital, home of the Guild Hall", upkeep: 20, trouble: 0.04, venues: ["salon", "court"], npcs: ["briar"],
+  { id: "valcourt", name: "Valcourt", tier: 5, rank: 5, kind: "the capital, home of the Guild Hall", upkeep: 20, trouble: 0.04, venues: ["salon", "court"], npcs: ["briar", "sable", "minister_vael"],
     tastes: ["dominance_and_submission", "impact_play", "pretzel_dip", "coital_alignment_techniq"],
     strangers: ["a minister of the crown", "a merchant prince", "a famous poet", "a general on leave"],
     blurb: { morning: "The Guild Hall's marble steps gleam above the river. The masters who fucked their way here don't forget it.", afternoon: "The capital's great houses send runners with invitations sealed in wax — and very particular requests inside.", night: "Valcourt never sleeps. Somewhere tonight, a fortune is being spent between someone's thighs." } }
@@ -3178,7 +3178,15 @@ const CLIENT_TYPES = {
 const NPCS = [
   { id: "marlow", name: "Marlow", blurb: "a dockhand with kind eyes and calloused hands" },
   { id: "edric", name: "Sir Edric", blurb: "a landed knight who pays in silver and never haggles" },
-  { id: "briar", name: "Madam Briar", blurb: "the sharp-eyed matron of the guild's Saltmere house" }
+  { id: "briar", name: "Madam Briar", blurb: "the sharp-eyed matron of the guild's Saltmere house" },
+  { id: "nell", name: "Nell Ashby", blurb: "a wool merchant's wife who runs her husband's accounts — and anything else that interests her" },
+  { id: "cassian", name: "Brother Cassian", blurb: "a cathedral scholar who asks questions with his eyes long before he asks with his mouth" },
+  { id: "isolde", name: "Captain Isolde", blurb: "the watch commander of Lysmoor — hard, fair, and quietly curious about you" },
+  { id: "dame_rennick", name: "Dame Rennick", blurb: "a wealthy penitent who funds half the cathedral and spends the other half on things she doesn't confess" },
+  { id: "theron", name: "Master Theron", blurb: "the banker who holds the guild's notes in Varenne — every debt in the city routes through his office" },
+  { id: "lady_cassia", name: "Lady Cassia", blurb: "a court noblewoman who collects interesting people the way others collect silver" },
+  { id: "sable", name: "Sable", blurb: "a rival courtesan in Valcourt who got there first and watches every newcomer with professional interest" },
+  { id: "minister_vael", name: "Minister Vael", blurb: "a crown minister who could elevate or destroy a reputation with a word, and knows it" }
 ];
 
 const FAME_TIERS = [
@@ -3298,13 +3306,24 @@ const MARKET = [
   { id: "better_locks", name: "Better locks & bolts", cost: 25, once: true, cat: "safety", desc: "Trouble chance −10% in your current quarters." },
   { id: "trusted_maid", name: "Trusted attendant", cost: 45, once: true, cat: "safety", desc: "+1 to all checks. Screens clients, keeps quiet." },
   { id: "private_room", name: "Private room upgrade", cost: 70, once: true, cat: "safety", desc: "+10 max energy, +5 max health. Better sleep, better recovery." },
+  /* ── Investment & luxury ────────────────────────────────── */
+  { id: "invest_small", name: "Moneylender deposit (50 coin)", cost: 50, cat: "investment", desc: "Returns 70 coin in 3 days. Risk: 10% chance the lender vanishes." },
+  { id: "invest_large", name: "Merchant venture (150 coin)", cost: 150, cat: "investment", desc: "Returns 220 coin in 5 days. Risk: 20% chance the ship doesn't come in." },
+  { id: "wardrobe_maintenance", name: "Wardrobe maintenance", cost: 20, cat: "appearance", desc: "Required at tier 3+. Keeps standing from passive decay. +1 Performance." },
+  { id: "guild_dues_advance", name: "Pay guild dues in advance", cost: 35, cat: "reputation", desc: "+12 standing. One month of dues paid. Looks well to the examiners." },
+  { id: "bespoke_commission", name: "Bespoke commission (artisan)", cost: 120, once: true, cat: "appearance", desc: "+3 pay per client. Something made for you alone — clients notice the difference." },
+  { id: "private_physician", name: "Retain a private physician", cost: 80, once: true, cat: "safety", desc: "Health never drops below 20 from illness events. Emergency visits included." },
+  { id: "safe_room", name: "Safe room at the guildhouse", cost: 90, once: true, cat: "safety", desc: "Trouble checks auto-succeed once per run. You have somewhere to go." },
+  { id: "reputation_column", name: "Plant a flattering rumor", cost: 45, cat: "reputation", desc: "+12 reputation. A well-placed word in the right ear becomes fact by morning." },
 ];
 
 const ENDINGS = {
-  guildmaster: { title: "Guild Master", text: "The Guild Hall falls silent as the council rises to its feet. The chain of office is heavy and cold, and it is yours. You earned this in beds across six cities — fucking strangers, reading men and women like books, selling pleasure at every rank until there was nowhere left to climb. Every guildhouse from Saltmere to Valcourt answers to you now." },
-  wealthy: { title: "A Quiet Retirement", text: "You buy out your guild contract with coin earned on your back and on your knees, count your savings one last time, and take a narrow house by the river with a garden out back. Nobody on your new street knows what you did for it, and you never feel the need to tell them. The body remembers. The coin doesn't ask questions." },
-  kept: { title: () => state.character.gender === "male" ? "Companion of the Estate" : "Lady of the Estate", text: "Sir Edric's carriage carries you out past the walls to rolling green country. He wanted your company in his bed more than he cared what people said about how you earned it. His family accepted you, after a fashion. The work is over. Whether what replaces it is freedom, you will spend years deciding." },
-  runaway: { title: "Southbound", text: "You slip aboard before dawn with Marlow and a single bag, your guild contract left behind in ashes. No more clients. No more rank trials. No more selling pieces of yourself by the hour. By the time the bells ring, the coast is a smudge on the horizon behind you." },
+  guildmaster: { title: "Guild Master", text: "The Guild Hall falls silent as the council rises to its feet. The chain of office is heavy and cold, and it is yours. You earned this in beds across six cities — fucking strangers, reading men and women like books, selling pleasure at every rank until there was nowhere left to climb. Every guildhouse from Saltmere to Valcourt answers to you now.", req: { rank: 5, standing: 80 } },
+  wealthy: { title: "A Quiet Retirement", text: "You buy out your guild contract with coin earned on your back and on your knees, count your savings one last time, and take a narrow house by the river with a garden out back. Nobody on your new street knows what you did for it, and you never feel the need to tell them. The body remembers. The coin doesn't ask questions.", req: { rank: 2, coin: 300 } },
+  kept: { title: () => state.character.gender === "male" ? "Companion of the Estate" : "Lady of the Estate", text: "Sir Edric's carriage carries you out past the walls to rolling green country. He wanted your company in his bed more than he cared what people said about how you earned it. His family accepted you, after a fashion. The work is over. Whether what replaces it is freedom, you will spend years deciding.", req: { npc: "edric", love: 18, trust: 12 } },
+  kept_cassia: { title: () => state.character.gender === "male" ? "Lord of the House Cassia" : "Lady of the House Cassia", text: "Lady Cassia signs the papers herself, with three witnesses and a notary. She wanted someone brilliant and difficult and worth the trouble. Her household takes you in without ceremony. The court watches. You stop caring what the court thinks somewhere around the third week, which is how she said it would go.", req: { npc: "lady_cassia", love: 20, trust: 15, rank: 4 } },
+  runaway: { title: "Southbound", text: "You slip aboard before dawn with Marlow and a single bag, your guild contract left behind in ashes. No more clients. No more rank trials. No more selling pieces of yourself by the hour. By the time the bells ring, the coast is a smudge on the horizon behind you.", req: { npc: "marlow", love: 15, trust: 8 } },
+  sanctuary: { title: "The Cathedral Door", text: "Dame Rennick arranged it. You have a room in the cathedral hospice, a small stipend, and no obligation to anyone who knocks. Whether this is healing or hiding, you spend the first year unsure. By the second, it doesn't matter. The door stays closed. The world goes on without you, which it was always going to do.", req: { npc: "dame_rennick", trust: 20, trauma: 60 } },
   burnout: { title: "Burned Out", text: "One morning you simply cannot face it again — another body, another performance, another morning counting coin on a rumpled bed. You leave the life with less than you hoped and more marks than you'd admit, but you leave it. That's more than some manage." },
   expelled: { title: "Struck From the Rolls", text: "The guild strikes your name from its rolls. No guildhouse will open its doors to you. The clients you fucked your way up to will pretend they never knew you. Whatever you sold of yourself for this career, you sold it for nothing. Whatever comes next, it won't be this." }
 };
@@ -3536,6 +3555,12 @@ function grantClassPositions(extra) {
 /* ---------- Skill growth, mastery and unlocks ---------- */
 const MASTERY_AT = [0, 10, 30, 60];
 const MASTERY_NAMES = ["", "Practiced", "Expert", "Master"];
+const MASTERY_FLAVOR = [
+  null,  // novice — no flavor
+  ["Clean form. The motions are yours now.", "You move with confidence. They notice.", "Not your first time here. Feels like it."],
+  ["The technique reads as natural.", "Every adjustment lands before they ask for it.", "There's a fluency to it that's hard to fake — and you're not faking."],
+  ["They don't have words for what makes it different.", "Three hundred times and it still hits like the first. Better.", "You've mastered this. Your body knows it before your mind decides."]
+];
 function masteryTier(id) { const v = (state.mastery || {})[id] || 0; return v >= MASTERY_AT[3] ? 3 : v >= MASTERY_AT[2] ? 2 : v >= MASTERY_AT[1] ? 1 : 0; }
 function techBonus(id) { return masteryTier(id) + ((state.character.specialties || []).includes(id) ? 2 : 0); }
 function readBonus() { return (state.classFeatures.keenEye ? 2 : 0) + (state.classFeatures.oracle ? 3 : 0); }
@@ -3721,12 +3746,25 @@ function chanceOf(bonus, dc, adv, dis) {
   else if (dis && !adv) p = p * p;
   return p;
 }
+function stressPenalty() {
+  if (state.stress >= 90) return -6;
+  if (state.stress >= 75) return -4;
+  if (state.stress >= 60) return -2;
+  return 0;
+}
+function traumaPenalty() {
+  if (state.trauma >= 75) return -4;
+  if (state.trauma >= 50) return -2;
+  if (state.trauma >= 30) return -1;
+  return 0;
+}
 function skillMeta(skill, opts = {}) {
+  const stressMod = stressPenalty() + traumaPenalty();
   return {
     label: SKILL_LABEL[skill] || cap(skill),
-    bonus: getSkillBonus(skill) + skillExtra(skill) + (opts.bonus || 0),
+    bonus: getSkillBonus(skill) + skillExtra(skill) + (opts.bonus || 0) + stressMod,
     adv: !!(opts.advantage || (skill === "persuasion" && state.classFeatures.silverTongue)),
-    dis: !!(opts.disadvantage || state.health < lowHealthLimit())
+    dis: !!(opts.disadvantage || state.health < lowHealthLimit() || state.stress >= 90)
   };
 }
 function attrMeta(attr, opts = {}) {
@@ -3826,7 +3864,7 @@ function trialReqs() {
 }
 function trialReady() { const r = trialReqs(); return !!r && r.every(x => x.ok); }
 
-function clientCap() { return 3 + (state.phaseMods.extraClients || 0); }
+function clientCap() { return 3 + (state.phaseMods.extraClients || 0) + (state.classFeatures.streetNetwork ? 1 : 0); }
 function whyCantWork() {
   if (state.health < MIN_HEALTH_TO_WORK) return "Too injured. Rest or see a physician.";
   if (state.energy < 15) return "Too tired. Rest first.";
@@ -3836,7 +3874,7 @@ function whyCantWork() {
 
 function grossPay(item, patron) {
   const tier = city().tier;
-  let pay = 8 + tier * 5 + (item.risk - 1) * 3;
+  let pay = 10 + tier * 8 + (item.risk - 1) * 4;
   if (state.character.appearance === "striking") pay += 3;
   if (state.character.appearance === "plain") pay = Math.max(4, pay - 2);
   if (state.classFeatures.allure) pay += 2;
@@ -3845,8 +3883,9 @@ function grossPay(item, patron) {
   if (state.classFeatures.scar) pay -= 1;
   if (state.classFeatures.tattoo && tier <= 1) pay *= 1.15;
   if (state.classFeatures.bargainer) pay *= 1.1;
-  pay *= 1 + state.rank * 0.08;
-  pay *= 1 + clamp(state.reputation, 0, 200) / 400;
+  pay *= 1 + state.rank * 0.12;
+  pay *= 1 + clamp(state.reputation, 0, 200) / 250;
+  if (city().tastes && city().tastes.includes(item.id)) pay = Math.round(pay * 1.2); // city taste bonus
   if (state.character.motivation === "debt") pay *= 1.1;
   pay = Math.round(pay * (state.phaseMods.payMult || 1));
   if (patron) pay *= 2;
@@ -4288,12 +4327,12 @@ function bodyMatch(bp) {
   return yes ? 1 : bp.kind === "looks" ? -1 : 0;
 }
 function garments(cg) { return cg === "male" ? { garment: "shirt", lower: "breeches", lace: "doublet laces" } : { garment: "gown", lower: "skirts", lace: "bodice laces" }; }
-const NPC_GENDER = { marlow: "male", edric: "male", briar: "female" };
+const NPC_GENDER = { marlow: "male", edric: "male", briar: "female", nell: "female", cassian: "male", isolde: "female", dame_rennick: "female", theron: "male", lady_cassia: "female", sable: "female", minister_vael: "male" };
 
 /* NPC portrait store — populated from state.npcPortraits (persisted in save)
    Keys are NPC ids. Values are data URLs from player-uploaded images.
    Default emoji fallbacks are in NPC_EMOJI. */
-const NPC_EMOJI = { marlow: "⚓", edric: "⚔️", briar: "🌿" };
+const NPC_EMOJI = { marlow: "⚓", edric: "⚔️", briar: "🌿", nell: "🧶", cassian: "📖", isolde: "🛡️", dame_rennick: "💎", theron: "⚖️", lady_cassia: "🌹", sable: "🖤", minister_vael: "📜" };
 
 const NPC_DEFAULT_PORTRAITS = {
   "marlow": "data:image/jpeg;base64,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",
@@ -5022,7 +5061,13 @@ const Game = {
         if (e.prefs.likes.includes(pos.id)) notes.push(e.party ? `${e.npc.name} loves this` : "they love this");
         else if (e.prefs.dislikes.includes(pos.id)) notes.push(e.party ? `${e.npc.name} dislikes this` : "they dislike this");
         const tier = masteryTier(pos.id);
-        if (tier) notes.push(MASTERY_NAMES[tier]);
+        if (tier) {
+        notes.push(MASTERY_NAMES[tier]);
+        if (MASTERY_FLAVOR && MASTERY_FLAVOR[tier]) {
+          const flav = MASTERY_FLAVOR[tier];
+          notes.push(flav[Math.floor(Math.random() * flav.length)]);
+        }
+      }
       }
       notes.push(`${p.meta.label} · −${p.energy} energy`);
       return { kind, label, hint: notes.join(" · "), odds: p.odds, disabled: state.energy < p.energy, reason: "Not enough energy", action: () => this.doRound(kind, pos) };
@@ -5293,6 +5338,24 @@ const Game = {
       if (state.classFeatures.cravesIntensity && !isKink(e.item.id)) cg = Math.floor(cg / 2);
       state.control = clamp(state.control + cg, 0, 100);
       if (e.prefs.likes.includes(e.item.id) && !state.inspiration) { state.inspiration = 1; lines.push("They were delighted. You feel inspired."); }
+      // City taste bonus: position matches what this city wants
+      if (city().tastes && city().tastes.includes(e.item.id)) {
+        rep += 2; standing += 3; r.coin = Math.round((r.coin || 0) * 1.15);
+        lines.push(`${city().name} knows what it likes. The coin reflects it.`);
+      }
+      // Aftercare (Flesh Healer): bonus rep and client relationship
+      if (state.classFeatures.aftercare || state.classFeatures.deepAftercare) {
+        const bonus = state.classFeatures.deepAftercare ? 15 : 8;
+        rep += bonus;
+        state.stress = Math.max(0, state.stress - 4);
+        lines.push("You take care of them after. They notice.");
+      }
+      // Massage Healer: stress relief per encounter
+      if (state.classFeatures.massageHealer) { state.stress = Math.max(0, state.stress - 4); }
+      // Salon Rose: salon venue bonus
+      if (state.classFeatures.salonRose && (e.tier >= 2)) { r.coin = Math.round((r.coin || 0) * 1.15); }
+      // Dockside: rough/dangerous client bonus
+      if (state.classFeatures.dockside && e.typeKey === "dangerous") { r.coin = Math.round((r.coin || 0) * 2); lines.push("Rough client, dockside rate."); }
     } else if (r.partial) {
       rep = 0; standing = 0;
       state.fame += 1;
@@ -5810,9 +5873,10 @@ const Game = {
     state.trauma = Math.min(100, state.trauma + bt);
     state.stress = 60;
     state.control = Math.max(0, state.control - bc);
-    state.health = Math.max(0, state.health - 5);
-    const sd = changeStanding(-3);
+    state.health = Math.max(0, state.health - 8);
+    const sd = changeStanding(-5);
     this.log("Broke down under the strain.");
+    if (state.trauma >= 100) { this.ending("burnout"); return; }
     const newDay = this.advanceClock();
     this.outcome("You break down", `The weight of it all lands at once. You lose the rest of the ${newDay ? "night" : "day's phase"} shaking in your room, unable to face anyone. The guildhouse notices.\n\n<em>+${bt} trauma · −${bc} control · ${sign(sd)} standing. Stress settles at 60.</em>`, () => newDay ? this.dawnReport() : this.menu(), { kicker: "Stress 100" });
   },
@@ -6467,6 +6531,284 @@ const EVENTS = [
       { label: "Accept", hint: "A courtship that starts warm (+10 interest) · doesn't use your phase", primary: true, action: () => Game.startCourt({ venue: "salon", bonus: 10, free: true }) },
       { label: "Send your regrets", quiet: true, action: () => Game.menu() }
     ]);
+  } },
+
+  /* ── New events ─────────────────────────────────────────────────────────── */
+
+  { id: "debt_collector", when: () => city().tier <= 2 && state.debt > 0, run() {
+    Game.setMode("event");
+    const pm = skillMeta("persuasion"), dc = 14;
+    UI.scene({ kicker: "Event", title: "A creditor's enforcer", body: "Someone your creditor sent has tracked you to the guildhouse. He isn't subtle." });
+    UI.choices([
+      { label: "Pay double to settle it", price: String(Math.min(state.coin, state.debt * 2)), disabled: state.coin < state.debt, reason: "Not enough coin", action: () => { const paid = Math.min(state.coin, state.debt * 2); state.coin -= paid; state.debt = Math.max(0, state.debt - Math.floor(paid / 2)); Game.outcome("Paid off", "The enforcer counts the coin, nods and walks out. You watch him go.", null); } },
+      { label: "Talk your way out", odds: odds(pm, dc), action: () => { const r = check(pm, dc); if (r.success) Game.outcome("Talked down", "You make it sound like payment is coming and imminent. He buys it, this time.", null, { roll: r }); else { state.health = Math.max(0, state.health - 10); state.stress = clamp(state.stress + 8, 0, 100); Game.outcome("It goes badly", "He makes his point with his fists. Debt still owed.", null, { roll: r }); } } },
+      { label: "Flee into the city", hint: "−10 standing · loses him but not the debt", action: () => { changeStanding(-10); Game.outcome("You run", "You duck through the market and lose him in the crowd. He'll come back.", null); } }
+    ]);
+  } },
+
+  { id: "rival_poaching", when: () => state.rank >= 1 && getFameIndex() >= 1, run() {
+    Game.setMode("event");
+    const pm = skillMeta("persuasion"), dc = 11 + city().tier;
+    UI.scene({ kicker: "Event", title: "A rival's whisper", body: "A well-dressed stranger approaches with a business proposal — they represent a competing guild house and have heard good things about you." });
+    UI.choices([
+      { label: "Hear them out", hint: "Persuasion to negotiate a signing bonus · fail: word gets back to your guild", odds: odds(pm, dc), action: () => {
+        const r = check(pm, dc);
+        if (r.success) { const bonus = 40 + city().tier * 20; state.coin += bonus; Game.outcome("A generous offer", `You negotiate a signing bonus of ${bonus} coin and walk away still under your current contract. Nobody needs to know.`, null, { roll: r }); }
+        else { const sd = changeStanding(-8); Game.outcome("Word gets back", `Your guild matron hears about the meeting before sunset.
+
+<em>${sign(sd)} standing</em>`, null, { roll: r }); }
+      } },
+      { label: "Refuse without listening", hint: "+4 standing · reputation for loyalty", action: () => { changeStanding(4); Game.outcome("Loyal", "You tell them the door is behind them. The guild hears about your loyalty by morning.", null); } }
+    ]);
+  } },
+
+  { id: "sick_client", when: () => true, run() {
+    Game.setMode("event");
+    const wm = skillMeta("insight"), dc = 12;
+    UI.scene({ kicker: "Event", title: "Something is wrong", body: "The client who booked you is pale, sweating, and close. They're insisting they're fine." });
+    UI.choices([
+      { label: "Check them properly", hint: "Insight · send them home if they're ill — lose the pay, save yourself", odds: odds(wm, dc), action: () => {
+        const r = check(wm, dc);
+        if (r.success) { Game.outcome("You send them home", "They're running a fever. You press a cloth to their forehead and call for a chair. No pay, but you stay healthy.", null, { roll: r }); }
+        else { state.health = Math.max(0, state.health - 8); state.stress = clamp(state.stress + 4, 0, 100); const g = Math.floor(Game.grossPay({ risk: 1 }, false) * 0.5); state.coin += g; Game.outcome("You work through it", `The pay was half what it should be. So was the experience. You feel off by morning.
+
++${g} coin`, null, { roll: r }); }
+      } },
+      { label: "Work the booking", hint: "Chance of catching what they have", action: () => { if (Math.random() < 0.45) { state.health = Math.max(0, state.health - 15); state.stress = clamp(state.stress + 6, 0, 100); Game.outcome("You catch it", "Three days, a fever, and the shakes. You should have sent them home.", null); } else { const g = Game.grossPay({ risk: 1 }, false); state.coin += g; Game.outcome("You luck out", `Full pay and no fever. This time.
+
++${g} coin`, null); } } }
+    ]);
+  } },
+
+  { id: "talent_scout", when: () => city().tier <= 1 && getFameIndex() >= 1, run() {
+    Game.setMode("event");
+    UI.scene({ kicker: "Event", title: "A scout from the upper city", body: "Someone from a guildhouse in the next city tier has heard your name. They want to offer you a placement — better venue, better clientele, faster advancement." });
+    UI.choices([
+      { label: "Negotiate the move", hint: "+15 standing · advance to next city now (if rank permits)", primary: true, disabled: state.rank < city().tier, reason: "Your rank isn't high enough to hold a placement there yet",
+        action: () => { changeStanding(15); state.fame += 5; Game.outcome("An offer worth taking", "You sign the placement note. The next city is waiting — and the clients are better.", null); } },
+      { label: "Stay where you are", hint: "−5 standing · but you know the city", action: () => { changeStanding(-5); Game.outcome("You decline", "They take the note back without argument. These offers don't usually come twice.", null); } }
+    ]);
+  } },
+
+  { id: "guild_inspection", when: () => state.rank >= 2 && city().tier >= 2, run() {
+    Game.setMode("event");
+    const pm = skillMeta("performance"), dc = 13 + Math.floor(city().tier / 2);
+    state.phaseMods = { ...state.phaseMods, label: "Inspection", trouble: (state.phaseMods.trouble || 0) + 0.03 };
+    UI.scene({ kicker: "Event", title: "Guild inspection", body: "A senior guild examiner is in the city making rounds. Every house is on its best behavior. You've been asked to demonstrate your work tonight.", chips: [{ text: "Performance check · visible outcome", cls: "warn" }] });
+    UI.choices([
+      { label: "Perform for the examiner", hint: `Performance DC ${dc} · success: +12 standing, +10 rep`, odds: odds(pm, dc), primary: true, action: () => {
+        const r = check(pm, dc);
+        if (r.success) { const sd = changeStanding(12); state.reputation += 10; Game.outcome("Impressed", `The examiner makes a note. You hear later that the note said something favorable.
+
+<em>${sign(sd)} standing · +10 reputation</em>`, null, { roll: r }); }
+        else { const sd = changeStanding(-4); Game.outcome("Underwhelming", `"Technically adequate," the examiner writes. You see what she wrote. The word adequate takes time to wash off.
+
+<em>${sign(sd)} standing</em>`, null, { roll: r }); }
+      } },
+      { label: "Plead illness and skip", hint: "−6 standing · avoids the roll", action: () => { changeStanding(-6); Game.outcome("You bow out", "Word gets around. A missed inspection is a question mark next to your name.", null); } }
+    ]);
+  } },
+
+  { id: "noble_scandal", when: () => city().tier >= 2 && state.rank >= 2 && getFameIndex() >= 2, run() {
+    Game.setMode("event");
+    const pm = skillMeta("insight"), dc = 14;
+    UI.scene({ kicker: "Event", title: "A client in trouble", body: "A regular client of yours has become the subject of a scandal. Someone is asking questions about who they've been spending their evenings with." });
+    UI.choices([
+      { label: "Protect their name", hint: "Insight to cover your tracks · success: loyalty +15 rep · fail: −8 rep, +8 stress", odds: odds(pm, dc), action: () => {
+        const r = check(pm, dc);
+        if (r.success) { state.reputation += 15; state.fame += 4; Game.outcome("You cover it", "You say nothing to nobody in the right way. The client sends a note with 30 coin and no name.
+
++15 reputation · +30 coin", null, { roll: r }); state.coin += 30; }
+        else { state.reputation = Math.max(0, state.reputation - 8); state.stress = clamp(state.stress + 8, 0, 100); Game.outcome("It slips", "The wrong person hears the wrong thing. You feel the change in how people look at you.
+
+−8 reputation", null, { roll: r }); }
+      } },
+      { label: "Distance yourself", hint: "+4 stress · reputation stable", action: () => { state.stress = clamp(state.stress + 4, 0, 100); Game.outcome("You step back", "Sometimes the clean choice is just the clean choice.", null); } }
+    ]);
+  } },
+
+  { id: "masked_client", when: () => city().tier >= 3, run() {
+    Game.setMode("event");
+    UI.scene({ kicker: "Event", title: "A masked booking", body: "A client arrives in a full mask. No name. Payment in advance — triple rate. They want complete privacy and complete silence about the night." });
+    UI.choices([
+      { label: "Accept the terms", hint: "Triple pay · +8 stress · someone powerful in your debt", primary: true, action: () => {
+        const g = Game.grossPay({ risk: 3 }, false) * 3;
+        state.coin += g; state.stress = clamp(state.stress + 8, 0, 100); state.fame += 6;
+        Game.outcome("An unmarked night", `No name. No record. ${g} coin. Whatever they wanted, they got it, and they'll be back.
+
++${g} coin · +8 stress`, null);
+      } },
+      { label: "Refuse — too strange", hint: "Nothing gained, nothing risked", action: () => Game.menu() }
+    ]);
+  } },
+
+  { id: "royal_interest", when: () => city().tier >= 4 && state.rank >= 4, run() {
+    Game.setMode("event");
+    const pm = skillMeta("persuasion"), dc = 16;
+    UI.scene({ kicker: "Event", title: "A courtier's message", body: "A courtier delivers a message with a wax seal you recognize. Someone very close to the throne has noticed you exist.", chips: [{ text: "High stakes", cls: "warn" }] });
+    UI.choices([
+      { label: "Attend the private audience", hint: "Persuasion DC 16 · success: permanent +20 rep, +30 standing · fail: −15 rep, expelled from court", odds: odds(pm, dc), primary: true, action: () => {
+        const r = check(pm, dc);
+        if (r.success) { state.reputation += 20; changeStanding(30); state.fame += 15; Game.outcome("A royal audience", "Three minutes in a private salon. You say the right things in the right order. The courtier hands you a folded note on the way out — an introduction you'll use for years.
+
++20 reputation · +30 standing", null, { roll: r }); }
+        else { state.reputation = Math.max(0, state.reputation - 15); changeStanding(-15); Game.outcome("An audience gone wrong", "Something in you says the wrong thing, or says nothing when they wanted something. The courtier doesn't look at you on the way out.
+
+−15 reputation · −15 standing", null, { roll: r }); }
+      } },
+      { label: "Send your regrets — not yet", hint: "+2 standing from caution · revisit later", action: () => { changeStanding(2); Game.outcome("Caution", "The message goes back politely declined. They'll remember. Whether that's good or bad depends on what you do next.", null); } }
+    ]);
+  } },
+
+  { id: "blackmail_attempt", when: () => getFameIndex() >= 3 && state.rank >= 3, run() {
+    Game.setMode("event");
+    const amount = 30 + city().tier * 15;
+    const pm = skillMeta("insight"), dc = 15;
+    UI.scene({ kicker: "Event", title: "An unsigned letter", body: `Someone claims to know something. They want ${amount} coin and your silence. The letter is unsigned, which tells you they're either very careful or very stupid.` });
+    UI.choices([
+      { label: "Pay the coin", price: String(amount), disabled: state.coin < amount, reason: "Not enough coin", action: () => { state.coin -= amount; Game.outcome("Paid", "The coin disappears. The letters stop — for now. They always stop for now.", null); } },
+      { label: "Investigate the sender", hint: "Insight · expose them · fail: they escalate", odds: odds(pm, dc), action: () => {
+        const r = check(pm, dc);
+        if (r.success) { state.reputation += 8; changeStanding(5); Game.outcome("You find them", "A minor clerk with debts. You have a very quiet conversation. The letters stop and the clerk leaves the city by morning.
+
++8 reputation", null, { roll: r }); }
+        else { state.reputation = Math.max(0, state.reputation - 12); state.stress = clamp(state.stress + 10, 0, 100); Game.outcome("It gets worse", "They weren't bluffing. Whatever they know, it's out now.
+
+−12 reputation", null, { roll: r }); }
+      } },
+      { label: "Ignore it", hint: "Roll of the dice", action: () => {
+        if (Math.random() < 0.4) { state.reputation = Math.max(0, state.reputation - 10); changeStanding(-5); Game.outcome("They weren't bluffing", "It gets out. Not the worst thing, but not nothing either.
+
+−10 reputation", null); }
+        else Game.outcome("Empty threat", "Nothing happens. They were bluffing.", null);
+      } }
+    ]);
+  } },
+
+  { id: "npc_nell", when: () => state.city === "ashford" && !!state.relationships.nell, run() {
+    const r = rel("nell");
+    Game.setMode("event");
+    UI.scene({ kicker: "Nell", title: "Nell Ashby at your door", body: `${r.trust >= 20 ? "She doesn't knock anymore, just opens the door and pulls up a chair." : "She knocks twice, quick, like she always does."} "I need a favor and I'm not above asking for one."` });
+    UI.choices([
+      { label: "Hear her out", hint: "Raise trust · she knows everyone in Ashford", primary: true, action: () => {
+        adjustRel("nell", { trust: 8, love: 3 });
+        const g = 15 + Math.floor(r.trust / 5) * 5;
+        state.coin += g; state.reputation += 4;
+        Game.outcome("A favor returned", `She needs a name kept quiet and you keep it. A week later an envelope appears under your door — ${g} coin and a list of merchant contacts.
+
++${g} coin · +4 reputation`, null);
+      } },
+      { label: "Decline", hint: "−5 trust", action: () => { adjustRel("nell", { trust: -5 }); Game.menu(); } }
+    ]);
+  } },
+
+  { id: "npc_cassian", when: () => state.city === "lysmoor" && !!(state.relationships.cassian || (city().npcs || []).includes("cassian")), run() {
+    Game.setMode("event");
+    const r = rel("cassian");
+    UI.scene({ kicker: "Brother Cassian", title: "A scholar's question", body: `Cassian finds you in the evening. "I've been thinking about what pleasure is," he says, perfectly seriously. ${r.trust >= 15 ? '"And I think you understand it better than anyone I've met."' : '"Philosophically. Would you mind talking with me?"'}` });
+    UI.choices([
+      { label: "Talk with him", hint: "Raise trust · he can introduce you to cathedral patrons", primary: true, action: () => {
+        adjustRel("cassian", { trust: 6, love: 2 });
+        state.skills.insight += 2;
+        Game.outcome("A long conversation", "You talk for two hours. He listens like everything you say matters, which is a stranger feeling than it should be.
+
++2 Insight", null);
+      } },
+      { label: "Keep it brief", hint: "No relationship change", action: () => Game.menu() }
+    ]);
+  } },
+
+  { id: "npc_theron", when: () => state.city === "varenne" && !!(state.relationships.theron || true), run() {
+    Game.setMode("event");
+    const r = rel("theron");
+    const pm = skillMeta("persuasion"), dc = 13;
+    UI.scene({ kicker: "Master Theron", title: "A banker's proposition", body: `Master Theron lays a document on the table. "An investment opportunity. Your reputation is, at this point, a financial instrument. I can help you use it correctly."` });
+    UI.choices([
+      { label: "Invest 50 coin", hint: "Returns 80 in 5 days if trust ≥ 10", price: "50", disabled: state.coin < 50, reason: "Not enough coin", action: () => {
+        state.coin -= 50;
+        adjustRel("theron", { trust: 5, lust: 2 });
+        state.flags.theronInvestment = state.day + 5;
+        state.flags.theronReturn = r.trust >= 10 ? 80 : 35;
+        Game.outcome("Invested", "He takes the coin and hands you a receipt. "Results in five days."", null);
+      } },
+      { label: "Negotiate the terms", hint: `Persuasion DC ${dc} · better returns`, odds: odds(pm, dc), action: () => {
+        const ch = check(pm, dc);
+        if (ch.success) { state.coin -= 50; state.flags.theronInvestment = state.day + 4; state.flags.theronReturn = 110; adjustRel("theron", { trust: 3 }); Game.outcome("Better terms", "He revises the figure upward without blinking.
+
+50 coin invested · 110 in four days", null, { roll: ch }); }
+        else { adjustRel("theron", { trust: -3 }); Game.outcome("He doesn't move", "He tucks the document away and picks up his pen. The meeting is over.
+
+−3 trust", null, { roll: ch }); }
+      } },
+      { label: "Decline the offer", action: () => Game.menu() }
+    ]);
+  } },
+
+  { id: "npc_lady_cassia", when: () => state.city === "aurelle" && !!(state.relationships.lady_cassia || true), run() {
+    Game.setMode("event");
+    const r = rel("lady_cassia");
+    UI.scene({ kicker: "Lady Cassia", title: "An introduction at court", body: `Lady Cassia appears at your elbow during the evening promenade. "Walk with me," she says, as if refusal isn't a word she knows. ${r.love >= 15 ? '"I want to show you something."' : '"I want to see how you handle a crowd."'}` });
+    UI.choices([
+      { label: "Walk with her", hint: "Raise standing at court · she opens doors", primary: true, action: () => {
+        adjustRel("lady_cassia", { love: 5, trust: 4 });
+        const sd = changeStanding(8);
+        state.fame += 5;
+        Game.outcome("An introduction", `She names you to four people who matter. By the end of the evening your name is in more conversations than you were part of.
+
+<em>${sign(sd)} standing · +5 fame</em>`, null);
+      } },
+      { label: "Politely excuse yourself", hint: "She doesn't forget a slight", action: () => { adjustRel("lady_cassia", { trust: -4 }); Game.menu(); } }
+    ]);
+  } },
+
+  { id: "npc_sable", when: () => state.city === "valcourt" && state.rank >= 4, run() {
+    Game.setMode("event");
+    const r = rel("sable");
+    const pm = skillMeta("persuasion"), dc = 15;
+    UI.scene({ kicker: "Sable", title: "A professional courtesy", body: `Sable finds you in the guildhouse common room. She sits across from you and says nothing for a moment, then: "You're better than I expected. That's either good or bad for me. I haven't decided which."` });
+    UI.choices([
+      { label: "Offer an alliance", hint: "High trust: +20 standing each, shared clients", primary: r.trust >= 10, action: () => {
+        const ch = check(pm, dc);
+        if (r.trust >= 10 || ch.success) {
+          adjustRel("sable", { trust: 8, love: 4 }); changeStanding(20); state.reputation += 8;
+          Game.outcome("Allies in Valcourt", "She shakes your hand once, like a business deal. Which it is. The shared introductions start the next morning.
+
++20 standing · +8 reputation", null);
+        } else {
+          adjustRel("sable", { trust: -5 }); changeStanding(-6);
+          Game.outcome("She declines", '"Not yet," she says, and gets up. You've given her information without getting any.
+
+−6 standing', null);
+        }
+      } },
+      { label: "Keep your distance", hint: "Neutral — nothing lost", action: () => Game.menu() },
+      { label: "Mark her as competition", hint: "−8 trust · she plays harder", action: () => { adjustRel("sable", { trust: -8 }); state.reputation = Math.max(0, state.reputation - 3); Game.outcome("A rivalry", "You've made your position clear. So has she, with her next introduction going to someone else.
+
+−3 reputation", null); } }
+    ]);
+  } },
+
+  { id: "investment_return", when: () => state.flags.theronInvestment && state.day >= state.flags.theronInvestment, run() {
+    const ret = state.flags.theronReturn || 0;
+    state.coin += ret;
+    delete state.flags.theronInvestment;
+    delete state.flags.theronReturn;
+    adjustRel("theron", { trust: 4 });
+    Game.outcome("Investment pays out", `Master Theron's runner delivers an envelope: ${ret} coin, as promised.
+
++${ret} coin`, null, { kicker: "Theron" });
+  } },
+
+  { id: "maintenance_cost", when: () => city().tier >= 3 && state.rank >= 3, run() {
+    const cost = 10 + city().tier * 5;
+    Game.setMode("event");
+    UI.scene({ kicker: "Upkeep", title: "The cost of keeping up appearances", body: `At this rank in this city, there are costs that aren't optional. Wardrobe, gifts to the right people, the right table at the right supper club. This phase costs ${cost} coin just to maintain standing.`, chips: [{ text: `${cost} coin recurring`, cls: "warn" }] });
+    UI.choices([
+      { label: `Pay ${cost} coin`, price: String(cost), disabled: state.coin < cost, reason: "Not enough coin — your standing will slip", action: () => { state.coin -= cost; Game.outcome("The toll of success", "You pay what being known costs. It's worth it, or it should be.", null); } },
+      { label: "Skip this month", hint: "−8 standing · visible", action: () => { changeStanding(-8); Game.outcome("People notice", "You skipped the right dinner, wore the wrong thing, declined the wrong invitation. It shows.
+
+−8 standing", null); } }
+    ]);
   } }
 ];
 
@@ -6505,34 +6847,34 @@ const DIFFICULTIES = {
 };
 
 const CLASSES = {
-  Courtesan: { label: { female: "Courtesan", male: "Courtier" }, hint: "+2 CHA, +10 Performance · Allure: +2 pay",
+  Courtesan: { label: { female: "Courtesan", male: "Courtier" }, hint: "+2 CHA, +10 Performance · Allure: +2 pay · Allure Opener: pre-encounter persuasion check",
     rec: { str: 10, dex: 14, con: 13, int: 8, wis: 12, cha: 15 },
-    apply: t => { t.attributes.cha += 2; t.skills.performance += 10; t.classFeatures.allure = true; } },
-  Streetwalker: { label: { female: "Streetwalker", male: "Streetwalker" }, hint: "+2 DEX, +8 Oral · Quick Recovery: +8 energy on rest",
+    apply: t => { t.attributes.cha += 2; t.skills.performance += 10; t.classFeatures.allure = true; t.classFeatures.allureOpener = true; } },
+  Streetwalker: { label: { female: "Streetwalker", male: "Streetwalker" }, hint: "+2 DEX, +8 Oral · Quick Recovery: +8 energy on rest · Street Network: see 1 extra client per phase",
     rec: { str: 10, dex: 15, con: 14, int: 8, wis: 12, cha: 13 },
-    apply: t => { t.attributes.dex += 2; t.skills.oral += 8; t.classFeatures.quickRecovery = true; } },
-  Dominatrix: { label: { female: "Dominatrix", male: "Dominus" }, hint: "+1 CHA, +12 Kink, +8 Control · Command: extra kink options",
+    apply: t => { t.attributes.dex += 2; t.skills.oral += 8; t.classFeatures.quickRecovery = true; t.classFeatures.streetNetwork = true; } },
+  Dominatrix: { label: { female: "Dominatrix", male: "Dominus" }, hint: "+1 CHA, +12 Kink, +8 Control · Command: kink clients auto-accept your lead · Scene Director: set terms",
     rec: { str: 13, dex: 13, con: 12, int: 8, wis: 12, cha: 15 },
-    apply: t => { t.attributes.cha += 1; t.skills.kink += 12; t.control += 8; t.classFeatures.command = true; } },
-  "Flesh Healer": { label: { female: "Flesh Healer", male: "Flesh Healer" }, hint: "+2 WIS, +8 Insight · Soothing: stronger Pull back",
+    apply: t => { t.attributes.cha += 1; t.skills.kink += 12; t.control += 8; t.classFeatures.command = true; t.classFeatures.sceneDirector = true; } },
+  "Flesh Healer": { label: { female: "Flesh Healer", male: "Flesh Healer" }, hint: "+2 WIS, +8 Insight · Soothing: stronger Pull back · Aftercare: bonus coin and trust on success",
     rec: { str: 10, dex: 13, con: 12, int: 8, wis: 15, cha: 14 },
-    apply: t => { t.attributes.wis += 2; t.skills.insight += 8; t.classFeatures.soothing = true; } }
+    apply: t => { t.attributes.wis += 2; t.skills.insight += 8; t.classFeatures.soothing = true; t.classFeatures.aftercare = true; } }
 };
 function classLabel(id, gk) { const c = CLASSES[id]; return c ? (c.label[gk || state.character.gender] || id) : (id || "Unformed"); }
 
 const SUBCLASSES = {
   Courtesan: [
-    { id: "Salon Rose", hint: "+6 Persuasion", apply: t => { t.skills.persuasion += 6; } },
-    { id: "Temple Devotee", hint: "+6 Oral", apply: t => { t.skills.oral += 6; } }],
+    { id: "Salon Rose", hint: "+6 Persuasion · Salon clients pay 15% extra · unlock: lotus, coital alignment", apply: t => { t.skills.persuasion += 6; t.classFeatures.salonRose = true; t.knownPositions = [...new Set([...t.knownPositions, "lotus", "coital_alignment_techniq"])]; } },
+    { id: "Temple Devotee", hint: "+6 Oral · All oral positions unlock · worship clients seek you out", apply: t => { t.skills.oral += 6; t.classFeatures.templeDevotee = true; } }],
   Streetwalker: [
-    { id: "Alley Cat", hint: "+1 DEX", apply: t => { t.attributes.dex += 1; } },
-    { id: "Dockside", hint: "+1 CON", apply: t => { t.attributes.con += 1; } }],
+    { id: "Alley Cat", hint: "+1 DEX · +4 Oral · Never surprised in trouble · city danger knowledge", apply: t => { t.attributes.dex += 1; t.skills.oral += 4; t.classFeatures.streetSmart = true; t.classFeatures.alleyCat = true; } },
+    { id: "Dockside", hint: "+1 CON · +4 Manual · Rough clients pay double · trouble: bonus roll", apply: t => { t.attributes.con += 1; t.skills.manual += 4; t.classFeatures.dockside = true; } }],
   Dominatrix: [
-    { id: "Rope Artist", hint: "+6 Kink", apply: t => { t.skills.kink += 6; } },
-    { id: "Impact", hint: "+6 Manual", apply: t => { t.skills.manual += 6; } }],
+    { id: "Rope Artist", hint: "+8 Kink · unlock: bondage, shibari, suspension · rope clients linger", apply: t => { t.skills.kink += 8; t.classFeatures.ropeMaster = true; t.knownPositions = [...new Set([...t.knownPositions, "bondage", "suspension", "spread_eagle"])]; } },
+    { id: "Impact", hint: "+6 Manual · unlock: impact_play, impact positions · session control bonus", apply: t => { t.skills.manual += 6; t.skills.kink += 2; t.classFeatures.impactArtist = true; t.knownPositions = [...new Set([...t.knownPositions, "impact_play", "spanking"])]; } }],
   "Flesh Healer": [
-    { id: "Massage", hint: "+6 Manual", apply: t => { t.skills.manual += 6; } },
-    { id: "Aftercare", hint: "+6 Insight", apply: t => { t.skills.insight += 6; } }]
+    { id: "Massage", hint: "+6 Manual · −4 stress per encounter · clients return specifically for you", apply: t => { t.skills.manual += 6; t.classFeatures.massageHealer = true; } },
+    { id: "Aftercare", hint: "+8 Insight · aftercare gives +15 rep each time · unlock: lingam, yoni massage", apply: t => { t.skills.insight += 8; t.classFeatures.deepAftercare = true; t.knownPositions = [...new Set([...t.knownPositions, "tantric_bliss", "healing_touch"])]; } }]
 };
 
 function setRel(t, id, d) {
