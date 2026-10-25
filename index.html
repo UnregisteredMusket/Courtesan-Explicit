@@ -2753,7 +2753,126 @@ const CLIMAX_PATHS = {
     <path d="M5 13 Q5.5 15.5 6 17" fill="#ffffffaa" opacity=".85"/>
     <path d="M11 13 Q11.5 15.5 12 17" fill="#ffffffaa" opacity=".85"/>
     <ellipse cx="8" cy="14" rx="3.5" ry="1.2" fill="#ffffffcc" opacity=".9"/>`,
+  // Internal vaginal finish: dripping from entrance, pooling between thighs
+  internal: `
+    <ellipse cx="11" cy="17" rx="3" ry="1.1" fill="#ffffffcc" opacity=".9"/>
+    <path d="M9.5 17.5 Q10 20 10 22" fill="#ffffffaa" opacity=".85"/>
+    <path d="M12.5 17.5 Q12 20 12 22" fill="#ffffffaa" opacity=".8"/>
+    <ellipse cx="11" cy="20" rx="2" ry=".7" fill="#ffffff88" opacity=".7"/>`,
+  // Pullout: cum landing on stomach / mound
+  pullout: `
+    <ellipse cx="11" cy="14" rx="3.5" ry="1.2" fill="#ffffffcc" opacity=".9"/>
+    <path d="M9 15 Q9.5 17.5 10 19.5" fill="#ffffffaa" opacity=".85"/>
+    <path d="M13 15 Q12.5 17 12 18.5" fill="#ffffffaa" opacity=".8"/>
+    <path d="M7 14.5 Q8 16.5 8.5 18" fill="#ffffff88" opacity=".7"/>`,
+  // Facial: streaks across cheek and lips
+  facial: `
+    <path d="M7 7 Q9.5 8.5 11 10 Q12 11 13 12" fill="#ffffffaa" opacity=".85"/>
+    <path d="M6 9 Q8 10 10 11" fill="#ffffff88" opacity=".75"/>
+    <ellipse cx="9" cy="8.5" rx="2.5" ry=".8" fill="#ffffffcc" opacity=".9"/>
+    <path d="M10 11.5 Q12 12.5 13.5 12" fill="#ffffff88" opacity=".7"/>`,
+  // Chest: cum on chest / breasts
+  chest: `
+    <ellipse cx="9" cy="11" rx="3" ry="1.2" fill="#ffffffcc" opacity=".9"/>
+    <path d="M7 12 Q7.5 14 8 15.5" fill="#ffffffaa" opacity=".85"/>
+    <path d="M11 12 Q11.5 14 11.5 15.5" fill="#ffffffaa" opacity=".8"/>
+    <ellipse cx="6.5" cy="12" rx="1.5" ry=".6" fill="#ffffff88" opacity=".7"/>
+    <path d="M4.5 10 Q6 11.5 7 13" fill="#ffffff88" opacity=".7"/>`,
+  // Back: cum on lower back, trickling down
+  back: `
+    <path d="M5 12 Q6.5 14 7 16" fill="#ffffffaa" opacity=".85"/>
+    <path d="M9 11.5 Q10.5 13.5 11 15.5" fill="#ffffffaa" opacity=".8"/>
+    <ellipse cx="8" cy="12.5" rx="3.5" ry="1" fill="#ffffffcc" opacity=".9"/>
+    <path d="M7 16 Q7.5 18 8 20" fill="#ffffff88" opacity=".7"/>`,
+  // Thighs: cum dripping down inner thighs
+  thighs: `
+    <path d="M8 14 Q7.5 16.5 7.5 19 Q7.5 21 8 22" fill="#ffffffaa" opacity=".85"/>
+    <path d="M12 14 Q12.5 16.5 12.5 19 Q12.5 21 12 22" fill="#ffffffaa" opacity=".85"/>
+    <ellipse cx="10" cy="14.5" rx="2.5" ry=".9" fill="#ffffffcc" opacity=".9"/>
+    <path d="M6 15 Q5.5 17.5 6 20" fill="#ffffff88" opacity=".7"/>
+    <path d="M14 15 Q14.5 17.5 14 20" fill="#ffffff88" opacity=".7"/>`,
+  // Anal internal: dripping from rear, running down
+  anal_internal: `
+    <path d="M6 13.5 Q6.5 16 7 18.5 Q7.5 20.5 8 22" fill="#ffffffaa" opacity=".85"/>
+    <path d="M4 13 Q4.5 15.5 5 17.5" fill="#ffffff88" opacity=".7"/>
+    <ellipse cx="6" cy="14.5" rx="2.5" ry=".9" fill="#ffffffcc" opacity=".9"/>
+    <path d="M9 14 Q10 16 10.5 18" fill="#ffffff88" opacity=".7"/>`,
   heart: `<ellipse cx="8" cy="14" rx="3" ry="1" fill="#ffffffcc" opacity=".85"/>`
+};
+// Maps position IDs to their cum-target key in CLIMAX_PATHS
+const CLIMAX_TARGET = {
+  // Vaginal penetration — internal finish
+  missionary:        "internal",
+  cowgirl:           "internal",
+  reverse_cowgirl:   "internal",
+  lotus:             "internal",
+  lotus_blossom:     "internal",
+  butter_churner:    "internal",
+  plow:              "internal",
+  scissors:          "internal",
+  crab:              "internal",
+  throne:            "internal",
+  amazon:            "internal",
+  rodeo:             "internal",
+  // Vaginal — pullout / external finish
+  standing_wrap:     "pullout",
+  wall_pin:          "pullout",
+  // Doggy and rear-entry — behind / anal_internal covered per case
+  doggy_style:       "behind",
+  prone_bone:        "behind",
+  flat_doggy:        "behind",
+  standing_doggy:    "behind",
+  leaning_doggy:     "behind",
+  // Anal — internal rear finish
+  anal_missionary:   "anal_internal",
+  anal_cowgirl:      "anal_internal",
+  anal_reverse:      "anal_internal",
+  anal_doggy:        "anal_internal",
+  anal_prone:        "anal_internal",
+  anal_standing:     "anal_internal",
+  // Spooning / side
+  spooning:          "side",
+  sideways:          "side",
+  scissors_side:     "side",
+  // Standing positions
+  standing:          "standing",
+  standing_carry:    "standing",
+  wall_standing:     "standing",
+  lifted:            "standing",
+  // Seated
+  seated:            "seated",
+  lap_sit:           "seated",
+  desk_sit:          "seated",
+  chair_ride:        "seated",
+  // Oral — facial or oral landing
+  blowjob:           "facial",
+  face_sit:          "oral",
+  deepthroat:        "facial",
+  irrumatio:         "facial",
+  sixty_nine:        "oral",
+  kneeling_oral:     "facial",
+  // Manual
+  handjob:           "pullout",
+  mutual_manual:     "pullout",
+  footjob:           "thighs",
+  // Thighs / intercrural
+  thigh_fuck:        "thighs",
+  intercrural:       "thighs",
+  // Chest
+  titfuck:           "chest",
+  paizuri:           "chest",
+  // Back
+  back_rub:          "back",
+  // Group
+  spitroast:         "spitroast",
+  dp:                "dp",
+  gang:              "gang",
+  ffm:               "ffm",
+  // Specialty
+  grind:             "grind",
+  tribadism:         "grind",
+  rope:              "rope",
+  impact:            "impact",
 };
 
 // svgIcon — decorative UI icons (act-ico chips, flame heat dots)
@@ -3107,7 +3226,15 @@ function bodyViz(e) {
   const climaxTextBlock = isClimax ? `<div class="climax-text"><strong>✦ release</strong> — ${e.climaxText || "the tension crests and breaks"}</div>` : "";
 
   const posImg = (typeof POSITION_IMAGES !== "undefined") ? POSITION_IMAGES[mv.id] : null;
-  const imgBlock = posImg ? `<div class="viz-pos-img${isClimax ? " climax-flash" : ""}"><img src="${posImg}" alt="${mv.name}" /></div>` : "";
+  const climaxPathKey = isClimax ? (CLIMAX_TARGET[mv.id] || posKey || "heart") : null;
+  const climaxSvgOverlay = (isClimax && climaxPathKey && CLIMAX_PATHS[climaxPathKey])
+    ? `<div class="climax-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${CLIMAX_PATHS[climaxPathKey]}</svg></div>`
+    : "";
+  const imgBlock = posImg
+    ? `<div class="viz-pos-img${isClimax ? " climax-flash" : ""}" style="position:relative">${climaxSvgOverlay}<img src="${posImg}" alt="${mv.name}" /></div>`
+    : (isClimax && climaxPathKey)
+      ? `<div class="viz-pos-img climax-flash" style="position:relative;width:96px;height:128px;background:#1a0505">${climaxSvgOverlay}</div>`
+      : "";
 
 
 
@@ -4764,26 +4891,67 @@ const Game = {
         e.climaxing = 2; // show climax overlay for 2 rounds
         const posKey = (TECH_INFO[pos.id] || ["heart"])[0];
         const climaxLines = {
-          face: "you arch back into it, thighs locking around them, and come apart — you can feel it everywhere at once",
-          ontop: "you bear down hard, grinding through the peak, breathless and shaking on top of them",
-          behind: "your hips slam back one last time and you shudder through it, bent and clutching whatever you can reach",
-          side: "you curl tight against them, one hand biting into the sheet, riding the wave until your body goes slack",
-          standing: "your back hits the wall and you let it hold you while you shatter — knees giving out, gone for a moment",
-          seated: "you drop your full weight down and come hard, grinding the last of it out before you can breathe again",
-          oral: "you push their head in and hold, thighs clamping, release rolling through you in a long shuddering wave",
-          manual: "the stroke pulls it out of you — you spill hot across their hand and your hips rock helplessly through it",
-          grind: "you snap over the edge together, wet and close and gasping, the friction unbearable in the best way",
-          spitroast: "both ends drive home and you tip over between them — nothing left to hold back, you let all of it go",
-          dp: "filled from both angles at once, the pressure doubles and you break — a long ragged cry you don't bother to swallow",
-          gang: "there are too many hands and mouths and it catches up with you all at once, the orgasm ripping through the center of you",
-          ffm: "surrounded and consumed, the release hits and you let them take the rest of you with it",
+          face: "you arch your back and seize — thighs snapping shut around them, cunt clenching hard around nothing, the orgasm crashing through you wave after wave",
+          ontop: "you bear down and grind through it — hips rolling slow and desperate, walls squeezing tight, the peak dragging out longer than you expect before you finally go still",
+          behind: "your hips slam back one last time and your whole body locks — cunt clutching and pulsing around them as you shudder through it, bent over and wrung out",
+          side: "you curl tight against them, one thigh hooked back over theirs, and feel yourself clench and spill — the orgasm moves through you slow and deep, leaving you slack and breathing hard",
+          standing: "your back hits the wall and your legs stop working — you shatter upright, hips bucking, cunt clenching in long rolling pulses, their arms the only thing keeping you from folding",
+          seated: "you drop your full weight and grind down through it — thighs shaking, walls gripping hard, release cresting and breaking in a long, low cry before you slump against them",
+          oral: "you press their face in and hold — thighs clamping around their head, hips rocking against their mouth, your cunt fluttering through it in short hot pulses that won't stop",
+          manual: "the stroke pulls it out of you — you spill hot and slick across their hand, hips fucking helplessly forward through every aftershock, unable to stop until you're emptied",
+          grind: "you snap over the edge together — wet and frantic and so close you can feel every breath, the friction turning unbearable right before the release floods through both of you",
+          spitroast: "both ends drive home at once and you tip over between them — cunt clenching, throat working, nowhere to go as the orgasm rips through you front to back",
+          dp: "filled from both angles, the pressure doubles and you break — cunt and ass clenching in rhythm, a long ragged cry you can't swallow, your whole body shaking between them",
+          gang: "too many hands, too many mouths, and it catches all at once — the orgasm rips through you from the center out, your cunt clenching on whoever's inside you while the rest of it blurs",
+          ffm: "surrounded and consumed from every angle, the release hits like a wave — you clench and shudder against them, thighs slick, cunt pulsing, and let them take the rest of you with it",
+          missionary: "you arch up into them and your walls clench tight — hips rolling through each pulse as the orgasm breaks wide open, thighs locked around their waist, both of you pressed chest to chest",
+          cowgirl: "you roll your hips down hard one last time and come undone on top — cunt gripping and releasing in rhythmic pulses, thighs shaking against them, your whole weight pressed down as you ride it out",
+          reverse_cowgirl: "you lean forward and grind back into them — your walls clench hard around their cock as the orgasm crests, hips rolling slow and desperate, thighs twitching with each aftershock",
+          doggy_style: "you drop your chest to the mattress and push back — cunt clenching in long tight pulses around them, hips slamming home one last time, your hands fisting the sheet as you break",
+          spooning: "you press back into them and shudder — their cock buried deep from behind, your walls squeezing and releasing in slow rolling waves, one hand reaching back to grip their thigh and hold on",
+          standing: "your legs lock and your back bows — standing upright while the orgasm rips through you, cunt clenching hard, one hand braced against the wall to keep from going down",
+          "69": "you bury your face in them and clench — hips grinding against their mouth, your thighs clamping around their head, the orgasm breaking through you while you're still working them with your tongue",
+          lotus: "wrapped around them and rocking — you feel yourself clench from deep inside as the climax hits, your hips grinding down in slow tight circles, your chest pressed to theirs through every tremor",
+          pretzel_dip: "folded and pinned from the side, you feel the angle of it everywhere — your walls grip hard as the peak breaks, hips jerking, one leg hooked over their shoulder taking the full weight of it",
+          coital_alignment_techniq: "the friction of their pubic bone finds the right spot and holds — you grind against it through the climax, clit and walls both pulsing, your hips rocking in tight insistent circles until you're done",
+          legs_on_shoulder: "your legs fold back against your chest, every thrust driving deep — your walls clench down on that angle and you come hard, hips arching up into it, thighs trembling against their shoulders",
+          spread_eagle: "pinned flat and open, nowhere to go — your cunt clenches tight around them as the orgasm hits, hips bucking uselessly against their weight, every pulse dragged out by how completely they're filling you",
+          pile_driver: "weight pressing you nearly in half — you take each thrust and feel the orgasm building from somewhere deep, your walls gripping in long rolling pulses as it breaks, a sharp cry you can't hold back",
+          wheelbarrow: "held up and open, legs in their hands — the angle drives deep and you come without warning, cunt clenching hard, your arms the only thing keeping you off the floor as your hips shudder through it",
+          full_nelson: "pinned and lifted, nothing to grip — your cunt flutters and clenches around them while the orgasm tears through you, throat working on a sound, back arched hard against their chest",
+          reverse_missionary: "pressed down from behind — your walls grip tight as the climax hits, hips grinding back against them, the full length of you shuddering against the mattress while they hold you through it",
+          butterfly: "hips tilted up and held — the angle presses into you perfectly and you break fast, cunt clenching in short hard pulses, thighs trembling in their grip while you arch off the mattress",
+          chair: "seated in their lap with nowhere to rise — you come with your hips rolling forward in tight grinding circles, walls squeezing down hard, both hands braced on their thighs through every aftershock",
+          edge_of_bed: "hips at the edge, legs pulled in — the leverage drives deep and your walls clench around it as the orgasm crests, your hands fisting the sheets above your head, arching up into the finish",
+          standing_doggy: "bent at the waist, one hand on the wall — you push back hard and shudder through it upright, cunt gripping and releasing in tight pulses, your legs barely keeping under you at the end",
+          prone_bone: "face down and pressed flat — the orgasm rolls through you slow and deep with nowhere to go, your hips grinding into the mattress, walls clenching down hard around the length of them inside you",
+          lazy_dog: "on your side with your hips angled back — you feel the release build deep and low, your walls gripping in long slow pulses, one hand reaching back to pull them in closer as you ride it out",
+          frog: "knees wide and crouched down low — your cunt grips hard as the peak hits, hips sinking fully onto them, thighs shaking with the effort of holding the position while the orgasm tears through you",
+          scissors: "legs tangled and pressed together — the friction is direct and unrelenting and you go over fast, grinding forward through the pulse, thighs slick, clit and walls both clenching tight against them",
+          cowgirl_scissors: "riding them crosswise, the angle grinding perfectly against your front wall — you lean into it and come, hips rocking in short desperate circles, your cunt clenching around them with each pulse",
+          reverse_scissors: "angled away and grinding back — the stretch and the friction combine and you break without warning, hips rolling through every aftershock, your walls gripping tight in long rolling pulses",
+          kneeling: "on your knees and taking it — you clench down hard as the orgasm hits, hips driving back to meet each thrust, thighs pressed together, a low broken sound dragged out of you through the peak",
+          kneel_and_stand: "kneeling while they stand over you — the angle drives deep and you come with your hips arching back, cunt gripping in tight pulses, both hands pressed to the floor to hold yourself through it",
+          standing_oral: "standing while they work you from below — your thighs clamp around their head and your hips jerk forward through it, clit pulsing hard against their mouth, one hand fisted in their hair to hold on",
+          seated_oral: "seated and gripping their head between your thighs — you roll your hips forward and come, cunt clenching on nothing, the orgasm pulling a long shuddering exhale out of you before you go slack",
+          face_sitting: "pressed down over their mouth — your hips grind forward through the climax, thighs clenching against their head, clit grinding wet and slick against their lips as you shudder through every pulse",
         };
         const fallbackLines = [
-          "the tension that's been coiling inside you finally breaks — you shudder through it and come back to yourself wet and wrung out",
-          "a wave of heat crests and you can't hold it — you tip over, trembling and slick, then come back piece by piece",
-          "you lose the thread entirely — body arching, thighs clenching — and when it's done you're breathing like you ran",
-          "the build releases all at once. your fingers curl. your back bows. you breathe through the aftershocks and straighten up.",
-          "you tip over the edge before you can stop it — you feel yourself clench and pulse and spill, then slowly still",
+          "the tension that's been coiling inside you finally breaks — you shudder through it, cunt clenching and releasing in waves, and come back to yourself wet and wrung out",
+          "a wave of heat crests and your walls grip tight — you tip over, trembling, hips rocking helplessly through each pulse until your body finally stills",
+          "you lose the thread entirely — back arching, thighs locking, cunt squeezing down hard — and when it's done you're breathing like you ran a mile",
+          "the build releases all at once: fingers curling, back bowing, a sharp cry you didn't bother to muffle, then slow steady aftershocks while you come back down",
+          "you tip over before you can stop it — your cunt clenches and pulses and spills, hips rocking through every aftershock until you're finally done",
+          "it hits you from deep inside and radiates out — your walls grip and release in long rolling waves, thighs shaking, a low moan dragged out through your teeth",
+          "your whole body seizes for one held moment — cunt squeezing tight, breath stopped — then the release floods through you and you sag into whatever's holding you up",
+          "the orgasm rips through the center of you and leaves nothing standing — thighs slick, walls pulsing, you breathe through it until your hands stop shaking",
+          "you feel yourself clench hard and then shatter — hips bucking forward through the pulse, a wet rush of heat, then the slow loosening as your body lets it go",
+          "the friction tips you over and your cunt clamps down — rolling pulses dragging the peak out longer than expected, your breath ragged, every muscle finally going loose",
+          "you arch and lock and break — walls gripping in tight rhythmic pulses, a sound pulled from somewhere low in your chest, your body wringing out every last drop of it",
+          "it tears through you fast and hard — no warning, just the snap of it, your hips driving forward through each pulse until the last tremor fades",
+          "you come undone slowly — the peak building past the point of control, your walls clenching tighter and tighter, then the long shuddering release as everything lets go",
+          "the climax breaks and your body moves on its own — hips grinding, thighs clamping, cunt pulsing in waves — you're just along for it until the last aftershock fades",
+          "heat floods through you from the inside out — you clench hard, cry out, and ride the pulse until your legs stop shaking and you can breathe again",
         ];
         e.climaxText = climaxLines[posKey] || fallbackLines[Math.floor(Math.random() * fallbackLines.length)];
         e.text += " " + (climaxLines[posKey] || fallbackLines[Math.floor(Math.random() * fallbackLines.length)]).replace(/^./, c => c.toUpperCase()) + ".";
