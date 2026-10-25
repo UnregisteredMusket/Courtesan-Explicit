@@ -941,18 +941,18 @@ const INDEX = {
     { id: "revelation", name: "Revelation", skill: "vaginal", risk: 1, difficulty: "Beginner" , p: "mf" }
   ],
   kinks: [
-    { id: "bondage", name: "Bondage", skill: "kink", risk: 3 , p: "any" },
-    { id: "spanking", name: "Spanking", skill: "manual", risk: 2 , p: "any" },
-    { id: "roleplay", name: "Roleplay", skill: "performance", risk: 1 , p: "any" },
-    { id: "sensory_deprivation", name: "Sensory Deprivation", skill: "kink", risk: 2 , p: "any" },
-    { id: "temperature_play", name: "Temperature Play", skill: "kink", risk: 2 , p: "any" },
-    { id: "dominance_and_submission", name: "Dominance & Submission", skill: "kink", risk: 3 , p: "any" },
-    { id: "praise_kink", name: "Praise", skill: "performance", risk: 1 , p: "any" },
-    { id: "dirty_talk", name: "Dirty Talk", skill: "performance", risk: 1 , p: "any" },
-    { id: "voyeurism", name: "Voyeurism", skill: "performance", risk: 1 , p: "any" },
-    { id: "exhibitionism", name: "Exhibitionism", skill: "performance", risk: 2 , p: "any" },
-    { id: "foot_fetish", name: "Foot Fetish", skill: "manual", risk: 1 , p: "any" },
-    { id: "impact_play", name: "Impact Play", skill: "manual", risk: 2 , p: "any" }
+    { id: "bondage", name: "Bondage", skill: "kink", risk: 3 , difficulty: "Advanced", p: "any" },
+    { id: "spanking", name: "Spanking", skill: "manual", risk: 2 , difficulty: "Intermediate", p: "any" },
+    { id: "roleplay", name: "Roleplay", skill: "performance", risk: 1 , difficulty: "Beginner", p: "any" },
+    { id: "sensory_deprivation", name: "Sensory Deprivation", skill: "kink", risk: 2 , difficulty: "Intermediate", p: "any" },
+    { id: "temperature_play", name: "Temperature Play", skill: "kink", risk: 2 , difficulty: "Intermediate", p: "any" },
+    { id: "dominance_and_submission", name: "Dominance & Submission", skill: "kink", risk: 3 , difficulty: "Advanced", p: "any" },
+    { id: "praise_kink", name: "Praise", skill: "performance", risk: 1 , difficulty: "Beginner", p: "any" },
+    { id: "dirty_talk", name: "Dirty Talk", skill: "performance", risk: 1 , difficulty: "Beginner", p: "any" },
+    { id: "voyeurism", name: "Voyeurism", skill: "performance", risk: 1 , difficulty: "Beginner", p: "any" },
+    { id: "exhibitionism", name: "Exhibitionism", skill: "performance", risk: 2 , difficulty: "Intermediate", p: "any" },
+    { id: "foot_fetish", name: "Foot Fetish", skill: "manual", risk: 1 , difficulty: "Beginner", p: "any" },
+    { id: "impact_play", name: "Impact Play", skill: "manual", risk: 2 , difficulty: "Intermediate", p: "any" }
   ]
 };
 
@@ -3580,7 +3580,9 @@ function grantClassPositions(extra) {
   const order = [...(SUBCLASS_POSITIONS[state.character.subclass] || []), ...(CLASS_POSITIONS[state.character.class] || []), ...INDEX.positions.map(p => p.id)];
   for (const id of order) {
     if (learned.length >= extra) break;
-    if (canLearn(id) && learnPosition(id)) learned.push(getPosition(id).name);
+    const _pos = getPosition(id);
+    if (_pos && !positionAvailable(_pos, state.character.gender, state.character.gender, [])) continue;
+    if (canLearn(id) && learnPosition(id)) learned.push(_pos.name);
   }
   return learned;
 }
@@ -3714,7 +3716,11 @@ function nextUnlock(sk) {
 function trainFromRound(skill, techId, ok) {
   if (ok) state.skills[skill] = Math.min(100, (state.skills[skill] || 0) + 1);
   if (ok && skill === "vaginal" && Math.random() < 0.34) state.skills.anal = Math.min(100, state.skills.anal + 1);
-  if (techId) state.mastery[techId] = Math.min(MASTERY_AT[3], (state.mastery[techId] || 0) + (ok ? 2 : 1));
+  if (techId) {
+    const _pos = getPosition(techId);
+    const _diffBonus = (_pos && ["Advanced","Expert","Master"].includes(_pos.difficulty)) ? 1 : 0;
+    state.mastery[techId] = Math.min(MASTERY_AT[3], (state.mastery[techId] || 0) + (ok ? 2 : 1) + _diffBonus);
+  }
 }
 function gainXp(n) { state.xp += Math.round(n * (state.classFeatures.quickStudy ? 1.25 : 1)); }
 function clientGender() { const p = (CLIENTELE[state.character.clientele] || CLIENTELE.anyone).male; return Math.random() < p ? "male" : "female"; }
@@ -3748,7 +3754,7 @@ function actPanel(e, preview) {
     const p = Math.round((1 - Math.max(0, m.climax) / m.max) * 100);
     return `<div class="pm ${i === e.focus ? "on" : ""} ${m.climax <= 0 ? "done" : ""}"><span class="av ${m.cg}">${esc(m.name.charAt(0))}</span><div class="pmt"><div>${esc(m.name)}${i === e.focus ? " ✦" : ""}</div><div class="track"><div class="fill" style="width:${clamp(p, 0, 100)}%;background:var(--c-rep)"></div></div><div class="pmm">${m.climax <= 0 ? "Satisfied" : p < 30 ? "Guarded" : p < 70 ? "Warming" : "Close"}</div></div></div>`;
   }).join("")}</div>` : "";
-  return `<div class="act"><div class="act-ico">${svgIcon(info[0])}</div><div class="act-txt"><div class="act-k">${grp}${info[1]}</div><div class="act-n">${mv.name}${tier ? ` <span class="mast">${MASTERY_NAMES[tier]}</span>` : ""}</div><div class="act-p">${info[2]}${!preview && e.dress !== undefined ? ` · ${e.dress === 2 ? "still dressed" : e.dress === 1 ? "clothes loosened" : "bare"}` : ""}</div></div>${preview ? "" : `<div class="heat" title="Intensity">${[0, 1, 2, 3, 4].map(i => `<span class="${i < heat ? "on" : ""}">${svgIcon("flame")}</span>`).join("")}</div>`}</div>${party}`;
+  return `<div class="act"><div class="act-ico">${svgIcon(info[0])}</div><div class="act-txt"><div class="act-k">${grp}${info[1]}</div><div class="act-n">${mv.name}${tier ? ` <span class="mast">${MASTERY_NAMES[tier]}</span>` : ""}${mv.difficulty && mv.difficulty !== "Beginner" ? ` <span class="diff-badge diff-${mv.difficulty.toLowerCase()}">${mv.difficulty}</span>` : ""}</div><div class="act-p">${info[2]}${!preview && e.dress !== undefined ? ` · ${e.dress === 2 ? "still dressed" : e.dress === 1 ? "clothes loosened" : "bare"}` : ""}</div></div>${preview ? "" : `<div class="heat" title="Intensity">${[0, 1, 2, 3, 4].map(i => `<span class="${i < heat ? "on" : ""}">${svgIcon("flame")}</span>`).join("")}</div>`}</div>${party}`;
 }
 
 function getSkillBonus(name) {
@@ -4875,7 +4881,8 @@ const Game = {
       party.forEach(m => { m.prefs.dislikes = m.prefs.dislikes.filter(id => id !== item.id); });
     }
 
-    let dc = 8 + item.risk * 2 + c.tier + Math.floor(Math.random() * 3) + ((spec && spec.dcMod) || 0);
+    const _diffMod = { Beginner: -1, Intermediate: 0, Advanced: 2, Expert: 4, Master: 6 }[(item.difficulty || "Intermediate")] ?? 0;
+    let dc = 8 + item.risk * 2 + c.tier + Math.floor(Math.random() * 3) + ((spec && spec.dcMod) || 0) + _diffMod;
     if (group) dc += 1 + (state.classFeatures.shyCrowds ? 2 : 0);
     if (!group && prefs.likes.includes(item.id)) dc -= 1;
     if (!group && prefs.dislikes.includes(item.id)) dc += 2;
