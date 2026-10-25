@@ -282,6 +282,83 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
+
+/* ── Pause overlay ────────────────────────────────────────── */
+.pause-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.78); display: flex;
+  align-items: center; justify-content: center;
+}
+.pause-card {
+  background: var(--bg2, #1a1a2e); border: 1px solid var(--gold, #c9a84c);
+  border-radius: 12px; padding: 2rem 2.5rem; min-width: 280px;
+  display: flex; flex-direction: column; gap: .75rem;
+}
+.pause-card h2 { color: var(--gold, #c9a84c); margin: 0 0 .5rem; font-size: 1.3rem; }
+.pause-card button {
+  padding: .65rem 1rem; border-radius: 8px; font-size: 1rem; cursor: pointer;
+  border: 1px solid var(--gold, #c9a84c); background: transparent;
+  color: var(--fg, #e8dcc8); transition: background .15s;
+}
+.pause-card button:hover { background: rgba(201,168,76,.18); }
+.pause-card button.primary { background: var(--gold, #c9a84c); color: #111; }
+.pause-card button:disabled { opacity: .4; cursor: not-allowed; }
+.pause-card button.danger { border-color: var(--bad, #c0392b); color: var(--bad, #c0392b); }
+.pause-btn {
+  position: fixed; bottom: 1rem; right: 1rem; z-index: 100;
+  width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-size: 1rem; cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+}
+.pause-btn.visible { display: flex; }
+
+/* ── Progression tree tab ─────────────────────────────────── */
+.tree-grid {
+  display: flex; flex-direction: column; gap: 1.2rem;
+  padding: .5rem 0;
+}
+.tree-skill-block { }
+.tree-skill-label {
+  font-size: .85rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--gold, #c9a84c); text-transform: uppercase;
+  margin-bottom: .4rem; padding-left: .2rem;
+}
+.tree-tier-row { margin-bottom: .5rem; }
+.tree-tier-label {
+  font-size: .72rem; color: var(--fg-dim, #888); letter-spacing: .06em;
+  text-transform: uppercase; margin-bottom: .25rem;
+}
+.tree-positions { display: flex; flex-wrap: wrap; gap: .3rem; }
+.tree-pos {
+  font-size: .72rem; padding: .25rem .55rem; border-radius: 6px;
+  border: 1px solid transparent; line-height: 1.2;
+}
+.tree-pos.known {
+  background: rgba(100,200,100,.15); border-color: rgba(100,200,100,.4);
+  color: var(--fg, #e8dcc8);
+}
+.tree-pos.unlockable {
+  background: rgba(201,168,76,.12); border-color: rgba(201,168,76,.35);
+  color: var(--gold, #c9a84c);
+}
+.tree-pos.locked {
+  background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1);
+  color: var(--fg-dim, #666);
+}
+.tree-gate-hint {
+  font-size: .72rem; color: var(--bad, #c0392b);
+  padding: .2rem 0 .1rem; letter-spacing: .03em;
+}
+.tree-progress-bar {
+  height: 3px; border-radius: 2px; background: rgba(255,255,255,.08);
+  margin: .3rem 0;
+}
+.tree-progress-fill {
+  height: 100%; border-radius: 2px; background: var(--gold, #c9a84c);
+  transition: width .3s;
+}
+
 </style>
 </head>
 <body>
@@ -3437,6 +3514,9 @@ function deepMerge(base, over) {
    ========================================================= */
 const $ = id => document.getElementById(id);
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && Game && Game.mode !== "creation") UI.pauseMenu();
+});;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 const sign = n => (n >= 0 ? "+" : "") + n;
@@ -4017,7 +4097,8 @@ const TABS = [
   { id: "self", ico: "✦", label: "Self" },
   { id: "guild", ico: "⚜", label: "Guild" },
   { id: "market", ico: "⚖", label: "Market" },
-  { id: "journal", ico: "✎", label: "Journal" }
+  { id: "journal", ico: "✎", label: "Journal" },
+  { id: "tree", ico: "⟁", label: "Tree" }
 ];
 const TRACKED = [
   ["coin", "coin", true], ["standing", "standing", true], ["reputation", "rep", true], ["fame", "fame", true],
@@ -4058,7 +4139,8 @@ const UI = {
         ${meter("Control", state.control, "var(--c-control)")}
         ${state.trauma ? meter("Trauma" + (state.trauma >= 60 ? " — critical" : state.trauma >= 30 ? " — building" : ""), state.trauma, "var(--c-trauma)") : ""}
       </div>
-      <div class="deltas" id="deltas"></div>`;
+      <div class="deltas" id="deltas"></div>
+      ${started ? '<button class="pause-btn visible" onclick="UI.pauseMenu()" title="Pause (Esc)">⏸</button>' : ""}`;
   },
 
   snap() { const o = {}; TRACKED.forEach(([k]) => { o[k] = state[k]; }); return o; },
@@ -4182,6 +4264,7 @@ const UI = {
     else if (UI.tab === "guild") UI.viewGuild(v);
     else if (UI.tab === "market") UI.viewMarket(v);
     else if (UI.tab === "journal") UI.viewJournal(v);
+    else if (UI.tab === "tree") UI.viewTree(v);
     setTimeout(() => { UI.locked = false; }, 160);
   },
 
@@ -6334,6 +6417,93 @@ const Game = {
     UI.tab = "work"; $("work").hidden = false; $("view").hidden = true;
     Creation.start(true);
   }
+  /* ── Pause menu ──────────────────────────────────── */
+  pauseMenu() {
+    const existing = document.getElementById("pause-overlay");
+    if (existing) { existing.remove(); return; }
+    const overlay = document.createElement("div");
+    overlay.className = "pause-overlay"; overlay.id = "pause-overlay";
+    const hasSave = Game.hasSave();
+    const ironman = state.ironman;
+    overlay.innerHTML = `
+      <div class="pause-card">
+        <h2>Paused</h2>
+        <button id="pm-resume" class="primary">Resume</button>
+        <button id="pm-save" ${ironman ? "disabled title='Ironman saves automatically'" : ""}>Save game</button>
+        <button id="pm-load" ${(ironman || !hasSave) ? "disabled" : ""}>Load game</button>
+        <button id="pm-menu" class="danger">Exit to main menu</button>
+      </div>`;
+    document.body.appendChild(overlay);
+    overlay.querySelector("#pm-resume").onclick = () => overlay.remove();
+    overlay.querySelector("#pm-save").onclick = () => { if (!ironman) { Game.save(true); overlay.remove(); } };
+    overlay.querySelector("#pm-load").onclick = () => { if (!ironman && hasSave) { overlay.remove(); Game.load(); } };
+    overlay.querySelector("#pm-menu").onclick = () => {
+      overlay.remove();
+      Game.save(false);
+      Creation.start(false);
+    };
+    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+  },
+
+  /* ── Progression tree view ───────────────────────── */
+  viewTree(v) {
+    const skills = ["vaginal","oral","anal","manual","performance","kink"];
+    const skillLabel = { vaginal:"Vaginal",oral:"Oral",anal:"Anal",manual:"Manual",performance:"Performance",kink:"Kink" };
+    let html = '<div class="tree-grid">';
+
+    for (const sk of skills) {
+      const allInSkill = INDEX.positions.filter(p => p.skill === sk);
+      if (!allInSkill.length) continue;
+      html += `<div class="tree-skill-block"><div class="tree-skill-label">${skillLabel[sk]}</div>`;
+
+      const knownInSkill = allInSkill.filter(p => state.knownPositions.includes(p.id)).length;
+      const pct = allInSkill.length ? Math.round(100 * knownInSkill / allInSkill.length) : 0;
+      html += `<div class="tree-progress-bar"><div class="tree-progress-fill" style="width:${pct}%"></div></div>`;
+
+      for (const diff of DIFF_ORDER) {
+        const inTier = allInSkill.filter(p => p.difficulty === diff);
+        if (!inTier.length) continue;
+
+        // Check if this tier is gate-locked
+        const tierReq = (TIER_PREREQS[sk] || {})[diff];
+        let gateBlocked = false, gateMsg = "";
+        if (tierReq) {
+          let prevIdx = DIFF_ORDER.indexOf(diff) - 1;
+          while (prevIdx >= 0) {
+            const prevDiff = DIFF_ORDER[prevIdx];
+            const prevPool = allInSkill.filter(p => p.difficulty === prevDiff);
+            if (prevPool.length > 0) {
+              const kn = prevPool.filter(p => state.knownPositions.includes(p.id)).length;
+              if (kn < tierReq) {
+                gateBlocked = true;
+                gateMsg = `⟁ Gate: learn ${tierReq - kn} more ${prevDiff} to unlock`;
+              }
+              break;
+            }
+            prevIdx--;
+          }
+        }
+
+        const knownCount = inTier.filter(p => state.knownPositions.includes(p.id)).length;
+        html += `<div class="tree-tier-row"><div class="tree-tier-label">${diff} · ${knownCount}/${inTier.length}</div>`;
+        if (gateBlocked) html += `<div class="tree-gate-hint">${gateMsg}</div>`;
+        html += '<div class="tree-positions">';
+        for (const pos of inTier) {
+          const known = state.knownPositions.includes(pos.id);
+          const unlockable = !known && !gateBlocked && canLearn(pos.id);
+          const cls = known ? "known" : unlockable ? "unlockable" : "locked";
+          const title = known ? "Learned" : unlockable ? `Unlockable at skill ${pos.req || 0}` : gateBlocked ? "Tier locked" : `Requires skill ${pos.req || 0}`;
+          html += `<span class="tree-pos ${cls}" title="${title}">${esc(pos.name)}${known ? " ✓" : unlockable ? " ·" : " 🔒"}</span>`;
+        }
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+    v.innerHTML = html;
+  },
+
+
 };
 
 function nameOf(id) { const p = anyItem(id); return p ? p.name : id; }
@@ -6922,16 +7092,16 @@ const DIFFICULTIES = {
 };
 
 const CLASSES = {
-  Courtesan: { label: { female: "Courtesan", male: "Courtier" }, hint: "+2 CHA, +10 Performance · Allure: +2 pay · Allure Opener: pre-encounter persuasion check",
+  Courtesan: { label: { female: "Courtesan", male: "Courtier" }, hint: "+2 CHA, +10 Performance · Allure: clients pay +2 coin per session · Allure Opener: pre-encounter CHA check to reduce resistance · Advanced positions cost 1 less energy",
     rec: { str: 10, dex: 14, con: 13, int: 8, wis: 12, cha: 15 },
     apply: t => { t.attributes.cha += 2; t.skills.performance += 10; t.classFeatures.allure = true; t.classFeatures.allureOpener = true; } },
-  Streetwalker: { label: { female: "Streetwalker", male: "Streetwalker" }, hint: "+2 DEX, +8 Oral · Quick Recovery: +8 energy on rest · Street Network: see 1 extra client per phase",
+  Streetwalker: { label: { female: "Streetwalker", male: "Streetwalker" }, hint: "+2 DEX, +8 Oral · Quick Recovery: +8 energy on every rest · Street Network: see 1 extra client per phase · Streetwalker positions unlock at skill −5 (easier)",
     rec: { str: 10, dex: 15, con: 14, int: 8, wis: 12, cha: 13 },
     apply: t => { t.attributes.dex += 2; t.skills.oral += 8; t.classFeatures.quickRecovery = true; t.classFeatures.streetNetwork = true; } },
-  Dominatrix: { label: { female: "Dominatrix", male: "Dominus" }, hint: "+1 CHA, +12 Kink, +8 Control · Command: kink clients auto-accept your lead · Scene Director: set terms",
+  Dominatrix: { label: { female: "Dominatrix", male: "Dominus" }, hint: "+1 CHA, +12 Kink, +8 Control · Command: kink clients auto-accept your lead on the first move · Scene Director: set terms each session — choose time limit, gear, hard limits · Kink DC −1 across all positions",
     rec: { str: 13, dex: 13, con: 12, int: 8, wis: 12, cha: 15 },
     apply: t => { t.attributes.cha += 1; t.skills.kink += 12; t.control += 8; t.classFeatures.command = true; t.classFeatures.sceneDirector = true; } },
-  "Flesh Healer": { label: { female: "Flesh Healer", male: "Flesh Healer" }, hint: "+2 WIS, +8 Insight · Soothing: stronger Pull back · Aftercare: bonus coin and trust on success",
+  "Flesh Healer": { label: { female: "Flesh Healer", male: "Flesh Healer" }, hint: "+2 WIS, +8 Insight · Soothing: Pull-back checks roll at advantage · Aftercare: +8 coin and +1 permanent trust per successful session end · Insight checks reveal hidden client needs",
     rec: { str: 10, dex: 13, con: 12, int: 8, wis: 15, cha: 14 },
     apply: t => { t.attributes.wis += 2; t.skills.insight += 8; t.classFeatures.soothing = true; t.classFeatures.aftercare = true; } }
 };
@@ -6940,16 +7110,20 @@ function classLabel(id, gk) { const c = CLASSES[id]; return c ? (c.label[gk || s
 const SUBCLASSES = {
   Courtesan: [
     { id: "Salon Rose", hint: "+6 Persuasion · Salon clients pay 15% extra · unlock: lotus, coital alignment", apply: t => { t.skills.persuasion += 6; t.classFeatures.salonRose = true; t.knownPositions = [...new Set([...t.knownPositions, "lotus", "coital_alignment_techniq"])]; } },
-    { id: "Temple Devotee", hint: "+6 Oral · All oral positions unlock · worship clients seek you out", apply: t => { t.skills.oral += 6; t.classFeatures.templeDevotee = true; } }],
+    { id: "Temple Devotee", hint: "+6 Oral · All oral positions unlock · worship clients seek you out", apply: t => { t.skills.oral += 6; t.classFeatures.templeDevotee = true; } },
+    { id: "Entertainer", hint: "+8 Performance · Allure DC−2 · clients stay for a second session 20% of the time · unlock: Exotic Dance", apply: t => { t.skills.performance += 8; t.classFeatures.entertainer = true; t.knownPositions = [...new Set([...t.knownPositions, "exotic_foreplay", "strip_tease"])]; } }],
   Streetwalker: [
     { id: "Alley Cat", hint: "+1 DEX · +4 Oral · Never surprised in trouble · city danger knowledge", apply: t => { t.attributes.dex += 1; t.skills.oral += 4; t.classFeatures.streetSmart = true; t.classFeatures.alleyCat = true; } },
-    { id: "Dockside", hint: "+1 CON · +4 Manual · Rough clients pay double · trouble: bonus roll", apply: t => { t.attributes.con += 1; t.skills.manual += 4; t.classFeatures.dockside = true; } }],
+    { id: "Dockside", hint: "+1 CON · +4 Manual · Rough clients pay double · trouble: bonus roll", apply: t => { t.attributes.con += 1; t.skills.manual += 4; t.classFeatures.dockside = true; } },
+    { id: "Night Runner", hint: "+1 DEX · night sessions pay 50% more · first encounter with a new client gives +10 rep · unlock: kneeling_oral", apply: t => { t.attributes.dex += 1; t.classFeatures.nightRunner = true; t.knownPositions = [...new Set([...t.knownPositions, "kneeling_oral", "wall_pin"])]; } }],
   Dominatrix: [
     { id: "Rope Artist", hint: "+8 Kink · unlock: bondage, shibari, suspension · rope clients linger", apply: t => { t.skills.kink += 8; t.classFeatures.ropeMaster = true; t.knownPositions = [...new Set([...t.knownPositions, "bondage", "suspension", "spread_eagle"])]; } },
-    { id: "Impact", hint: "+6 Manual · unlock: impact_play, impact positions · session control bonus", apply: t => { t.skills.manual += 6; t.skills.kink += 2; t.classFeatures.impactArtist = true; t.knownPositions = [...new Set([...t.knownPositions, "impact_play", "spanking"])]; } }],
+    { id: "Impact", hint: "+6 Manual · unlock: impact_play, impact positions · session control bonus", apply: t => { t.skills.manual += 6; t.skills.kink += 2; t.classFeatures.impactArtist = true; t.knownPositions = [...new Set([...t.knownPositions, "impact_play", "spanking"])]; } },
+    { id: "Mistress of Pain", hint: "+4 Manual · +6 Kink · clients with high risk tolerance seek you out · control starts 10 higher · unlock: humiliation, discipline", apply: t => { t.skills.manual += 4; t.skills.kink += 6; t.control += 10; t.classFeatures.painMistress = true; t.knownPositions = [...new Set([...t.knownPositions, "submission_hold", "discipline_frame"])]; } }],
   "Flesh Healer": [
     { id: "Massage", hint: "+6 Manual · −4 stress per encounter · clients return specifically for you", apply: t => { t.skills.manual += 6; t.classFeatures.massageHealer = true; } },
-    { id: "Aftercare", hint: "+8 Insight · aftercare gives +15 rep each time · unlock: lingam, yoni massage", apply: t => { t.skills.insight += 8; t.classFeatures.deepAftercare = true; t.knownPositions = [...new Set([...t.knownPositions, "tantric_bliss", "healing_touch"])]; } }]
+    { id: "Aftercare", hint: "+8 Insight · aftercare gives +15 rep each time · unlock: lingam, yoni massage", apply: t => { t.skills.insight += 8; t.classFeatures.deepAftercare = true; t.knownPositions = [...new Set([...t.knownPositions, "tantric_bliss", "healing_touch"])]; } },
+    { id: "Spirit Guide", hint: "+4 WIS · +6 Insight · +10 Control · spiritual clients pay 40% more and give trust instead of standing · unlock: tantric positions", apply: t => { t.attributes.wis += 4; t.skills.insight += 6; t.control += 10; t.classFeatures.spiritGuide = true; t.knownPositions = [...new Set([...t.knownPositions, "tantric_bliss", "lotus"])]; } }]
 };
 
 function setRel(t, id, d) {
