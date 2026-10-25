@@ -3528,6 +3528,23 @@ function bodyViz(e) {
 function isKink(id) { return INDEX.kinks.some(k => k.id === id); }
 function isPosition(id) { return INDEX.positions.some(p => p.id === id); }
 function getPosition(id) { return INDEX.positions.find(p => p.id === id) || INDEX.positions[0]; }
+function positionAvailable(pos, pcG, cgG, partyG) {
+  const pv = (pos && pos.p) || 'any';
+  if (pv === 'any') return true;
+  const allG = [pcG, cgG, ...(partyG || [])];
+  const males = allG.filter(g => g === 'male').length;
+  const females = allG.filter(g => g === 'female').length;
+  return pv.split('|').some(tag => {
+    if (tag === 'any') return true;
+    if (tag === 'mf') return males >= 1 && females >= 1;
+    if (tag === 'mm') return males >= 2;
+    if (tag === 'ff') return females >= 2;
+    if (tag === 'fm') return males >= 1 && females >= 1;
+    if (tag === 'mmf') return males >= 2 && females >= 1;
+    if (tag === 'ffm') return females >= 2 && males >= 1;
+    return true;
+  });
+}
 function anyItem(id) { return INDEX.positions.find(p => p.id === id) || INDEX.kinks.find(k => k.id === id); }
 function city(id) { return CITIES.find(c => c.id === (id || state.city)) || CITIES[0]; }
 function rankName(i) { return RANKS[clamp(i === undefined ? state.rank : i, 0, RANKS.length - 1)].name; }
@@ -3588,7 +3605,9 @@ function genRepeatClient() {
   if (state.flags.repeatClient) return null; // already one waiting
   const lim = state.character.limits || [];
   // Gather all positions/kinks the player knows and has Expert+ mastery in
-  const candidates = [...INDEX.positions.filter(p => knows(p.id)), ...INDEX.kinks.filter(k => knows(k.id))]
+  const cg = clientGender();
+  const pcG = state.character.gender;
+  const candidates = [...INDEX.positions.filter(p => knows(p.id) && positionAvailable(p, pcG, cg)), ...INDEX.kinks.filter(k => knows(k.id))]
     .filter(x => !lim.includes(x.id))
     .map(x => ({ item: x, tier: masteryTier(x.id) }))
     .filter(x => x.tier >= 2); // Expert (2) or Master (3)
@@ -3600,7 +3619,6 @@ function genRepeatClient() {
   // Pick highest-tier candidate (break ties randomly)
   candidates.sort((a, b) => b.tier - a.tier || Math.random() - 0.5);
   const { item, tier } = candidates[0];
-  const cg = clientGender();
   const name = `${pick(NAMES[cg])} ${pick(SURNAMES)}`;
   // Tier 3 = familiar, pays better, slightly easier; Tier 2 = pleased but new
   const payMult = tier >= 3 ? 1.4 : 1.2;
@@ -5098,7 +5116,9 @@ const Game = {
         label: m.name, hint: `${Math.round((1 - m.climax / m.max) * 100)}% · loves ${nameOf(m.prefs.likes[0])}`,
         action: () => { e.focus = i; syncFocus(e); this.encounterRound(); } })) });
     }
-    const tech = state.knownPositions.filter(id => isPosition(id) && id !== e.item.id).map(id => short(opt("work", getPosition(id), getPosition(id).name)));
+    const pcG = state.character.gender;
+    const partyG = e.party ? e.party.map(m => m.cg) : [];
+    const tech = state.knownPositions.filter(id => isPosition(id) && id !== e.item.id && positionAvailable(getPosition(id), pcG, e.cg, partyG)).map(id => short(opt("work", getPosition(id), getPosition(id).name)));
     if (tech.length) list.push({ section: "Switch position" }, { grid: tech });
     const kinks = knownKinks().filter(id => id !== e.item.id && !limits.includes(id)).map(id => short(opt("work", anyItem(id), anyItem(id).name)));
     if (kinks.length) list.push({ section: "Switch to a kink" }, { grid: kinks });
