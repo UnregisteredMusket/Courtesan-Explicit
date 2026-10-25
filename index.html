@@ -1298,6 +1298,13 @@ function getSkillBonus(name) {
   let b = getMod(state.attributes[attr]) + (raw >= 20 ? state.proficiencyBonus : 0) + Math.floor(raw / 25);
   if (state.upgrades.perfume && (name === "performance" || name === "kink" || name === "persuasion")) b += 1;
   if (state.upgrades.trusted_maid) b += 1;
+  if (state.upgrades.cosmetics && (name === "performance" || name === "persuasion")) b += 1;
+  if (state.upgrades.signature_scent && name === "persuasion") b += 2;
+  if (state.upgrades.restraints && name === "kink") b += 2;
+  if (state.upgrades.massage_oil && name === "manual") b += 1;
+  if (state.upgrades.toy_set && (name === "manual" || name === "kink")) b += 2;
+  if (state.upgrades.blindfold_silk && (name === "kink" || name === "performance" || name === "persuasion")) b += 1;
+  if (state.upgrades.candles_incense && name === "performance") b += 1;
   return b - (state.exhaustion || 0);
 }
 
@@ -1434,6 +1441,7 @@ function grossPay(item, patron) {
   if (state.character.appearance === "plain") pay = Math.max(4, pay - 2);
   if (state.classFeatures.allure) pay += 2;
   if (state.upgrades.clothes) pay += 2;
+  if (state.upgrades.jewelry) pay += 1;
   if (state.classFeatures.scar) pay -= 1;
   if (state.classFeatures.tattoo && tier <= 1) pay *= 1.15;
   if (state.classFeatures.bargainer) pay *= 1.1;
@@ -3070,6 +3078,8 @@ const Game = {
     }
     let interest = 30 + Math.min(15, Math.floor(state.reputation / 20)) + (state.upgrades.finery ? 10 : 0) + (spec.bonus || 0);
     if (state.classFeatures.beautyMark) interest += 5;
+    if (state.upgrades.jewelry) interest += 5;
+    if (state.upgrades.candles_incense) interest += 3;
     if (state.classFeatures.tattoo && spec.venue !== "tavern") interest -= 5;
     const body = spec.trial ? null : rollBodyPref();
     interest += 10 * bodyMatch(body);
@@ -3660,7 +3670,7 @@ const Game = {
     if (item.id === "guild_seminar") { const sk = Object.entries(state.skills).sort((a,b) => b[1]-a[1])[0]; if (sk) state.skills[sk[0]] = Math.min(100, sk[1] + 10); }
     // --- reputation ---
     if (item.id === "guild_voucher") changeStanding(8);
-    if (item.id === "advertisement") { state.reputation = Math.min(200, state.reputation + 5); state.flags.extraClients = (state.flags.extraClients || 0) + 2; }
+    if (item.id === "advertisement") { state.reputation = Math.min(200, state.reputation + 5); state.phaseMods.extraClients = (state.phaseMods.extraClients || 0) + 2; }
     if (item.id === "patron_introduction") state.reputation = Math.min(200, state.reputation + 15);
     if (item.id === "calling_card") state.reputation = Math.min(200, state.reputation + 3);
     // --- private room bonus ---
