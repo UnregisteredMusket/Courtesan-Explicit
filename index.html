@@ -3,6 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(){
+  var div = document.createElement('div');
+  div.id = '_err';
+  div.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#1a0a0a;color:#ff8888;font:14px monospace;padding:16px;z-index:99999;overflow:auto;display:none;white-space:pre-wrap;word-break:break-all;';
+  div.innerHTML = '<b>JS Error — send this to AIwolfie:</b>\n\n';
+  document.addEventListener('DOMContentLoaded', function(){ document.body && document.body.appendChild(div); });
+  window.addEventListener('error', function(e){
+    div.style.display = 'block';
+    div.innerHTML += (e.message || e.type) + '\n  ' + (e.filename||'') + ':' + (e.lineno||'') + ':' + (e.colno||'') + '\n\n';
+    if(e.error && e.error.stack) div.innerHTML += e.error.stack + '\n\n';
+  });
+  window.addEventListener('unhandledrejection', function(e){
+    div.style.display = 'block';
+    div.innerHTML += 'Unhandled promise rejection:\n  ' + (e.reason && e.reason.stack ? e.reason.stack : String(e.reason)) + '\n\n';
+  });
+})();
+</script>
 <title>Medieval Courtesan</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
