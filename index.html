@@ -159,7 +159,6 @@
   .body-viz { display: flex; align-items: center; gap: 14px; margin: 12px 0 8px; padding: 12px 14px; background: #100b08; border: 1px solid var(--line); border-radius: 10px; }
   .body-viz-fig { position: relative; flex: none; }
   .body-viz-fig img.fig-icon { width: 96px; height: 128px; image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
-  .body-viz-fig .cloth-layer { position: absolute; inset: 0; pointer-events: none; }
   .body-viz-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
   .viz-pos-label { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
   .viz-pos-name { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; line-height: 1.2; }
@@ -483,11 +482,6 @@ const TECH_DESC = {
   gangbang: "They take turns, or they don't wait — hands on you from every angle, a cock wherever there's a mouth or an opening. You lose track of who's where. You stop trying. Someone fills you while another tilts your chin up and you open your mouth without being asked.",
   threesome_ffm: "She mirrors you — the same heat, the same want. You work together, mouths and hands moving over him in traded rhythm, sometimes touching each other in passing. He reaches for both of you at once. You let her take what you were about to take and give her a look instead."
 };
-// sprite images removed — placeholder pending asset import
-function paintAllPixelSprites() {}
-
-
-
 // Climax overlay paths — drawn on top of the body icon during orgasm
 // 24×24 viewBox, white/cream fill to suggest cum/release, animated with climax-flare
 // Keys match CLOSEUP_PATHS; each shows the release geometry for that position
@@ -897,66 +891,12 @@ function bodyViz(e) {
   if (e.dress !== undefined) dressTags.push(`<span class="viz-dress-tag patron">${dressMap[e.dress] || "dressed"}</span>`);
   if (e.selfDress !== undefined && e.selfDress !== 2) dressTags.push(`<span class="viz-dress-tag self">you: ${dressMap[e.selfDress] || "dressed"}</span>`);
 
-  // Clothing overlay SVG shapes layered inside 24×24 viewBox over the position icon
-  // dress=2: translucent coverage rects (torso + hips), dress=1: half-faded (just torso), dress=0: none
-  let clothOverlay = "";
-  if (e.dress === 2) {
-    clothOverlay = `<svg viewBox="0 0 48 64" class="cloth-layer" style="width:96px;height:128px;position:absolute;inset:0;" aria-hidden="true">
-      <rect x="12" y="14" width="24" height="14" rx="3" fill="#c9993a22" stroke="#c9993a55" stroke-width="1"/>
-      <rect x="14" y="28" width="20" height="12" rx="3" fill="#c9993a1a" stroke="#c9993a44" stroke-width=".8"/>
-    </svg>`;
-  } else if (e.dress === 1) {
-    clothOverlay = `<svg viewBox="0 0 48 64" class="cloth-layer" style="width:96px;height:128px;position:absolute;inset:0;" aria-hidden="true">
-      <rect x="12" y="14" width="24" height="14" rx="3" fill="#c9993a14" stroke="#c9993a33" stroke-width=".8" stroke-dasharray="3 2"/>
-    </svg>`;
-  }
-
-  // Self dress overlay (lavender / purple)
-  let selfClothOverlay = "";
-  if (e.selfDress === 2) {
-    selfClothOverlay = `<svg viewBox="0 0 48 64" class="cloth-layer" style="width:96px;height:128px;position:absolute;inset:0;mix-blend-mode:screen;" aria-hidden="true">
-      <rect x="11" y="13" width="26" height="15" rx="3" fill="#9b80c422" stroke="#9b80c455" stroke-width="1"/>
-      <rect x="13" y="28" width="22" height="13" rx="3" fill="#9b80c41a" stroke="#9b80c444" stroke-width=".8"/>
-    </svg>`;
-  } else if (e.selfDress === 1) {
-    selfClothOverlay = `<svg viewBox="0 0 48 64" class="cloth-layer" style="width:96px;height:128px;position:absolute;inset:0;mix-blend-mode:screen;" aria-hidden="true">
-      <rect x="11" y="13" width="26" height="15" rx="3" fill="#9b80c414" stroke="#9b80c433" stroke-width=".8" stroke-dasharray="3 2"/>
-    </svg>`;
-  }
-
   const isClimax = !!(e.climaxing);
-  const figClass = isClimax ? "fig-icon fig-climax" : isHot ? "fig-icon fig-hot" : "fig-icon";
-  const closeupClass = isClimax ? "closeup-hot" : isHot ? "closeup-hot" : "";
-  const climaxIconPaths = CLIMAX_PATHS[iconKey] || CLIMAX_PATHS.heart;
-
-  // Climax overlays — visible cum geometry layered on top of the body icon and closeup
-  const climaxOverlay = isClimax ? `<div class="climax-overlay" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="stroke:none;">${climaxIconPaths}</svg>
-  </div>` : "";
-
-  // Closeup climax — similar drip/splash detail at the contact zone (16×16 coords, scaled)
-  const climaxCloseupOverlay = isClimax ? `<div class="climax-closeup-overlay" aria-hidden="true">
-    <svg viewBox="0 0 16 16" width="64" height="64" style="stroke:none;">${climaxIconPaths.replace(/cx="(\d+(?:\.\d+)?)" cy="(\d+(?:\.\d+)?)" rx="(\d+(?:\.\d+)?)"/g, (m, cx, cy, rx) => `cx="${(+cx*2/3).toFixed(1)}" cy="${(+cy*2/3).toFixed(1)}" rx="${(+rx*2/3).toFixed(1)}"`)}</svg>
-  </div>` : "";
 
   // Climax text block — shown below the viz info during orgasm round
   const climaxTextBlock = isClimax ? `<div class="climax-text"><strong>✦ release</strong> — ${e.climaxText || "the tension crests and breaks"}</div>` : "";
 
-  const tint = isClimax ? "#ff3a5a" : (isHot ? strokeColor : null);
-  const tintAlpha = isClimax ? 0.28 : 0.18;
   return `<div class="body-viz">
-    <div class="body-viz-fig" style="position:relative;">
-      <div class="${figClass}" aria-label="${info[1]}" style="width:96px;height:128px;display:flex;align-items:center;justify-content:center;background:#1a0d0a;border:1px solid #3a1a10;color:#6b3020;font-size:28px;">${info[0]}</div>
-      ${clothOverlay}${selfClothOverlay}
-      ${climaxOverlay}
-      <div class="body-viz-closeup" style="position:relative;">
-        <span class="closeup-label">${isClimax ? "climax" : "detail"}</span>
-        <div class="closeup-fig" style="position:relative;">
-          <div class="${closeupClass}" aria-hidden="true" style="width:96px;height:96px;display:flex;align-items:center;justify-content:center;background:#1a0d0a;border:1px solid #3a1a10;color:#6b3020;font-size:22px;">${info[0]}</div>
-          ${climaxCloseupOverlay}
-        </div>
-      </div>
-    </div>
     <div class="body-viz-info">
       <div class="viz-pos-label">${info[1]}</div>
       <div class="viz-pos-name">${mv.name}</div>
@@ -1350,8 +1290,6 @@ const UI = {
     }
     $("scene").innerHTML = `${o.kicker ? `<div class="kicker">${o.kicker}</div>` : ""}<h2>${o.title}</h2>
       ${o.speech ? `<div class="speech">${o.speech}</div>` : ""}<div class="body">${o.body || ""}</div>${o.html || ""}${meter}${roll}${chips ? `<div class="chips">${chips}</div>` : ""}`;
-    // Paint pixel-art canvases now that the DOM is live
-    paintAllPixelSprites();
   },
 
   makeButton(c) {
