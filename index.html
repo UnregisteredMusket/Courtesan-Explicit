@@ -4615,6 +4615,35 @@ const UI = {
     html += '</div>';
     v.innerHTML = html;
   },
+  /* ── Pause menu ──────────────────────────────────── */
+  pauseMenu() {
+    const existing = document.getElementById("pause-overlay");
+    if (existing) { existing.remove(); return; }
+    const overlay = document.createElement("div");
+    overlay.className = "pause-overlay"; overlay.id = "pause-overlay";
+    const hasSave = Game.hasSave();
+    const ironman = state.ironman;
+    overlay.innerHTML = `
+      <div class="pause-card">
+        <h2>Paused</h2>
+        <button id="pm-resume" class="primary">Resume</button>
+        <button id="pm-save" ${ironman ? "disabled title='Ironman saves automatically'" : ""}>Save game</button>
+        <button id="pm-load" ${(ironman || !hasSave) ? "disabled" : ""}>Load game</button>
+        <button id="pm-menu" class="danger">Exit to main menu</button>
+      </div>`;
+    document.body.appendChild(overlay);
+    overlay.querySelector("#pm-resume").onclick = () => overlay.remove();
+    overlay.querySelector("#pm-save").onclick = () => { if (!ironman) { Game.save(true); overlay.remove(); } };
+    overlay.querySelector("#pm-load").onclick = () => { if (!ironman && hasSave) { overlay.remove(); Game.load(); } };
+    overlay.querySelector("#pm-menu").onclick = () => {
+      overlay.remove();
+      Game.save(false);
+      Creation.start(false);
+    };
+    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+  },
+
+
 };
 
 /* =========================================================
@@ -6565,35 +6594,6 @@ const Game = {
     UI.tab = "work"; $("work").hidden = false; $("view").hidden = true;
     Creation.start(true);
   },
-  /* ── Pause menu ──────────────────────────────────── */
-  pauseMenu() {
-    const existing = document.getElementById("pause-overlay");
-    if (existing) { existing.remove(); return; }
-    const overlay = document.createElement("div");
-    overlay.className = "pause-overlay"; overlay.id = "pause-overlay";
-    const hasSave = Game.hasSave();
-    const ironman = state.ironman;
-    overlay.innerHTML = `
-      <div class="pause-card">
-        <h2>Paused</h2>
-        <button id="pm-resume" class="primary">Resume</button>
-        <button id="pm-save" ${ironman ? "disabled title='Ironman saves automatically'" : ""}>Save game</button>
-        <button id="pm-load" ${(ironman || !hasSave) ? "disabled" : ""}>Load game</button>
-        <button id="pm-menu" class="danger">Exit to main menu</button>
-      </div>`;
-    document.body.appendChild(overlay);
-    overlay.querySelector("#pm-resume").onclick = () => overlay.remove();
-    overlay.querySelector("#pm-save").onclick = () => { if (!ironman) { Game.save(true); overlay.remove(); } };
-    overlay.querySelector("#pm-load").onclick = () => { if (!ironman && hasSave) { overlay.remove(); Game.load(); } };
-    overlay.querySelector("#pm-menu").onclick = () => {
-      overlay.remove();
-      Game.save(false);
-      Creation.start(false);
-    };
-    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
-  },
-
-
 };
 
 function nameOf(id) { const p = anyItem(id); return p ? p.name : id; }
